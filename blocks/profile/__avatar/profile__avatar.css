@@ -1,5 +1,9 @@
 .profile__avatar {
-  max-width: 120px;
-  max-height: 120px;
+  width: 169px;
+  height: 127px;
   background-color: #000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

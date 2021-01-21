@@ -5,6 +5,10 @@
   display: flex;
   align-items: center;
   position: absolute;
+  border: none;
+  top: 15px;
+  right: 0;
+
 }
 
 .profile__edit::after {
