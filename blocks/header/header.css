@@ -1,0 +1,15 @@
+.header {
+  height: 74px;
+}
+
+.header::after {
+  width: 100%;
+  opacity: 0.7;
+  border: 10px solid #545454;
+  }
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .header {
+    height: 56px;
+  }
+}
