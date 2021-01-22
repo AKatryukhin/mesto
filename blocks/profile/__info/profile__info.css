@@ -2,6 +2,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 336px;
+  min-width: 336px;
   position: relative;
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    .profile__info {
+      min-width: 282px;
+    }
   }
