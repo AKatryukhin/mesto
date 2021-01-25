@@ -12,7 +12,11 @@
   border: 1px solid #fff;
   top: 15px;
   right: 0;
+  box-sizing: border-box;
+}
 
+.profile__edit:hover {
+  opacity: 0.6;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {

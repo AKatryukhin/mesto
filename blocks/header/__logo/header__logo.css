@@ -1,9 +1,15 @@
 .header__logo {
+  background: url(../../../images/header-logo.svg);
+  background-size: cover;
   width: 142px;
   height: 33px;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.header__logo:hover {
+  background: url(../../../images/header-logo-hover.svg);
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
