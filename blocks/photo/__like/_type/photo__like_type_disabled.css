@@ -1,0 +1,4 @@
+.photo__like_type_disabled {
+  background-image: url(../../../../images/heart.svg);
+  background-size: cover;
+}
