@@ -10,4 +10,14 @@ popupOpenButton.addEventListener('click', togglePopup);
 
 popupCloseButton.addEventListener('click', togglePopup);
 
+const formElement = document.querySelector('.popup__form');
+const nameInput = formElement.querySelector('.popup__input-name');
+const jobInput = formElement.querySelector('popup__input-job');
 
+const formSubmitHandler = function(evt) {
+  evt.preventDefault();
+  //let jobInputValue = jobInput.value;
+
+}
+
+//console.log(jobInputValue);
