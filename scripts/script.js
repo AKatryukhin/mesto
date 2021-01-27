@@ -12,23 +12,30 @@ popupCloseButton.addEventListener('click', togglePopup);
 
 const formElement = document.querySelector('.popup__form');
 const nameInput = formElement.querySelector('.popup__input-name');
-const jobInput = formElement.querySelector('popup__input-job');
+const jobInput = formElement.querySelector('.popup__input-job');
 
-//const formSubmitHandler = function(evt) {
- // evt.preventDefault();
-  //let jobInputValue = jobInput.value;
+let formSubmitHandler = function(evt) {
+  evt.preventDefault();
+  const ProfileName =  document.querySelector('.profile__name');
+  const ProfileJob =  document.querySelector('.profile__job');
+  ProfileName.textContent = nameInput.value;
+  ProfileJob.textContent = jobInput.value;
+  togglePopup();
+};
 
-}
+formElement.addEventListener('submit', formSubmitHandler);
 
-const saveButton = popup.querySelector('.popup__save');
 
-const likeButton = document.querySelector('.photo__like');
+
+/*const likeButton = document.querySelector('.photo__like');
+
 let toggleLikeButton = function (evt) {
-  likeButton.classList.toggle('.photo__like_type_active');
-  likeButton.classList.toggle('.photo__like_type_disabled');
+  likeButton.classList.toggle('photo__like_type_disabled');
+  likeButton.classList.toggle('photo__like_type_active');
+
 }
 
 likeButton.addEventListener('click',toggleLikeButton);
+*/
 
 
-//console.log(jobInputValue);
