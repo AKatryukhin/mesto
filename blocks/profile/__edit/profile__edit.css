@@ -5,13 +5,10 @@
   height: 24px;
   display: flex;
   align-items: center;
-  position: absolute;
   background-size: 10px;
   background-position: center;
   background-repeat: no-repeat;
   border: 1px solid #fff;
-  top: 15px;
-  right: 0;
   box-sizing: border-box;
 }
 
@@ -23,8 +20,7 @@
   .profile__edit {
       width: 18px;
       height: 18px;
-      top: 8px;
-      right: 19px;
       background-size: 7.5px;
+
   }
 }
