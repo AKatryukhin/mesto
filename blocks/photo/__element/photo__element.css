@@ -1,8 +1,6 @@
 .photo__element {
   margin: 0;
   max-width: 100%;
-  /*width: 282px;
-  height: 362px;*/
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }

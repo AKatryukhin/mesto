@@ -21,10 +21,10 @@
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .profile__edit {
-    width: 18px;
-    height: 18px;
-    top: 8px;
-    right: 19px;
-    background-size: 7.5px;
-    }
+      width: 18px;
+      height: 18px;
+      top: 8px;
+      right: 19px;
+      background-size: 7.5px;
+  }
 }
