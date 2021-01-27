@@ -1,14 +1,12 @@
 .popup__close {
-  position: absolute;
-  top: -40px;
-  right: -40px;
   width: 40px;
   height: 40px;
-  transform: rotate(45deg);
   background-color: #000;
-  background-image: url(../../../images/add-button.svg);
+  background-image: url(../../../images/close-Icon.svg);
   background-size: 100%;
   border: none;
+  align-self: flex-end;
+  transform: translate(76px, -40px);
 }
 
 .popup__close:hover {
@@ -19,7 +17,7 @@
   .popup__close {
       width: 26px;
       height: 26px;
-      right: 0;
+      transform: translate(25px, -38px);
   }
 }
 
