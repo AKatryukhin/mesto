@@ -6,6 +6,8 @@
   align-items: center;
   border: none;
   position: relative;
+  background-image: url(../../../../images/heart.svg);
+  background-size: cover;
 }
 
 .photo__like:hover {

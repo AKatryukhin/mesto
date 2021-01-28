@@ -1,9 +1,9 @@
-.content__photo {
+.content__galery {
   margin: 0 auto;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
-  .content__photo {
+  .content__galery {
       margin: 0 auto;
   }
 }

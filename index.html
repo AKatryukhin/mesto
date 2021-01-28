@@ -25,64 +25,74 @@
                 </div>
                 <button class="profile__add" type="button" aria-label="Кнопка добавления фото"></button>
             </section>
-            <section class="photo content__photo" aria-label="Фото мест">
+            <section class="galery content__galery" aria-label="Фото мест">
+              <article class="photo">
                 <figure class="photo__element">
                     <img src="./images/photo-element-karach.jpg" alt="Катринка Карачаевск" class="photo__image" />
                     <figcaption class="photo__title">
-                        <p class="photo__name">Карачаевск</p>
-                        <button class="photo__like photo__like_type_disabled" type="button"></button>
+                        <h2 class="photo__name">Карачаевск</h2>
+                        <button class="photo__like" type="button"></button>
                     </figcaption>
                 </figure>
+              </article>
+              <article class="photo">
                 <figure class="photo__element">
                     <img src="./images/photo-element-elbrus.jpg" alt="Картинка Эльбрус" class="photo__image" />
                     <figcaption class="photo__title">
-                        <p class="photo__name">Гора Эльбрус</p>
-                        <button class="photo__like photo__like_type_disabled" type="button"></button>
+                        <h2 class="photo__name">Гора Эльбрус</h2>
+                        <button class="photo__like" type="button"></button>
                     </figcaption>
                 </figure>
+              </article>
+              <article class="photo">
                 <figure class="photo__element">
                     <img src="./images/photo-element-dombay.jpg" alt="Картинка Домбай" class="photo__image" />
                     <figcaption class="photo__title">
-                        <p class="photo__name">Домбай</p>
-                        <button class="photo__like photo__like_type_disabled" type="button"></button>
+                        <h2 class="photo__name">Домбай</h2>
+                        <button class="photo__like" type="button"></button>
                     </figcaption>
                 </figure>
+              </article>
+              <article class="photo">
                 <figure class="photo__element">
                     <img src="./images/photo-element-edge.jpg" alt="Картинка край земли" class="photo__image" />
                     <figcaption class="photo__title">
-                        <p class="photo__name">Край земли</p>
-                        <button class="photo__like photo__like_type_disabled" type="button"></button>
+                        <h2 class="photo__name">Край земли</h2>
+                        <button class="photo__like" type="button"></button>
                     </figcaption>
                 </figure>
+              </article>
+              <article class="photo">
                 <figure class="photo__element">
                     <img src="./images/photo-element-stairs.jpg" alt="Картинка каменная лестница" class="photo__image" />
                     <figcaption class="photo__title">
-                        <p class="photo__name">Каменная лестница</p>
-                        <button class="photo__like photo__like_type_disabled" type="button"></button>
+                        <h2 class="photo__name">Каменная лестница</h2>
+                        <button class="photo__like" type="button"></button>
                     </figcaption>
                 </figure>
+              </article>
+              <article class="photo">
                 <figure class="photo__element">
                     <img src="./images/photo-element-bridge.jpg" alt="Картинка мост в тумане" class="photo__image" />
                     <figcaption class="photo__title">
-                        <p class="photo__name">Мост в тумане</p>
-                        <button class="photo__like photo__like_type_disabled" type="button"></button>
+                        <h2 class="photo__name">Мост в тумане</h2>
+                        <button class="photo__like" type="button"></button>
                     </figcaption>
                 </figure>
+              </article>
             </section>
         </main>
         <footer class="footer page__footer container">
-            <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
         <section class="popup">
             <div class="popup__container">
                 <button type="button" class="popup__close" aria-label="Закрыть попап"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__form">
-                    <fieldset class="popup__input">
-                        <input type="text" class="popup__input-name" name="name" value="Жак-Ив Кусто" />
-                    </fieldset>
-                    <fieldset class="popup__input">
-                        <input type="text" class="popup__input-job" name="job" value="Исследователь океана" />
+                <form class="popup__form" name="popup-form">
+                    <fieldset class="popup__fild">
+                        <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Жак-Ив Кусто" value="" />
+                        <input type="text" class="popup__input popup__input_type_job" name="job" placeholder="Исследователь океана" value="" />
                     </fieldset>
                     <button class="popup__save" type="submit">Сохранить</button>
                 </form>
