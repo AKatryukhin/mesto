@@ -12,20 +12,19 @@ let openPopup = function () {
 }; // создал переменную с функцией открытия попапа
 
 let closePopup = function () {
-  popup.classList.remove("popup_opened");
+    popup.classList.remove("popup_opened");
 }; //создал переменную с функцией закрытия попапа
 
 let formSubmitHandler = function (evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  closePopup();
-}; // //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
+    evt.preventDefault();
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
+    closePopup();
+}; //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
 
 popupOpenButton.addEventListener("click", openPopup); // добавил слушателя кнопке открытия попапа - редактирования профиля
 popupCloseButton.addEventListener("click", closePopup); // добавил слушателя кнопке закрытия попапа
 formElement.addEventListener("submit", formSubmitHandler); // добавил слушателя отправке формы
-
 
 /*const likeButton = document.querySelectorAll('.photo__like');
 
@@ -37,5 +36,3 @@ let toggleLikeButton = function (evt) {
 
 likeButton.addEventListener('click',toggleLikeButton);
 */
-
-
