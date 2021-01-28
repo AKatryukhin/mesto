@@ -1,29 +1,31 @@
-let popup = document.querySelector(".popup");
-let popupOpenButton = document.querySelector(".profile__edit");
-let popupCloseButton = popup.querySelector(".popup__close");
+let popup = document.querySelector(".popup"); //нашел попап
+let popupOpenButton = document.querySelector(".profile__edit"); //нашел кнопку открытия попапа - редактирования профиля
+let popupCloseButton = popup.querySelector(".popup__close"); // нашел кнопку закрытия попапа
+let formElement = document.querySelector(".popup__form"); // нашел форму попапа
+let nameInput = formElement.querySelector(".popup__input-name"); // нашел поле ввода имени в форме попап
+let jobInput = formElement.querySelector(".popup__input-job"); //нашел поле ввода "о себе" в форме попап
+let profileName = document.querySelector(".profile__name"); // нашел поле для отображения имени в профиле
+let profileJob = document.querySelector(".profile__job"); // нашел поле для отображения "о себе" в профиле
 
-let togglePopup = function () {
-    popup.classList.toggle("popup_opened");
-};
+let openPopup = function () {
+    popup.classList.add("popup_opened");
+}; // создал переменную с функцией открытия попапа
 
-popupOpenButton.addEventListener("click", togglePopup);
-
-popupCloseButton.addEventListener("click", togglePopup);
-
-let formElement = document.querySelector(".popup__form");
-let nameInput = formElement.querySelector(".popup__input-name");
-let jobInput = formElement.querySelector(".popup__input-job");
+let closePopup = function () {
+  popup.classList.remove("popup_opened");
+}; //создал переменную с функцией закрытия попапа
 
 let formSubmitHandler = function (evt) {
-    evt.preventDefault();
-    let ProfileName = document.querySelector(".profile__name");
-    let ProfileJob = document.querySelector(".profile__job");
-    ProfileName.textContent = nameInput.value;
-    ProfileJob.textContent = jobInput.value;
-    togglePopup();
-};
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  closePopup();
+}; // //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
 
-formElement.addEventListener("submit", formSubmitHandler);
+popupOpenButton.addEventListener("click", openPopup); // добавил слушателя кнопке открытия попапа - редактирования профиля
+popupCloseButton.addEventListener("click", closePopup); // добавил слушателя кнопке закрытия попапа
+formElement.addEventListener("submit", formSubmitHandler); // добавил слушателя отправке формы
+
 
 /*const likeButton = document.querySelectorAll('.photo__like');
 
