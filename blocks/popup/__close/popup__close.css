@@ -13,6 +13,10 @@
   opacity: 0.6;
 }
 
+.popup__close:active, .popup__close:focus {
+  outline: none;
+}
+
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .popup__close {
       width: 26px;
