@@ -17,7 +17,7 @@
   .popup__close {
       width: 26px;
       height: 26px;
-      transform: translate(25px, -38px);
+      transform: translate(25px, -38px) rotate(-45deg);
   }
 }
 
