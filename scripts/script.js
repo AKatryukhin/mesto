@@ -26,13 +26,3 @@ popupOpenButton.addEventListener("click", openPopup); // добавил слуш
 popupCloseButton.addEventListener("click", closePopup); // добавил слушателя кнопке закрытия попапа
 formElement.addEventListener("submit", formSubmitHandler); // добавил слушателя отправке формы
 
-/*const likeButton = document.querySelectorAll('.photo__like');
-
-let toggleLikeButton = function (evt) {
-  likeButton.classList.toggle('photo__like_type_disabled');
-  likeButton.classList.toggle('photo__like_type_active');
-
-}
-
-likeButton.addEventListener('click',toggleLikeButton);
-*/

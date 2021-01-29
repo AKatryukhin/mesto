@@ -18,11 +18,9 @@
   opacity: 0.8;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
-  .profile__add {
-      width: 282px;
-      height: 50px;
-      background-size: 16px;
+@media screen and (max-width: 767px) {
+  .popup__save {
+    font-size: 14px;
   }
 }
 
