@@ -9,7 +9,9 @@ let profileJob = document.querySelector('.profile__job'); // нашел поле
 
 let openPopup = function () {
     popup.classList.add('popup_opened');
-}; // создал переменную с функцией открытия попапа
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
+}; // создал переменную с функцией открытия попапа и присваивания инпутам значений  из профайла
 
 let closePopup = function () {
     popup.classList.remove('popup_opened');
