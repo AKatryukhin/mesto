@@ -4,7 +4,7 @@ const popupProfCloseButton = popupProf.querySelector('.popupProf__close'); // н
 const formElement = document.querySelector('.popupProf__form'); // нашел форму попапа
 const nameInput = formElement.querySelector('.popupProf__input_type_name'); // нашел поле ввода имени в форме попап Prof
 const jobInput = formElement.querySelector('.popupProf__input_type_job'); //нашел поле ввода "о себе" в форме попап Prof
-const placeInput = formElement.querySelector('.popupPlace__input_type_place'); // нашел поле ввода имени в форме попап Place
+const placeInput = formElement.querySelector('.popupPlace__input_type_place'); // нашел поле ввода названия места в форме попап Place
 const linkInput = formElement.querySelector('.popupPlace__input_type_link'); //нашел поле ввода "о себе" в форме попап Place
 const profileName = document.querySelector('.profile__name'); // нашел поле для отображения имени в профиле
 const profileJob = document.querySelector('.profile__job'); // нашел поле для отображения "о себе" в профиле
@@ -12,6 +12,7 @@ const galery = document.querySelector('.galery'); // нашел секцию gal
 const popupPlaceOpenButton = document.querySelector('.profile__add'); //нашел кнопку открытия попапа - добавления нового места
 const popupPlace = document.querySelector('.popupPlace'); //нашел попап добавления нового места
 const popupPlaceCloseButton = popupPlace.querySelector('.popupPlace__close'); // нашел кнопку закрытия попапа добавления нового места
+const formElementPlace = document.querySelector('.popupPlace__form'); // нашел кнопку Создать попапа Place
 
 const initialCards = [
   {
@@ -78,7 +79,7 @@ popupProfOpenButton.addEventListener('click', () => {
 popupProfCloseButton.addEventListener('click', () => {
   closePopup(popupProf);
 }); // добавил слушателя кнопке закрытия попапа профиля
-formElement.addEventListener('submit', formSubmitHandlerPopupProf); // добавил слушателя отправке формы
+formElement.addEventListener('submit', formSubmitHandlerPopupProf); // добавил слушателя отправке формы Prof
 
 popupPlaceOpenButton.addEventListener('click', () => {
   openPopup(popupPlace);
@@ -88,12 +89,23 @@ popupPlaceCloseButton.addEventListener('click', () => {
   closePopup(popupPlace);
 }); // добавил слушателя кнопке закрытия попапа добавления нового места
 
-// const formSubmitHandlerPopupPlace = function (evt) {
-//   evt.preventDefault();
-//   profileName.textContent = nameInput.value;
-//   profileJob.textContent = jobInput.value;
-//   closePopup(popupProf);
-// }; //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
+function addNewPlace () {
+  const templatePhoto = document.querySelector('#photo').content; // нашел элемент photo
+  const photoEl = templatePhoto.querySelector('.photo').cloneNode(true);
+  photoEl.querySelector('.photo__image').src = 1;//linkInput.textContent;
+  photoEl.querySelector('.photo__image').alt = 2;//`Картинка ${placeInput.textContent}`;
+  photoEl.querySelector('.photo__name').textContent = 3;//placeInput.textContent;
+  galery.prepend(photoEl);
+}
 
-console.log(popupPlaceOpenButton);
+const formSubmitHandlerPopupPlace = function (evt) {
+  evt.preventDefault();
+  addNewPlace();
+  // photoEl.querySelector('.photo__image').src = linkInput.value;
+  // photoEl.querySelector('.photo__image').alt = `Картинка ${placeInput.value}`;
+  // photoEl.querySelector('.photo__name').textContent = placeInput.value;
 
+  closePopup(popupPlace);
+}; //создал переменную с функцией
+
+formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace); // добавил слушателя отправке формы
