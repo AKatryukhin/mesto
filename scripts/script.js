@@ -6,6 +6,7 @@ const nameInput = formElement.querySelector('.popupProf__input_type_name'); // �
 const jobInput = formElement.querySelector('.popupProf__input_type_job'); //нашел поле ввода "о себе" в форме попап
 const profileName = document.querySelector('.profile__name'); // нашел поле для отображения имени в профиле
 const profileJob = document.querySelector('.profile__job'); // нашел поле для отображения "о себе" в профиле
+const galery = document.querySelector('.galery'); // нашел секцию galery
 
 const initialCards = [
   {
@@ -34,7 +35,6 @@ const initialCards = [
   }
 ];
 
-
 const openPopup = (popupEl) => {
     popupEl.classList.add('popup_opened');
 
@@ -61,3 +61,15 @@ popupProfCloseButton.addEventListener('click', () => {
 }); // добавил слушателя кнопке закрытия попапа профиля
 formElement.addEventListener('submit', formSubmitHandler); // добавил слушателя отправке формы
 
+
+function getPhotoEl (item) {
+
+const templatePhoto = document.querySelector('#photo').content; // нашел элемент photo
+const photoEl = templatePhoto.querySelector('.photo').cloneNode(true);
+photoEl.querySelector('.photo__image').src = item.link;
+photoEl.querySelector('.photo__image').alt = `Картинка ${item.name}`;
+photoEl.querySelector('.photo__name').textContent = item.name;
+galery.append(photoEl);
+};
+
+const getPhoto = initialCards.forEach(getPhotoEl);
