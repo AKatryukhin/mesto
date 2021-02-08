@@ -29,7 +29,7 @@
                 <button class="profile__add" type="button" aria-label="Кнопка добавления фото"></button>
             </section>
             <section class="galery content__galery" aria-label="Фото мест">
-                <article class="photo">
+                <!-- <article class="photo">
                     <figure class="photo__element">
                         <img src="./images/photo-element-karach.jpg" alt="Катринка Карачаевск" class="photo__image" />
                         <figcaption class="photo__title">
@@ -82,7 +82,7 @@
                             <button class="photo__like" type="button" aria-label="Кнопка для Лайков"></button>
                         </figcaption>
                     </figure>
-                </article>
+                </article> -->
             </section>
         </main>
         <footer class="footer page__footer container">
@@ -101,5 +101,16 @@
                 </form>
             </div>
         </section>
+        <template id="photo">
+          <article class="photo">
+            <figure class="photo__element">
+              <img src="./images/photo-element-karach.jpg" alt="Катринка Карачаевск" class="photo__image" />
+                <figcaption class="photo__title">
+                  <h2 class="photo__name">Карачаевск</h2>
+                  <button class="photo__like" type="button" aria-label="Кнопка для Лайков"></button>
+                </figcaption>
+            </figure>
+          </article>
+        </template>
     </body>
 </html>
