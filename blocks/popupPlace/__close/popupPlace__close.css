@@ -1,4 +1,4 @@
-.popupProf__close {
+.popupPlace__close {
   width: 40px;
   height: 40px;
   background-color: #000;
@@ -9,16 +9,16 @@
   transform: translate(76px, -40px) rotate(-45deg);
 }
 
-.popupProf__close:hover {
+.popupPlace__close:hover {
   opacity: 0.6;
 }
 
-.popupProf__close:active, .popupProf__close:focus {
+.popupPlace__close:active, .popupPlace__close:focus {
   outline: none;
 }
 
 @media screen and (max-width: 767px) {
-  .popupProf__close {
+  .popupPlace__close {
       width: 26px;
       height: 26px;
       transform: translate(25px, -38px) rotate(-45deg);

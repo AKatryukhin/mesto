@@ -1,4 +1,4 @@
-.popupProf__title {
+.popupPlace__title {
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .popupProf__title {
+  .popupPlace__title {
       font-size: 18px;
       margin: 0 0 75px 0;
   }
