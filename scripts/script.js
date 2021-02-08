@@ -53,9 +53,11 @@ const formSubmitHandler = function (evt) {
 
 popupProfOpenButton.addEventListener('click', () => {
   openPopup(popupProf);
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+  // nameInput.value = profileName.textContent;
+  // jobInput.value = profileJob.textContent;
 }); // добавил слушателя кнопке открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfCloseButton.addEventListener('click', closePopup(popupProf)); // добавил слушателя кнопке закрытия попапа профиля
 formElement.addEventListener('submit', formSubmitHandler); // добавил слушателя отправке формы
 
+console.log(popupProf);
+console.log(openPopup(popupProf));
