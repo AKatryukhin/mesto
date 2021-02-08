@@ -1,5 +1,4 @@
 const popupProf = document.querySelector('.popupProf'); //нашел попап редактирования профиля
-const popupPlace = document.querySelector('.popupPlace'); //нашел попап добавления нового места
 const popupProfOpenButton = document.querySelector('.profile__edit'); //нашел кнопку открытия попапа - редактирования профиля
 const popupProfCloseButton = popupProf.querySelector('.popupProf__close'); // нашел кнопку закрытия попапа редактирования профиля
 const formElement = document.querySelector('.popupProf__form'); // нашел форму попапа
@@ -11,6 +10,7 @@ const profileName = document.querySelector('.profile__name'); // нашел по
 const profileJob = document.querySelector('.profile__job'); // нашел поле для отображения "о себе" в профиле
 const galery = document.querySelector('.galery'); // нашел секцию galery
 const popupPlaceOpenButton = document.querySelector('.profile__add'); //нашел кнопку открытия попапа - добавления нового места
+const popupPlace = document.querySelector('.popupPlace'); //нашел попап добавления нового места
 const popupPlaceCloseButton = popupPlace.querySelector('.popupPlace__close'); // нашел кнопку закрытия попапа добавления нового места
 
 const initialCards = [
@@ -78,9 +78,7 @@ popupProfOpenButton.addEventListener('click', () => {
 popupProfCloseButton.addEventListener('click', () => {
   closePopup(popupProf);
 }); // добавил слушателя кнопке закрытия попапа профиля
-formElement.addEventListener('submit', formSubmitHandler); // добавил слушателя отправке формы
-
-
+formElement.addEventListener('submit', formSubmitHandlerPopupProf); // добавил слушателя отправке формы
 
 popupPlaceOpenButton.addEventListener('click', () => {
   openPopup(popupPlace);
@@ -90,9 +88,12 @@ popupPlaceCloseButton.addEventListener('click', () => {
   closePopup(popupPlace);
 }); // добавил слушателя кнопке закрытия попапа добавления нового места
 
-const formSubmitHandlerPopupPlace = function (evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  closePopup(popupProf);
-}; //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
+// const formSubmitHandlerPopupPlace = function (evt) {
+//   evt.preventDefault();
+//   profileName.textContent = nameInput.value;
+//   profileJob.textContent = jobInput.value;
+//   closePopup(popupProf);
+// }; //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
+
+console.log(popupPlaceOpenButton);
+
