@@ -8,7 +8,9 @@
   position: relative;
   background-image: url(../../../../mesto/images/heart.svg);
   background-size: cover;
-}
+  background-position: center;
+  padding: 0;
+ }
 
 .photo__like:hover {
   opacity: 0.5;
