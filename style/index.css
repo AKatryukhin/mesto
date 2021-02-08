@@ -30,7 +30,6 @@
 @import url(../blocks/footer/__copyright/fuuter__copyright.css);
 @import url(../blocks/popupProf/popupProf.css);
 @import url(../blocks/popup_opened/popup_opened.css);
-@import url(../blocks/popupProf/__close/popupProf__close.css);
 @import url(../blocks/popupProf/__container/popupProf__container.css);
 @import url(../blocks/popupProf/__fild/popupProf__fild.css);
 @import url(../blocks/popupProf/__form/popupProf__form.css);
@@ -39,3 +38,4 @@
 @import url(../blocks/popupProf/__input/_type/popupProf__input_type_name.css);
 @import url(../blocks/popupProf/__save/popupProf__save.css);
 @import url(../blocks/popupProf/__title/popupProf__title.css);
+@import url(../blocks/popupProf/__close/popupProf__close.css);
