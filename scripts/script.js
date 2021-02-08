@@ -36,28 +36,26 @@ const initialCards = [
 
 
 const openPopup = (popupEl) => {
-    popupEl.classList.add('popup-opened');
+    popupEl.classList.add('popup_opened');
 
 }; // создал переменную с функцией открытия попапа
 
 const closePopup = (popupEl) => {
-    popupEl.classList.remove('popup-opened');
+    popupEl.classList.remove('popup_opened');
 }; //создал переменную с функцией закрытия попапа
 
 const formSubmitHandler = function (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closePopup();
+    closePopup(popupProf);
 }; //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
 
 popupProfOpenButton.addEventListener('click', () => {
   openPopup(popupProf);
-  // nameInput.value = profileName.textContent;
-  // jobInput.value = profileJob.textContent;
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 }); // добавил слушателя кнопке открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfCloseButton.addEventListener('click', closePopup(popupProf)); // добавил слушателя кнопке закрытия попапа профиля
 formElement.addEventListener('submit', formSubmitHandler); // добавил слушателя отправке формы
 
-console.log(popupProf);
-console.log(openPopup(popupProf));
