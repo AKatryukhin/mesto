@@ -29,7 +29,7 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/fuuter__copyright.css);
 @import url(../blocks/popupProf/popupProf.css);
-@import url(../blocks/popup_opened/popup_opened.css);
+@import url(../blocks/popup-opened/popup-opened.css);
 @import url(../blocks/popupProf/__container/popupProf__container.css);
 @import url(../blocks/popupProf/__fild/popupProf__fild.css);
 @import url(../blocks/popupProf/__form/popupProf__form.css);

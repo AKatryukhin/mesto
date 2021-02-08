@@ -48,6 +48,19 @@
                 </form>
             </div>
         </section>
+        <section class="popupPlace">
+          <div class="popupPlace__container">
+              <button type="button" class="popupPlace__close" aria-label="Кнопка для закрытия окна редактирования"></button>
+              <h2 class="popupPlace__title">Редактировать профиль</h2>
+              <form class="popupPlace__form" name="popupPlace-form">
+                  <fieldset class="popupPlace__fild">
+                      <input type="text" class="popupPlace__input popupProf__input_type_name" name="name" value="" />
+                      <input type="text" class="popupPlace__input popupProf__input_type_job" name="job" value="" />
+                  </fieldset>
+                  <button class="popupPlace__save" type="submit" aria-label="Кнопка Сохранить">Сохранить</button>
+              </form>
+          </div>
+      </section>
         <template id="photo">
           <article class="photo">
             <figure class="photo__element">

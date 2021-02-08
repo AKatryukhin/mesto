@@ -36,12 +36,12 @@ const initialCards = [
 ];
 
 const openPopup = (popupEl) => {
-    popupEl.classList.add('popup_opened');
+    popupEl.classList.add('popup-opened');
 
 }; // создал переменную с функцией открытия попапа
 
 const closePopup = (popupEl) => {
-    popupEl.classList.remove('popup_opened');
+    popupEl.classList.remove('popup-opened');
 }; //создал переменную с функцией закрытия попапа
 
 const formSubmitHandler = function (evt) {
