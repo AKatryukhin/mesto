@@ -70,6 +70,6 @@ photoEl.querySelector('.photo__image').src = item.link;
 photoEl.querySelector('.photo__image').alt = `Картинка ${item.name}`;
 photoEl.querySelector('.photo__name').textContent = item.name;
 galery.append(photoEl);
-};
+} // создал переменную с функцией добавления фото из стороннего массива
 
-const getPhoto = initialCards.forEach(getPhotoEl);
+const getPhoto = initialCards.forEach(getPhotoEl); // создал переменную с функцией добавления фото из initialCards
