@@ -1,9 +1,9 @@
 const popupProf = document.querySelector('.popupProf'); //нашел попап редактирования профиля
 const popupProfOpenButton = document.querySelector('.profile__edit'); //нашел кнопку открытия попапа - редактирования профиля
-const popupProfCloseButton = popup.querySelector('.popupProf__close'); // нашел кнопку закрытия попапа
-const formElement = document.querySelector('.popup__form'); // нашел форму попапа
-const nameInput = formElement.querySelector('.popup__input_type_name'); // нашел поле ввода имени в форме попап
-const jobInput = formElement.querySelector('.popup__input_type_job'); //нашел поле ввода "о себе" в форме попап
+const popupProfCloseButton = popupProf.querySelector('.popupProf__close'); // нашел кнопку закрытия попапа
+const formElement = document.querySelector('.popupProf__form'); // нашел форму попапа
+const nameInput = formElement.querySelector('.popupProf__input_type_name'); // нашел поле ввода имени в форме попап
+const jobInput = formElement.querySelector('.popupProf__input_type_job'); //нашел поле ввода "о себе" в форме попап
 const profileName = document.querySelector('.profile__name'); // нашел поле для отображения имени в профиле
 const profileJob = document.querySelector('.profile__job'); // нашел поле для отображения "о себе" в профиле
 
