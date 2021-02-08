@@ -1,20 +1,47 @@
-const popup = document.querySelector('.popup'); //нашел попап
-const popupOpenButton = document.querySelector('.profile__edit'); //нашел кнопку открытия попапа - редактирования профиля
-const popupCloseButton = popup.querySelector('.popup__close'); // нашел кнопку закрытия попапа
+const popupProf = document.querySelector('.popupProf'); //нашел попап редактирования профиля
+const popupProfOpenButton = document.querySelector('.profile__edit'); //нашел кнопку открытия попапа - редактирования профиля
+const popupProfCloseButton = popup.querySelector('.popupProf__close'); // нашел кнопку закрытия попапа
 const formElement = document.querySelector('.popup__form'); // нашел форму попапа
 const nameInput = formElement.querySelector('.popup__input_type_name'); // нашел поле ввода имени в форме попап
 const jobInput = formElement.querySelector('.popup__input_type_job'); //нашел поле ввода "о себе" в форме попап
 const profileName = document.querySelector('.profile__name'); // нашел поле для отображения имени в профиле
 const profileJob = document.querySelector('.profile__job'); // нашел поле для отображения "о себе" в профиле
 
-const openPopup = function () {
-    popup.classList.add('popup_opened');
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-}; // создал переменную с функцией открытия попапа и присваивания инпутам значений  из профайла
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
-const closePopup = function () {
-    popup.classList.remove('popup_opened');
+
+const openPopup = (popupEl) => {
+    popupEl.classList.add('popup-opened');
+
+}; // создал переменную с функцией открытия попапа
+
+const closePopup = (popupEl) => {
+    popupEl.classList.remove('popup-opened');
 }; //создал переменную с функцией закрытия попапа
 
 const formSubmitHandler = function (evt) {
@@ -24,7 +51,11 @@ const formSubmitHandler = function (evt) {
     closePopup();
 }; //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
 
-popupOpenButton.addEventListener('click', openPopup); // добавил слушателя кнопке открытия попапа - редактирования профиля
-popupCloseButton.addEventListener('click', closePopup); // добавил слушателя кнопке закрытия попапа
+popupProfOpenButton.addEventListener('click', () => {
+  openPopup(popupProf);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+}); // добавил слушателя кнопке открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
+popupProfCloseButton.addEventListener('click', closePopup(popupProf)); // добавил слушателя кнопке закрытия попапа профиля
 formElement.addEventListener('submit', formSubmitHandler); // добавил слушателя отправке формы
 

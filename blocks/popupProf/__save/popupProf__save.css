@@ -1,4 +1,4 @@
-.popup__save {
+.popupProf__save {
   width: 100%;
   min-height: 50px;
   color: #fff;
@@ -14,12 +14,12 @@
   line-height: 1.2;
 }
 
-.popup__save:hover {
+.popupProf__save:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 767px) {
-  .popup__save {
+  .popupProf__save {
     font-size: 14px;
   }
 }
