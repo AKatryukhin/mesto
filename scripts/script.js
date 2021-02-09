@@ -51,8 +51,8 @@ function getPhotoEl (item) {
   photoEl.querySelector('.photo__image').src = item.link;
   photoEl.querySelector('.photo__image').alt = `Картинка ${item.name}`;
   photoEl.querySelector('.photo__name').textContent = item.name;
-  const buttonLike = photoEl.querySelector('.photo__like'); // нашел кнопки для лайков
-  buttonLike.addEventListener('click', handleLike);
+  const buttonLike = photoEl.querySelector('.photo__like'); // нашел кнопку для лайков
+  buttonLike.addEventListener('click', handleLike); // добавил слушателя кнопке Лайков
   galery.append(photoEl);
   } // создал переменную с функцией добавления фото из стороннего массива
 
@@ -80,12 +80,14 @@ const formSubmitHandlerPopupProf = function (evt) {
     closePopup(popupProf);
 }; //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
 
-function addNewPlace () {
+  function addNewPlace () {
   const templatePhoto = document.querySelector('#photo').content; // нашел элемент photo
   const photoEl = templatePhoto.querySelector('.photo').cloneNode(true);
   photoEl.querySelector('.photo__image').src = linkInput.value;
   photoEl.querySelector('.photo__image').alt = `Картинка ${placeInput.value}`;
   photoEl.querySelector('.photo__name').textContent = placeInput.value;
+  const buttonLike = photoEl.querySelector('.photo__like'); // нашел кнопку для лайков
+  buttonLike.addEventListener('click', handleLike);// добавил слушателя кнопке Лайков
   galery.prepend(photoEl);
 }; // создал функцию для добавления новой карточки
 
