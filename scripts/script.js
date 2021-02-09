@@ -14,6 +14,8 @@ const formElementPlace = popupPlace.querySelector('.popup__form'); // нашел
 const placeInput = formElementPlace.querySelector('.popup__input_type_name'); // нашел поле ввода названия места в форме попап Place
 const linkInput = formElementPlace.querySelector('.popup__input_type_descr'); //нашел поле ввода "о себе" в форме попап Place
 
+
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -49,10 +51,17 @@ function getPhotoEl (item) {
   photoEl.querySelector('.photo__image').src = item.link;
   photoEl.querySelector('.photo__image').alt = `Картинка ${item.name}`;
   photoEl.querySelector('.photo__name').textContent = item.name;
+  const buttonLike = photoEl.querySelector('.photo__like'); // нашел кнопки для лайков
+  buttonLike.addEventListener('click', handleLike);
   galery.append(photoEl);
   } // создал переменную с функцией добавления фото из стороннего массива
 
   const getPhoto = initialCards.forEach(getPhotoEl); // создал переменную с функцией добавления фото из initialCards
+
+function handleLike (event) {
+  const targetEl = event.target;
+  targetEl.classList.toggle('photo__like_type_active');
+}
 
 
 const openPopup = (popupEl) => {
