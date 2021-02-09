@@ -1,18 +1,18 @@
-const popupProf = document.querySelector('.popupProf'); //нашел попап редактирования профиля
+const popupProf = document.querySelector('.popup_type_prof'); //нашел попап редактирования профиля
 const popupProfOpenButton = document.querySelector('.profile__edit'); //нашел кнопку открытия попапа - редактирования профиля
-const popupProfCloseButton = popupProf.querySelector('.popupProf__close'); // нашел кнопку закрытия попапа редактирования профиля
-const formElementPfof = document.querySelector('.popupProf__form'); // нашел форму попапа
-const nameInput = formElementPfof.querySelector('.popupProf__input_type_name'); // нашел поле ввода имени в форме попап Prof
-const jobInput = formElementPfof.querySelector('.popupProf__input_type_job'); //нашел поле ввода "о себе" в форме попап Prof
+const popupProfCloseButton = popupProf.querySelector('.popup__close'); // нашел кнопку закрытия попапа редактирования профиля
+const formElementPfof = popupProf.querySelector('.popup__form'); // нашел форму попапа
+const nameInput = formElementPfof.querySelector('.popup__input_type_name'); // нашел поле ввода имени в форме попап Prof
+const jobInput = formElementPfof.querySelector('.popup__input_type_descr'); //нашел поле ввода "о себе" в форме попап Prof
 const profileName = document.querySelector('.profile__name'); // нашел поле для отображения имени в профиле
 const profileJob = document.querySelector('.profile__job'); // нашел поле для отображения "о себе" в профиле
 const galery = document.querySelector('.galery'); // нашел секцию galery
+const popupPlace = document.querySelector('.popup_type_place'); //нашел попап добавления нового места
 const popupPlaceOpenButton = document.querySelector('.profile__add'); //нашел кнопку открытия попапа - добавления нового места
-const popupPlace = document.querySelector('.popupPlace'); //нашел попап добавления нового места
-const popupPlaceCloseButton = popupPlace.querySelector('.popupPlace__close'); // нашел кнопку закрытия попапа добавления нового места
-const formElementPlace = document.querySelector('.popupPlace__form'); // нашел кнопку Создать попапа Place
-const placeInput = formElementPlace.querySelector('.popupPlace__input_type_place'); // нашел поле ввода названия места в форме попап Place
-const linkInput = formElementPlace.querySelector('.popupPlace__input_type_link'); //нашел поле ввода "о себе" в форме попап Place
+const popupPlaceCloseButton = popupPlace.querySelector('.popup__close'); // нашел кнопку закрытия попапа добавления нового места
+const formElementPlace = popupPlace.querySelector('.popup__form'); // нашел кнопку Создать попапа Place
+const placeInput = formElementPlace.querySelector('.popup__input_type_name'); // нашел поле ввода названия места в форме попап Place
+const linkInput = formElementPlace.querySelector('.popupPlace__input_type_descr'); //нашел поле ввода "о себе" в форме попап Place
 
 const initialCards = [
   {
