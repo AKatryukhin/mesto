@@ -76,8 +76,9 @@ popupProfOpenButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }); // добавил слушателя кнопке открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
-popupProfCloseButton.addEventListener('click', () => {
-  closePopup(popupProf);
+// popupProfCloseButton.addEventListener('click', () => {
+//   closePopup(popupProf);
+
 }); // добавил слушателя кнопке закрытия попапа профиля
 formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf); // добавил слушателя отправке формы Prof
 

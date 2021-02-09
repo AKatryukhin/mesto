@@ -1,11 +1,11 @@
-.popupPlace__fild {
+.popup__fild {
   border: none;
   padding: 0;
   margin: 0 0 48px 0;
 }
 
 @media screen and (max-width: 767px) {
-  .popupPlace__fild:last-of-type {
+  .popup__fild:last-of-type {
       margin: 0 0 45px 0;
   }
 }
