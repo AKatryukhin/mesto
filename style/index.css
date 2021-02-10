@@ -22,6 +22,7 @@
 @import url(../blocks/photo/photo.css);
 @import url(../blocks/photo/__element/photo__element.css);
 @import url(../blocks/photo/__image/photo__image.css);
+@import url(../blocks/photo/__trash/photo__trash.css);
 @import url(../blocks/photo/__title/photo__title.css);
 @import url(../blocks/photo/__name/photo__name.css);
 @import url(../blocks/photo/__like/photo__like.css);

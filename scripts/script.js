@@ -60,8 +60,13 @@ function getPhotoEl (item) {
   itemLink.alt = `Картинка ${item.name}`;
   const itemName = photoEl.querySelector('.photo__name');
   itemName.textContent = item.name;
+
   const buttonLike = photoEl.querySelector('.photo__like'); // нашел кнопку для лайков
   buttonLike.addEventListener('click', handleLike); // добавил слушателя кнопке Лайков
+
+  const buttonDel = photoEl.querySelector('.photo__trash'); // нашел кнопку для удаления
+  buttonDel.addEventListener('click', handleDel); // добавил слушателя кнопке удаления
+
   return photoEl;
   } // создал переменную с функцией добавления фото из стороннего массива
 
@@ -72,8 +77,8 @@ function handleLike (event) {
 }
 
 function handleDel (event) {
-  const targetEl = event.target;
-  const targetItem = targetEl.closest('.photo')
+  const targetElement = event.target;
+  const targetItem = targetElement.closest('.photo');
   targetItem.remove();
 }
 
