@@ -1,0 +1,10 @@
+.popup-image__title {
+  width: 291px;
+}
+
+@media screen and (max-width: 767px) {
+  .popup-image__title {
+    width: 240px;
+  }
+}
+
