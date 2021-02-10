@@ -13,10 +13,7 @@ const popupPlaceCloseButton = popupPlace.querySelector('.popup__close'); // на
 const formElementPlace = popupPlace.querySelector('.popup__form'); // нашел кнопку Создать попапа Place
 const placeInput = formElementPlace.querySelector('.popup__input_type_name'); // нашел поле ввода названия места в форме попап Place
 const linkInput = formElementPlace.querySelector('.popup__input_type_descr'); //нашел поле ввода "о себе" в форме попап Place
-const popupImage = document.querySelector('.popup-image'); //нашел попап открытия увеличенного фото
-const popupImg = popupImage.querySelector('.popup-image__image'); // нашел тег img в попапе фото
-const popupImgName = popupImage.querySelector('.photo__name'); // нашел title в popupImage
-const popupImageCloseButton = popupImage.querySelector('.popup-image__close'); // нашел кнопку закрытия popupImage
+
 
 const initialCards = [
   {
@@ -55,12 +52,12 @@ const render = () => {
 const getPhotoEl = item => {
 
   const templatePhoto = document.querySelector('#photo').content; // нашел элемент photo
-  const photoEl = templatePhoto.querySelector('.photo').cloneNode(true);
-  const itemLink = photoEl.querySelector('.photo__image');
-  itemLink.src = item.link;
-  itemLink.alt = `Картинка ${item.name}`;
-  const itemName = photoEl.querySelector('.photo__name');
-  itemName.textContent = item.name;
+  const photoEl = templatePhoto.querySelector('.photo').cloneNode(true); // создал DOM элемент
+  const itemLink = photoEl.querySelector('.photo__image'); // нашел элемент с картинкой
+  itemLink.src = item.link; // присвоил src элемента в массиве
+  itemLink.alt = `Картинка ${item.name}`; // присвоил alt элемента в массиве
+  const itemName = photoEl.querySelector('.photo__name'); // нашел элемент с названием картинки
+  itemName.textContent = item.name; // присвоил textContent элемента в массиве
 
   const buttonLike = photoEl.querySelector('.photo__like'); // нашел кнопку для лайков
   buttonLike.addEventListener('click', handleLike); // добавил слушателя кнопке Лайков
@@ -68,15 +65,25 @@ const getPhotoEl = item => {
   const buttonDel = photoEl.querySelector('.photo__trash'); // нашел кнопку для удаления
   buttonDel.addEventListener('click', handleDel); // добавил слушателя кнопке удаления
 
-    function openPopupImage () {
+  const popupImage = document.querySelector('.popup-image'); //нашел попап открытия увеличенного фото
+  const popupImg = popupImage.querySelector('.popup-image__image'); // нашел тег img в попапе фото
+  const popupImgName = popupImage.querySelector('.popup-image__name'); // нашел title в popupImage
+  const popupImageCloseButton = popupImage.querySelector('.popup-image__close'); // нашел кнопку закрытия popupImage
+
+  popupImageCloseButton.addEventListener('click', () => {
+    closePopup(popupImage);
+  }); // добавил слушателя кнопке закрытия popupImage
+
+  function openPopupImage () {
     openPopup(popupImage);
     popupImg.src = item.link;
     popupImg.alt = `Картинка ${item.name}`;
+    console.log(popupImg.alt);
     popupImgName.textContent = item.name;
-    console.log(popupImgName);
-  };
 
-  itemLink.addEventListener ('click', openPopupImage);
+  }; // создал функцию открытия попапа PopupImage с присвоением свойств элемента
+
+  itemLink.addEventListener ('click', openPopupImage); // добавил слушателя картинке
 
   return photoEl;
   }; // создал переменную с функцией добавления фото из стороннего массива
@@ -147,9 +154,5 @@ popupPlaceCloseButton.addEventListener('click', () => {
 }); // добавил слушателя кнопке закрытия попапа добавления нового места
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace); // добавил слушателя отправке формы Place
-
-popupImageCloseButton.addEventListener('click', () => {
-  closePopup(popupImage);
-}); // добавил слушателя кнопке закрытия popupImage
 
 render ();
