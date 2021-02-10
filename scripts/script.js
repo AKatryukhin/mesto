@@ -42,16 +42,14 @@ const initialCards = [
   }
 ];
 
-
-function render() {
+const render = () => {
   const cloneArr = initialCards
-      .map(getPhotoEl)
+      .map(getPhotoEl);
 
   galery.append(...cloneArr);
-}
+};
 
-
-function getPhotoEl (item) {
+const getPhotoEl = (item) => {
 
   const templatePhoto = document.querySelector('#photo').content; // нашел элемент photo
   const photoEl = templatePhoto.querySelector('.photo').cloneNode(true);
@@ -68,19 +66,25 @@ function getPhotoEl (item) {
   buttonDel.addEventListener('click', handleDel); // добавил слушателя кнопке удаления
 
   return photoEl;
-  } // создал переменную с функцией добавления фото из стороннего массива
+  }; // создал переменную с функцией добавления фото из стороннего массива
+
+  initialCards.forEach(() => {
+    galery.append(getPhotoEl);
+
+  });
 
 
-function handleLike (event) {
+
+const  handleLike = (event) => {
   const targetEl = event.target;
   targetEl.classList.toggle('photo__like_type_active');
-}
+};
 
-function handleDel (event) {
+const handleDel = (event) => {
   const targetElement = event.target;
   const targetItem = targetElement.closest('.photo');
   targetItem.remove();
-}
+};
 
 const openPopup = (popupEl) => {
     popupEl.classList.add('popup-opened');
@@ -91,21 +95,25 @@ const closePopup = (popupEl) => {
     popupEl.classList.remove('popup-opened');
 }; //создал переменную с функцией закрытия попапа
 
-const formSubmitHandlerPopupProf = function (evt) {
+const formSubmitHandlerPopupProf = (evt) => {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     closePopup(popupProf);
 }; //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
 
-const formSubmitHandlerPopupPlace = function (evt) {
-    evt.preventDefault();
+const addNewPlace = () => {
     const inputPlace = placeInput.value;
     const inputLink = linkInput.value;
     const newPlace = getPhotoEl({ name: inputPlace, link: inputLink});
     galery.prepend(newPlace);
     placeInput.value = '';
     linkInput.value = '';
+};
+
+const formSubmitHandlerPopupPlace = (evt) => {
+    evt.preventDefault();
+    addNewPlace();
     closePopup(popupPlace);
   }; //создал переменную для формы с функцией добавления новой карточки и закрытия попапа Place
 
