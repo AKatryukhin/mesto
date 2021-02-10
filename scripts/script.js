@@ -68,12 +68,6 @@ const getPhotoEl = (item) => {
   return photoEl;
   }; // создал переменную с функцией добавления фото из стороннего массива
 
-  initialCards.forEach(() => {
-    galery.append(getPhotoEl);
-
-  });
-
-
 
 const  handleLike = (event) => {
   const targetEl = event.target;
