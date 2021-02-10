@@ -49,7 +49,7 @@ const render = () => {
   galery.append(...cloneArr);
 };
 
-const getPhotoEl = (item) => {
+const getPhotoEl = item => {
 
   const templatePhoto = document.querySelector('#photo').content; // нашел элемент photo
   const photoEl = templatePhoto.querySelector('.photo').cloneNode(true);
@@ -69,23 +69,23 @@ const getPhotoEl = (item) => {
   }; // создал переменную с функцией добавления фото из стороннего массива
 
 
-const  handleLike = (event) => {
+const  handleLike = event => {
   const targetEl = event.target;
   targetEl.classList.toggle('photo__like_type_active');
 };
 
-const handleDel = (event) => {
+const handleDel = event => {
   const targetElement = event.target;
   const targetItem = targetElement.closest('.photo');
   targetItem.remove();
 };
 
-const openPopup = (popupEl) => {
+const openPopup = popupEl => {
     popupEl.classList.add('popup-opened');
 
 }; // создал переменную с функцией открытия попапа
 
-const closePopup = (popupEl) => {
+const closePopup = popupEl => {
     popupEl.classList.remove('popup-opened');
 }; //создал переменную с функцией закрытия попапа
 
