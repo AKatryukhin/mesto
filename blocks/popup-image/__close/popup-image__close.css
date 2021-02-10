@@ -13,7 +13,7 @@
   opacity: 0.6;
 }
 
-.popup-image__close:active, ..popup-image__close:focus {
+.popup-image__close:active, .popup-image__close:focus {
   outline: none;
 }
 
