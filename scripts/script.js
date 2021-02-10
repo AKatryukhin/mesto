@@ -42,11 +42,9 @@ const initialCards = [
   }
 ];
 
-const render = () => {
-  const cloneArr = initialCards
-      .map(getPhotoEl);
-
-  galery.append(...cloneArr);
+const getNewArr = () => {
+  const newArr = initialCards.map(getPhotoEl);
+  galery.append(...newArr);
 };
 
 const getPhotoEl = item => {
@@ -155,4 +153,4 @@ popupPlaceCloseButton.addEventListener('click', () => {
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace); // добавил слушателя отправке формы Place
 
-render ();
+getNewArr ();
