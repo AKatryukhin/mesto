@@ -13,7 +13,10 @@ const popupPlaceCloseButton = popupPlace.querySelector('.popup__close'); // на
 const formElementPlace = popupPlace.querySelector('.popup__form'); // нашел кнопку Создать попапа Place
 const placeInput = formElementPlace.querySelector('.popup__input_type_name'); // нашел поле ввода названия места в форме попап Place
 const linkInput = formElementPlace.querySelector('.popup__input_type_descr'); //нашел поле ввода "о себе" в форме попап Place
-
+const popupImage = document.querySelector('.popup-image'); //нашел попап открытия увеличенного фото
+const popupImg = popupImage.querySelector('.popup-image__image'); // нашел тег img в попапе фото
+const popupImgName = popupImage.querySelector('.photo__name'); // нашел title в popupImage
+const popupImageCloseButton = popupImage.querySelector('.popup-image__close'); // нашел кнопку закрытия popupImage
 
 const initialCards = [
   {
@@ -65,6 +68,16 @@ const getPhotoEl = item => {
   const buttonDel = photoEl.querySelector('.photo__trash'); // нашел кнопку для удаления
   buttonDel.addEventListener('click', handleDel); // добавил слушателя кнопке удаления
 
+    function openPopupImage () {
+    openPopup(popupImage);
+    popupImg.src = item.link;
+    popupImg.alt = `Картинка ${item.name}`;
+    popupImgName.textContent = item.name;
+    console.log(popupImgName);
+  };
+
+  itemLink.addEventListener ('click', openPopupImage);
+
   return photoEl;
   }; // создал переменную с функцией добавления фото из стороннего массива
 
@@ -79,6 +92,7 @@ const handleDel = event => {
   const targetItem = targetElement.closest('.photo');
   targetItem.remove();
 };
+
 
 const openPopup = popupEl => {
     popupEl.classList.add('popup-opened');
@@ -133,5 +147,9 @@ popupPlaceCloseButton.addEventListener('click', () => {
 }); // добавил слушателя кнопке закрытия попапа добавления нового места
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace); // добавил слушателя отправке формы Place
+
+popupImageCloseButton.addEventListener('click', () => {
+  closePopup(popupImage);
+}); // добавил слушателя кнопке закрытия popupImage
 
 render ();
