@@ -72,14 +72,14 @@ const getPhotoEl = item => {
     closePopup(popupImage);
   }); // добавил слушателя кнопке закрытия popupImage
 
-  function openPopupImage () {
+  const openPopupImage = () => {
     openPopup(popupImage);
     popupImg.src = item.link;
     popupImg.alt = `Картинка ${item.name}`;
     console.log(popupImg.alt);
     popupImgName.textContent = item.name;
 
-  }; // создал функцию открытия попапа PopupImage с присвоением свойств элемента
+  }; // создал переменную с функцией открытия попапа PopupImage с присвоением свойств элемента
 
   itemLink.addEventListener ('click', openPopupImage); // добавил слушателя картинке
 
@@ -90,30 +90,30 @@ const getPhotoEl = item => {
 const  handleLike = event => {
   const targetEl = event.target;
   targetEl.classList.toggle('photo__like_type_active');
-};
+}; // записал в переменную функцию для Лайков
 
 const handleDel = event => {
   const targetElement = event.target;
   const targetItem = targetElement.closest('.photo');
   targetItem.remove();
-};
+}; // записал в переменную функцию для удаления карточки
 
 
 const openPopup = popupEl => {
     popupEl.classList.add('popup-opened');
 
-}; // создал переменную с функцией открытия попапа
+}; //записал в переменную функцию открытия попапа
 
 const closePopup = popupEl => {
     popupEl.classList.remove('popup-opened');
-}; //создал переменную с функцией закрытия попапа
+}; //записал в переменную функцию функцию закрытия попапа
 
 const formSubmitHandlerPopupProf = (evt) => {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     closePopup(popupProf);
-}; //создал переменную с функцией, которая заносит введенные в поля ввода формы данных в профиль
+}; //записал в переменную функцию, которая заносит введенные в поля ввода формы данных в профиль
 
 const addNewPlace = () => {
     const inputPlace = placeInput.value;
@@ -122,13 +122,13 @@ const addNewPlace = () => {
     galery.prepend(newPlace);
     placeInput.value = '';
     linkInput.value = '';
-};
+}; // записал в переменную функцию для добавления карточки
 
 const formSubmitHandlerPopupPlace = (evt) => {
     evt.preventDefault();
     addNewPlace();
     closePopup(popupPlace);
-  }; //создал переменную для формы с функцией добавления новой карточки и закрытия попапа Place
+  }; //записал в переменную для формы  функцию добавления новой карточки и закрытия попапа Place
 
 
 popupProfOpenButton.addEventListener('click', () => {
@@ -145,7 +145,7 @@ formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf); // до�
 
 popupPlaceOpenButton.addEventListener('click', () => {
   openPopup(popupPlace);
- });
+ }); // добавил слушателя кнопке открытия попапа добавления карточки
 
 popupPlaceCloseButton.addEventListener('click', () => {
   closePopup(popupPlace);
