@@ -1,19 +1,35 @@
-const popupProf = document.querySelector('.popup_type_prof'); //нашел попап редактирования профиля
-const popupProfOpenButton = document.querySelector('.profile__edit'); //нашел кнопку открытия попапа - редактирования профиля
-const popupProfCloseButton = popupProf.querySelector('.popup__close'); // нашел кнопку закрытия попапа редактирования профиля
-const formElementPfof = popupProf.querySelector('.popup__form'); // нашел форму попапа
-const nameInput = formElementPfof.querySelector('.popup__input_type_name'); // нашел поле ввода имени в форме попап Prof
-const jobInput = formElementPfof.querySelector('.popup__input_type_descr'); //нашел поле ввода "о себе" в форме попап Prof
-const profileName = document.querySelector('.profile__name'); // нашел поле для отображения имени в профиле
-const profileJob = document.querySelector('.profile__job'); // нашел поле для отображения "о себе" в профиле
-const galery = document.querySelector('.galery'); // нашел секцию galery
-const popupPlace = document.querySelector('.popup_type_place'); //нашел попап добавления нового места
-const popupPlaceOpenButton = document.querySelector('.profile__add'); //нашел кнопку открытия попапа - добавления нового места
-const popupPlaceCloseButton = popupPlace.querySelector('.popup__close'); // нашел кнопку закрытия попапа добавления нового места
-const formElementPlace = popupPlace.querySelector('.popup__form'); // нашел кнопку Создать попапа Place
-const placeInput = formElementPlace.querySelector('.popup__input_type_name'); // нашел поле ввода названия места в форме попап Place
-const linkInput = formElementPlace.querySelector('.popup__input_type_descr'); //нашел поле ввода "о себе" в форме попап Place
-
+//попап редактирования профиля
+const popupProf = document.querySelector('.popup_type_prof');
+//кнопка открытия попапа - редактирования профиля
+const popupProfOpenButton = document.querySelector('.profile__edit');
+// кнопка закрытия попапа редактирования профиля
+const popupProfCloseButton = popupProf.querySelector('.popup__close');
+// форма попапа редактирования профиля
+const formElementPfof = popupProf.querySelector('.popup__form');
+// поле ввода "имени" в форме попап Prof
+const nameInput = formElementPfof.querySelector('.popup__input_type_name');
+//поле ввода "о себе" в форме попап Prof
+const jobInput = formElementPfof.querySelector('.popup__input_type_descr');
+// поле для отображения имени в профиле
+const profileName = document.querySelector('.profile__name');
+// поле для отображения "о себе" в профиле
+const profileJob = document.querySelector('.profile__job');
+// секция galery
+const galery = document.querySelector('.galery');
+//попап добавления новой карточки
+const popupPlace = document.querySelector('.popup_type_place');
+//кнопка открытия попапа - добавления новой карточки
+const popupPlaceOpenButton = document.querySelector('.profile__add');
+//кнопка закрытия попапа - добавления новой карточки
+const popupPlaceCloseButton = popupPlace.querySelector('.popup__close');
+// кнопка Создать попапа Place
+const formElementPlace = popupPlace.querySelector('.popup__form');
+// поле ввода "названия места" в форме попап Place
+const placeInput = formElementPlace.querySelector('.popup__input_type_name');
+//поле ввода "о себе" в форме попап Place
+const linkInput = formElementPlace.querySelector('.popup__input_type_descr');
+// template-элемент photo
+const templatePhoto = document.querySelector('#photo').content;
 
 const initialCards = [
   {
@@ -42,115 +58,122 @@ const initialCards = [
   }
 ];
 
-const getNewArr = () => {
-  const newArr = initialCards.map(getPhotoEl);
+// функция для преобразования заданного массива и стартового заполнения страницы карточками
+const fillGalery = () => {
+  const newArr = initialCards.map(createPhotoEl);
   galery.append(...newArr);
 };
 
-const getPhotoEl = item => {
+// функция для создания новой карточки
+const createPhotoEl = item => {
 
-  const templatePhoto = document.querySelector('#photo').content; // нашел элемент photo
-  const photoEl = templatePhoto.querySelector('.photo').cloneNode(true); // создал DOM элемент
-  const itemLink = photoEl.querySelector('.photo__image'); // нашел элемент с картинкой
-  itemLink.src = item.link; // присвоил src элемента в массиве
-  itemLink.alt = `Картинка ${item.name}`; // присвоил alt элемента в массиве
-  const itemName = photoEl.querySelector('.photo__name'); // нашел элемент с названием картинки
-  itemName.textContent = item.name; // присвоил textContent элемента в массиве
+  const photoEl = templatePhoto.querySelector('.photo').cloneNode(true);
+  const itemLink = photoEl.querySelector('.photo__image');
+  itemLink.src = item.link;
+  itemLink.alt = `Картинка ${item.name}`;
+  const itemName = photoEl.querySelector('.photo__name');
+  itemName.textContent = item.name;
 
-  const buttonLike = photoEl.querySelector('.photo__like'); // нашел кнопку для лайков
-  buttonLike.addEventListener('click', handleLike); // добавил слушателя кнопке Лайков
+  const buttonLike = photoEl.querySelector('.photo__like');
+  buttonLike.addEventListener('click', handleLike);
 
-  const buttonDel = photoEl.querySelector('.photo__trash'); // нашел кнопку для удаления
-  buttonDel.addEventListener('click', handleDel); // добавил слушателя кнопке удаления
+  const buttonDel = photoEl.querySelector('.photo__trash');
+  buttonDel.addEventListener('click', handleDel);
 
-  const popupImage = document.querySelector('.popup-image'); //нашел попап открытия увеличенного фото
-  const popupImg = popupImage.querySelector('.popup-image__image'); // нашел тег img в попапе фото
-  const popupImgName = popupImage.querySelector('.popup-image__name'); // нашел title в popupImage
-  const popupImageCloseButton = popupImage.querySelector('.popup-image__close'); // нашел кнопку закрытия popupImage
+  const popupImage = document.querySelector('.popup-image');
+  const popupImg = popupImage.querySelector('.popup-image__image');
+  const popupImgName = popupImage.querySelector('.popup-image__name');
+  const popupImageCloseButton = popupImage.querySelector('.popup-image__close');
 
   popupImageCloseButton.addEventListener('click', () => {
     closePopup(popupImage);
-  }); // добавил слушателя кнопке закрытия popupImage
+  });
 
+  // функция открытия попапа PopupImage с присвоением свойств элемента
   const openPopupImage = () => {
     openPopup(popupImage);
     popupImg.src = item.link;
     popupImg.alt = `Картинка ${item.name}`;
-    console.log(popupImg.alt);
     popupImgName.textContent = item.name;
 
-  }; // создал переменную с функцией открытия попапа PopupImage с присвоением свойств элемента
+  };
 
-  itemLink.addEventListener ('click', openPopupImage); // добавил слушателя картинке
+  itemLink.addEventListener ('click', openPopupImage);
 
   return photoEl;
-  }; // создал переменную с функцией добавления фото из стороннего массива
+  };
 
-
+// функция для Лайков
 const  handleLike = event => {
   const targetEl = event.target;
   targetEl.classList.toggle('photo__like_type_active');
-}; // записал в переменную функцию для Лайков
+};
 
+// функция для удаления карточки
 const handleDel = event => {
   const targetElement = event.target;
   const targetItem = targetElement.closest('.photo');
   targetItem.remove();
-}; // записал в переменную функцию для удаления карточки
+};
 
-
+//функция открытия попапа
 const openPopup = popupEl => {
     popupEl.classList.add('popup-opened');
 
-}; //записал в переменную функцию открытия попапа
+};
 
+//функция закрытия попапа
 const closePopup = popupEl => {
     popupEl.classList.remove('popup-opened');
-}; //записал в переменную функцию функцию закрытия попапа
+};
 
+//функця для занесения введенных в поля ввода формы данных для отображения в профиле
 const formSubmitHandlerPopupProf = (evt) => {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     closePopup(popupProf);
-}; //записал в переменную функцию, которая заносит введенные в поля ввода формы данных в профиль
+};
 
+// функция для добавления карточки
 const addNewPlace = () => {
     const inputPlace = placeInput.value;
     const inputLink = linkInput.value;
-    const newPlace = getPhotoEl({ name: inputPlace, link: inputLink});
+    const newPlace = createPhotoEl({ name: inputPlace, link: inputLink});
     galery.prepend(newPlace);
     placeInput.value = '';
     linkInput.value = '';
-}; // записал в переменную функцию для добавления карточки
+};
 
+//функция добавления новой карточки и закрытия попапа Place
 const formSubmitHandlerPopupPlace = (evt) => {
     evt.preventDefault();
     addNewPlace();
     closePopup(popupPlace);
-  }; //записал в переменную для формы  функцию добавления новой карточки и закрытия попапа Place
+  };
 
-
+//слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfOpenButton.addEventListener('click', () => {
   openPopup(popupProf);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-}); // добавил слушателя кнопке открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
+});
+
 
 popupProfCloseButton.addEventListener('click', () => {
  closePopup(popupProf);
-}); // добавил слушателя кнопке закрытия попапа профиля
+});
 
-formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf); // добавил слушателя отправке формы Prof
+formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
 
 popupPlaceOpenButton.addEventListener('click', () => {
   openPopup(popupPlace);
- }); // добавил слушателя кнопке открытия попапа добавления карточки
+ });
 
 popupPlaceCloseButton.addEventListener('click', () => {
   closePopup(popupPlace);
-}); // добавил слушателя кнопке закрытия попапа добавления нового места
+});
 
-formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace); // добавил слушателя отправке формы Place
+formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
-getNewArr ();
+fillGalery ();
