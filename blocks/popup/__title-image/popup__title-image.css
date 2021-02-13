@@ -1,9 +1,9 @@
-.popup-image__title {
+.popup__title-image {
   width: 291px;
 }
 
 @media screen and (max-width: 767px) {
-  .popup-image__title {
+  .popup__title-image {
     width: 240px;
   }
 }

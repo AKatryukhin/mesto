@@ -81,8 +81,8 @@ const createPhotoEl = item => {
   buttonDel.addEventListener('click', handleDel);
 
   const popupImage = document.querySelector('.popup-image');
-  const popupImg = popupImage.querySelector('.popup-image__image');
-  const popupImgName = popupImage.querySelector('.popup-image__name');
+  const popupImg = popupImage.querySelector('.popup__image');
+  const popupImgName = popupImage.querySelector('.popup__name-image');
   const popupImageCloseButton = popupImage.querySelector('.popup-image__close');
 
   popupImageCloseButton.addEventListener('click', () => {
