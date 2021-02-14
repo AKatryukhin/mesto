@@ -118,13 +118,13 @@ const handleDel = event => {
 
 //функция открытия попапа
 const openPopup = popupEl => {
-    popupEl.classList.add('popup-opened');
+    popupEl.classList.add('popup_opened');
 
 };
 
 //функция закрытия попапа
 const closePopup = popupEl => {
-    popupEl.classList.remove('popup-opened');
+    popupEl.classList.remove('popup_opened');
 };
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
