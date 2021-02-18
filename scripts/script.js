@@ -106,7 +106,7 @@ const createPhotoEl = item => {
 // функция для Лайков
 const  handleLike = event => {
   const targetEl = event.target;
-  if (event.target.classList.contains('photo__like')) {
+  if (targetEl.classList.contains('photo__like')) {
   targetEl.classList.toggle('photo__like_type_active');
   }
 };
