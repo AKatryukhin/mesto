@@ -1,6 +1,6 @@
 .popup__input-error {
   display: block;
-  width: 164px;
+  width: 100%;
   color: rgb(255,0,0);
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   font-style: normal;
