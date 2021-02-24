@@ -125,7 +125,13 @@ const openPopup = popupEl => {
     popupEl.classList.add('popup_opened');
 
     popupEl.addEventListener('click', closePopupTarget);
-    popupEl.addEventListener('keydown', closeKeydown);
+// функция закрытия попапа клавишей Escape
+    const closeKeydown = (evt) => {
+      if(evt.key === 'Escape') {
+        popupEl.classList.remove('popup_opened');
+      }
+    };
+    document.addEventListener('keydown', closeKeydown);
 };
 
 //функция закрытия попапа
@@ -133,19 +139,12 @@ const closePopup = popupEl => {
 
     popupEl.classList.remove('popup_opened');
     popupEl.removeEventListener('click', closePopupTarget);
-    popupEl.removeEventListener('keydown', closeKeydown);
+
 };
 
 //функция закрытия одного попапа по оверлэй
 const closePopupTarget = (evt) => {
   if(evt.target === evt.currentTarget) {
-    evt.currentTarget.classList.remove('popup_opened');
-  }
-};
-
-//функция закрытия одного попапа по Escape
-const closeKeydown = (evt) => {
-  if(evt.key === 'Escape') {
     evt.currentTarget.classList.remove('popup_opened');
   }
 };
