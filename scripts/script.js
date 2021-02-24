@@ -124,13 +124,16 @@ const handleDel = event => {
 const openPopup = popupEl => {
     popupEl.classList.add('popup_opened');
 
+    popupEl.addEventListener('click', closePopupTarget);
+    popupEl.addEventListener('keydown', closeKeydown);
 };
 
 //функция закрытия попапа
 const closePopup = popupEl => {
 
     popupEl.classList.remove('popup_opened');
-
+    popupEl.removeEventListener('click', closePopupTarget);
+    popupEl.removeEventListener('keydown', closeKeydown);
 };
 
 //функция закрытия одного попапа по оверлэй
@@ -140,12 +143,11 @@ const closePopupTarget = (evt) => {
   }
 };
 
-//функция закрытия всех попапов по оверлэй
-const closePopupOverlay = () => {
-  const popupList = Array.from(document.querySelectorAll('.popup'));
-  popupList.forEach((popup) => {
-  popup.addEventListener('click', closePopupTarget);
-  });
+//функция закрытия одного попапа по Escape
+const closeKeydown = (evt) => {
+  if(evt.key === 'Escape') {
+    evt.currentTarget.classList.remove('popup_opened');
+  }
 };
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
@@ -194,8 +196,6 @@ popupPlaceOpenButton.addEventListener('click', () => {
 popupPlaceCloseButton.addEventListener('click', () => {
   closePopup(popupPlace);
 });
-
-popup.addEventListener('click', closePopupOverlay);
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
