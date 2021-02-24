@@ -1,3 +1,5 @@
+//попап любой
+const popup = document.querySelector('.popup');
 //попап редактирования профиля
 const popupProf = document.querySelector('.popup_type_prof');
 //кнопка открытия попапа - редактирования профиля
@@ -126,7 +128,24 @@ const openPopup = popupEl => {
 
 //функция закрытия попапа
 const closePopup = popupEl => {
+
     popupEl.classList.remove('popup_opened');
+
+};
+
+//функция закрытия одного попапа по оверлэй
+const closePopupTarget = (evt) => {
+  if(evt.target === evt.currentTarget) {
+    evt.currentTarget.classList.remove('popup_opened');
+  }
+};
+
+//функция закрытия всех попапов по оверлэй
+const closePopupOverlay = () => {
+  const popupList = Array.from(document.querySelectorAll('.popup'));
+  popupList.forEach((popup) => {
+  popup.addEventListener('click', closePopupTarget);
+  });
 };
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
@@ -175,6 +194,8 @@ popupPlaceOpenButton.addEventListener('click', () => {
 popupPlaceCloseButton.addEventListener('click', () => {
   closePopup(popupPlace);
 });
+
+popup.addEventListener('click', closePopupOverlay);
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
