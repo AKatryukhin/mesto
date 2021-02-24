@@ -126,11 +126,11 @@ const openPopup = popupEl => {
 
     popupEl.addEventListener('click', closePopupTarget);
 // функция закрытия попапа клавишей Escape
-    const closeKeydown = (evt) => {
-      if(evt.key === 'Escape') {
-        popupEl.classList.remove('popup_opened');
-      }
-    };
+const closeKeydown = (evt) => {
+  if(evt.key === 'Escape') {
+    popupEl.classList.remove('popup_opened');
+  }
+};
     document.addEventListener('keydown', closeKeydown);
 };
 
@@ -139,7 +139,7 @@ const closePopup = popupEl => {
 
     popupEl.classList.remove('popup_opened');
     popupEl.removeEventListener('click', closePopupTarget);
-
+    document.removeEventListener('keydown', closeKeydown);
 };
 
 //функция закрытия одного попапа по оверлэй
