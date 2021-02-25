@@ -30,6 +30,10 @@ const placeInput = formElementPlace.querySelector('.popup__input_type_name');
 const linkInput = formElementPlace.querySelector('.popup__input_type_descr');
 // template-элемент photo
 const templatePhoto = document.querySelector('#photo').content;
+const popupImage = document.querySelector('.popup_type_image');
+const popupImg = popupImage.querySelector('.popup__image');
+const popupImgName = popupImage.querySelector('.popup__name-image');
+const popupImageCloseButton = popupImage.querySelector('.popup__close_type_image');
 
 const initialCards = [
   {
@@ -75,28 +79,19 @@ const createPhotoEl = item => {
   itemName.textContent = item.name;
 
   const buttonLike = photoEl.querySelector('.photo__like');
-  photoEl.addEventListener('click', handleLike);
+  buttonLike.addEventListener('click', handleLike);
 
   const buttonDel = photoEl.querySelector('.photo__trash');
   buttonDel.addEventListener('click', handleDel);
 
-  const popupImage = document.querySelector('.popup_type_image');
-  const popupImg = popupImage.querySelector('.popup__image');
-  const popupImgName = popupImage.querySelector('.popup__name-image');
-  const popupImageCloseButton = popupImage.querySelector('.popup__close_type_image');
-
-  popupImageCloseButton.addEventListener('click', () => {
-    closePopup(popupImage);
-  });
-
-  // функция открытия попапа PopupImage с присвоением свойств элемента
+// функция открытия попапа PopupImage с присвоением свойств элемента
+// не могу вынести эту функцию наружу, иначе мне не на что повесить слушатель
   const openPopupImage = () => {
     openPopup(popupImage);
     popupImg.src = item.link;
     popupImg.alt = `Картинка ${item.name}`;
     popupImgName.textContent = item.name;
-
-  };
+};
 
   itemLink.addEventListener ('click', openPopupImage);
 
@@ -106,9 +101,8 @@ const createPhotoEl = item => {
 // функция для Лайков
 const  handleLike = event => {
   const targetEl = event.target;
-  if (targetEl.classList.contains('photo__like')) {
-  targetEl.classList.toggle('photo__like_type_active');
-  }
+   targetEl.classList.toggle('photo__like_type_active');
+
 };
 
 // функция для удаления карточки
@@ -118,20 +112,19 @@ const handleDel = event => {
   targetItem.remove();
 };
 
+// функция закрытия попапа клавишей Escape
+const closeByEscape = (evt) => {
+  if(evt.key === 'Escape') {
+    const popupTypeOpened = document.querySelector('.popup_opened');
+    popupTypeOpened.classList.remove('popup_opened');
+  }
+};
 
 //функция открытия попапа
 const openPopup = popupEl => {
     popupEl.classList.add('popup_opened');
     popupEl.addEventListener('click', closePopupTarget);
-    document.addEventListener('keydown', closeKeydown);
-};
-
-// функция закрытия попапа клавишей Escape
-const closeKeydown = (evt) => {
-  const PopupTypeOpen = document.querySelector('.popup_opened');
-  if(evt.key === 'Escape') {
-    PopupTypeOpen.classList.remove('popup_opened');
-  }
+    document.addEventListener('keydown', closeByEscape);
 };
 
 //функция закрытия попапа
@@ -139,7 +132,7 @@ const closePopup = popupEl => {
 
     popupEl.classList.remove('popup_opened');
     popupEl.removeEventListener('click', closePopupTarget);
-    document.removeEventListener('keydown', closeKeydown);
+    document.removeEventListener('keydown', closeByEscape);
 };
 
 //функция закрытия одного попапа по оверлэй
@@ -194,6 +187,10 @@ popupPlaceOpenButton.addEventListener('click', () => {
 
 popupPlaceCloseButton.addEventListener('click', () => {
   closePopup(popupPlace);
+});
+
+popupImageCloseButton.addEventListener('click', () => {
+  closePopup(popupImage);
 });
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
