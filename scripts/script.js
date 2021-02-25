@@ -1,5 +1,3 @@
-//попап любой
-const popup = document.querySelector('.popup');
 //попап редактирования профиля
 const popupProf = document.querySelector('.popup_type_prof');
 //кнопка открытия попапа - редактирования профиля
@@ -120,18 +118,20 @@ const handleDel = event => {
   targetItem.remove();
 };
 
+
 //функция открытия попапа
 const openPopup = popupEl => {
     popupEl.classList.add('popup_opened');
-
     popupEl.addEventListener('click', closePopupTarget);
+    document.addEventListener('keydown', closeKeydown);
+};
+
 // функция закрытия попапа клавишей Escape
 const closeKeydown = (evt) => {
+  const PopupTypeOpen = document.querySelector('.popup_opened');
   if(evt.key === 'Escape') {
-    popupEl.classList.remove('popup_opened');
+    PopupTypeOpen.classList.remove('popup_opened');
   }
-};
-    document.addEventListener('keydown', closeKeydown);
 };
 
 //функция закрытия попапа
