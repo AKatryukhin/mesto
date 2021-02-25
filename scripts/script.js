@@ -2,8 +2,6 @@
 const popupProf = document.querySelector('.popup_type_prof');
 //кнопка открытия попапа - редактирования профиля
 const popupProfOpenButton = document.querySelector('.profile__edit');
-// кнопка закрытия попапа редактирования профиля
-const popupProfCloseButton = popupProf.querySelector('.popup__close');
 // форма попапа редактирования профиля
 const formElementPfof = popupProf.querySelector('.popup__form');
 // поле ввода "имени" в форме попап Prof
@@ -20,8 +18,6 @@ const galery = document.querySelector('.galery');
 const popupPlace = document.querySelector('.popup_type_place');
 //кнопка открытия попапа - добавления новой карточки
 const popupPlaceOpenButton = document.querySelector('.profile__add');
-//кнопка закрытия попапа - добавления новой карточки
-const popupPlaceCloseButton = popupPlace.querySelector('.popup__close');
 // кнопка Создать попапа Place
 const formElementPlace = popupPlace.querySelector('.popup__form');
 // поле ввода "названия места" в форме попап Place
@@ -33,7 +29,6 @@ const templatePhoto = document.querySelector('#photo').content;
 const popupImage = document.querySelector('.popup_type_image');
 const popupImg = popupImage.querySelector('.popup__image');
 const popupImgName = popupImage.querySelector('.popup__name-image');
-const popupImageCloseButton = popupImage.querySelector('.popup__close_type_image');
 
 const initialCards = [
   {
@@ -84,19 +79,21 @@ const createPhotoEl = item => {
   const buttonDel = photoEl.querySelector('.photo__trash');
   buttonDel.addEventListener('click', handleDel);
 
-// функция открытия попапа PopupImage с присвоением свойств элемента
-// не могу вынести эту функцию наружу, иначе мне не на что повесить слушатель
-  const openPopupImage = () => {
-    openPopup(popupImage);
-    popupImg.src = item.link;
-    popupImg.alt = `Картинка ${item.name}`;
-    popupImgName.textContent = item.name;
-};
-
-  itemLink.addEventListener ('click', openPopupImage);
+  itemLink.addEventListener ('click', () => {
+    openPopupImage(item);
+  });
 
   return photoEl;
   };
+
+  // функция открытия попапа PopupImage с присвоением свойств элемента
+const openPopupImage = (item) => {
+  openPopup(popupImage);
+  popupImg.src = item.link;
+  popupImg.alt = `Картинка ${item.name}`;
+  popupImgName.textContent = item.name;
+
+};
 
 // функция для Лайков
 const  handleLike = event => {
@@ -123,7 +120,6 @@ const closeByEscape = (evt) => {
 //функция открытия попапа
 const openPopup = popupEl => {
     popupEl.classList.add('popup_opened');
-    popupEl.addEventListener('click', closePopupTarget);
     document.addEventListener('keydown', closeByEscape);
 };
 
@@ -131,16 +127,22 @@ const openPopup = popupEl => {
 const closePopup = popupEl => {
 
     popupEl.classList.remove('popup_opened');
-    popupEl.removeEventListener('click', closePopupTarget);
     document.removeEventListener('keydown', closeByEscape);
 };
 
-//функция закрытия одного попапа по оверлэй
-const closePopupTarget = (evt) => {
-  if(evt.target === evt.currentTarget) {
-    evt.currentTarget.classList.remove('popup_opened');
-  }
-};
+const popups = document.querySelectorAll('.popup');
+
+popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup);
+        }
+        if (evt.target.classList.contains('popup__close')) {
+          closePopup(popup);
+        }
+    });
+});
+
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
 const formSubmitHandlerPopupProf = (evt) => {
@@ -174,24 +176,11 @@ popupProfOpenButton.addEventListener('click', () => {
   jobInput.value = profileJob.textContent;
 });
 
-
-popupProfCloseButton.addEventListener('click', () => {
- closePopup(popupProf);
-});
-
 formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
 
 popupPlaceOpenButton.addEventListener('click', () => {
   openPopup(popupPlace);
  });
-
-popupPlaceCloseButton.addEventListener('click', () => {
-  closePopup(popupPlace);
-});
-
-popupImageCloseButton.addEventListener('click', () => {
-  closePopup(popupImage);
-});
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
