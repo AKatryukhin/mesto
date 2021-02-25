@@ -1,3 +1,4 @@
+//функция для отображения ошибки
 const showInputError = (formElement, inputElement, errorMessage, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(inputErrorClass);
@@ -5,6 +6,7 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
   errorElement.classList.add(errorClass);
 };
 
+//функция для скрытия ошибки
 const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(inputErrorClass);
@@ -12,6 +14,7 @@ const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) 
   errorElement.textContent = '';
 };
 
+// функция для проверки на валидность инпутов
 const checkInputValidity = (formElement, inputElement, inputErrorClass, errorClass) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
@@ -20,6 +23,7 @@ const checkInputValidity = (formElement, inputElement, inputErrorClass, errorCla
   }
 };
 
+// функция для установки слушателей проверки на валидность инпутов
 const setEventListeners = (formElement, inputSelector, submitButtonSelector,
   inactiveButtonClass, inputErrorClass, errorClass) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
@@ -36,6 +40,7 @@ const setEventListeners = (formElement, inputSelector, submitButtonSelector,
   });
 };
 
+// функция, ответственная за включение валидации всех форм
 const enableValidation = ({formSelector, inputSelector, submitButtonSelector,
   inactiveButtonClass, inputErrorClass, errorClass}) => {
  const formList = Array.from(document.querySelectorAll(formSelector));
@@ -48,6 +53,7 @@ const enableValidation = ({formSelector, inputSelector, submitButtonSelector,
  });
 };
 
+// принимает на вход объект ключей и свойств для данного проекта
 enableValidation(
  {
    formSelector: '.popup__form',
@@ -59,12 +65,14 @@ enableValidation(
  }
 );
 
+// проверяет наличие невалидных инпутов
 function hasInvalidInput (inputList) {
   return inputList.some((inputElement) => {
   return !inputElement.validity.valid;
 });
 }
 
+// функция включения.выключения кнопок после проверки инпутов на валидность
 function toggleButtonState (inputList, buttonElement, inactiveButtonClass) {
   if (hasInvalidInput(inputList)) {
       buttonElement.classList.add(inactiveButtonClass);
