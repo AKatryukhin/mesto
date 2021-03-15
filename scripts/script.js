@@ -1,3 +1,6 @@
+import Card from './card.js';
+
+
 //попап редактирования профиля
 const popupProf = document.querySelector('.popup_type_prof');
 //кнопка открытия попапа - редактирования профиля
@@ -25,7 +28,7 @@ const placeInput = formElementPlace.querySelector('.popup__input_type_name');
 //поле ввода "о себе" в форме попап Place
 const linkInput = formElementPlace.querySelector('.popup__input_type_descr');
 // template-элемент photo
-const templatePhoto = document.querySelector('#photo').content;
+const templatePhoto = document.querySelector('.photo-template').content;
 const popupImage = document.querySelector('.popup_type_image');
 const popupImg = popupImage.querySelector('.popup__image');
 const popupImgName = popupImage.querySelector('.popup__name-image');
@@ -56,6 +59,16 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+
+initialCards.forEach((item) => {
+  const card = new Card(item, '.photo-template');
+  const cardElement = card.generateCard();
+  document.querySelector('.galery').append(cardElement);
+});
+
+
+
 
 // функция для преобразования заданного массива и стартового заполнения страницы карточками
 const fillGalery = () => {
