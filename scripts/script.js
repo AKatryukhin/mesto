@@ -1,4 +1,4 @@
-import Card from './card.js';
+import { Card } from './card.js';
 
 
 //попап редактирования профиля
@@ -33,6 +33,7 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupImg = popupImage.querySelector('.popup__image');
 const popupImgName = popupImage.querySelector('.popup__name-image');
 
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -61,66 +62,13 @@ const initialCards = [
 ];
 
 
+
 initialCards.forEach((item) => {
   const card = new Card(item, '.photo-template');
   const cardElement = card.generateCard();
-  document.querySelector('.galery').append(cardElement);
+  galery.append(cardElement);
+  document.removeEventListener('keydown', closeByEscape);
 });
-
-
-
-
-// функция для преобразования заданного массива и стартового заполнения страницы карточками
-const fillGalery = () => {
-  const newArr = initialCards.map(createPhotoEl);
-  galery.append(...newArr);
-};
-
-// функция для создания новой карточки
-const createPhotoEl = item => {
-
-  const photoEl = templatePhoto.querySelector('.photo').cloneNode(true);
-  const itemLink = photoEl.querySelector('.photo__image');
-  itemLink.src = item.link;
-  itemLink.alt = `Картинка ${item.name}`;
-  const itemName = photoEl.querySelector('.photo__name');
-  itemName.textContent = item.name;
-
-  const buttonLike = photoEl.querySelector('.photo__like');
-  buttonLike.addEventListener('click', handleLike);
-
-  const buttonDel = photoEl.querySelector('.photo__trash');
-  buttonDel.addEventListener('click', handleDel);
-
-  itemLink.addEventListener ('click', () => {
-    openPopupImage(item);
-  });
-
-  return photoEl;
-  };
-
-  // функция открытия попапа PopupImage с присвоением свойств элемента
-const openPopupImage = (item) => {
-  openPopup(popupImage);
-  popupImg.src = item.link;
-  popupImg.alt = `Картинка ${item.name}`;
-  popupImgName.textContent = item.name;
-
-};
-
-// функция для Лайков
-const  handleLike = event => {
-  const targetEl = event.target;
-   targetEl.classList.toggle('photo__like_type_active');
-
-};
-
-// функция для удаления карточки
-const handleDel = event => {
-  const targetElement = event.target;
-  const targetItem = targetElement.closest('.photo');
-  targetItem.remove();
-};
 
 // функция закрытия попапа клавишей Escape
 const closeByEscape = (evt) => {
@@ -169,7 +117,7 @@ const formSubmitHandlerPopupProf = (evt) => {
 const addNewPlace = () => {
     const inputPlace = placeInput.value;
     const inputLink = linkInput.value;
-    const newPlace = createPhotoEl({ name: inputPlace, link: inputLink});
+    const newPlace = new Card({name: inputPlace, link: inputLink}, '.photo-template');
     galery.prepend(newPlace);
     placeInput.value = '';
     linkInput.value = '';
@@ -197,4 +145,5 @@ popupPlaceOpenButton.addEventListener('click', () => {
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
-fillGalery ();
+
+
