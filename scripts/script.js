@@ -61,8 +61,6 @@ const initialCards = [
   }
 ];
 
-
-
 initialCards.forEach((item) => {
   const card = new Card(item, '.photo-template');
   const cardElement = card.generateCard();
@@ -73,7 +71,9 @@ initialCards.forEach((item) => {
 const closeByEscape = (evt) => {
   if(evt.key === 'Escape') {
     const popupTypeOpened = document.querySelector('.popup_opened');
+    if(popupTypeOpened) {
     popupTypeOpened.classList.remove('popup_opened');
+    }
   }
 };
 

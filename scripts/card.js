@@ -32,7 +32,7 @@ class Card {
       });
 
     this._element.querySelector('.photo__image').addEventListener('click', () => {
-      openPopupImage();
+      openPopup(popupImage);
       popupImg.src = this._link;
       popupImg.alt = `Картинка ${this._name}`;
       popupImgName.textContent = this._name;
@@ -46,33 +46,22 @@ class Card {
   _handleDel() {
     this._element.remove();
   }
-
+}
 const popupImage = document.querySelector('.popup_type_image');
 const popupImg = popupImage.querySelector('.popup__image');
 const popupImgName = popupImage.querySelector('.popup__name-image');
 
- // функция открытия попапа PopupImage
- const openPopupImage = (item) => {
-  openPopup(popupImage);
-};
-
-//функция открытия попапа
 const openPopup = popupEl => {
   popupEl.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
 };
 
-//функция закрытия попапа
-const closePopup = popupEl => {
-
-  popupEl.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape);
-};
-
 const closeByEscape = (evt) => {
   if(evt.key === 'Escape') {
     const popupTypeOpened = document.querySelector('.popup_opened');
+    if(popupTypeOpened) {
     popupTypeOpened.classList.remove('popup_opened');
+    }
   }
 };
 
