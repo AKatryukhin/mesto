@@ -111,7 +111,8 @@ const addNewPlace = () => {
     const inputPlace = placeInput.value;
     const inputLink = linkInput.value;
     const newPlace = new Card({name: inputPlace, link: inputLink}, '.photo-template');
-    galery.prepend(newPlace);
+    const newcardElement = newPlace.generateCard();
+    galery.prepend(newcardElement);
     placeInput.value = '';
     linkInput.value = '';
 };
