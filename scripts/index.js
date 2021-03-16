@@ -58,6 +58,18 @@ const initialCards = [
   }
 ];
 
+const dataForm = [
+  {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save',
+    inactiveButtonClass: 'popup__save_inactive',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
+  }
+
+];
+
 initialCards.forEach((item) => {
   const card = new Card(item, '.photo-template');
   const cardElement = card.generateCard();
@@ -100,6 +112,13 @@ popups.forEach((popup) => {
     });
 });
 
+
+
+// forms.forEach((form) => {
+//   const validForm = new FormValidator(dataForm, form);
+//    enableValidation();
+
+// });
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
 const formSubmitHandlerPopupProf = (evt) => {
