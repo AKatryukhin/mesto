@@ -1,16 +1,10 @@
 import { Card } from './Card.js';
-
+import { FormValidator } from './FormValidator.js';
 
 //попап редактирования профиля
 const popupProf = document.querySelector('.popup_type_prof');
 //кнопка открытия попапа - редактирования профиля
 const popupProfOpenButton = document.querySelector('.profile__edit');
-// форма попапа редактирования профиля
-const formElementPfof = popupProf.querySelector('.popup__form');
-// поле ввода "имени" в форме попап Prof
-const nameInput = formElementPfof.querySelector('.popup__input_type_name');
-//поле ввода "о себе" в форме попап Prof
-const jobInput = formElementPfof.querySelector('.popup__input_type_descr');
 // поле для отображения имени в профиле
 const profileName = document.querySelector('.profile__name');
 // поле для отображения "о себе" в профиле
@@ -21,12 +15,21 @@ const galery = document.querySelector('.galery');
 const popupPlace = document.querySelector('.popup_type_place');
 //кнопка открытия попапа - добавления новой карточки
 const popupPlaceOpenButton = document.querySelector('.profile__add');
-// кнопка Создать попапа Place
-const formElementPlace = popupPlace.querySelector('.popup__form');
+
+const forms = document.forms;
+const formElementPfof = document.forms.profform;
+// поле ввода "имени" в форме попап Prof
+const nameInput = formElementPfof.elements.name;
+//поле ввода "о себе" в форме попап Prof
+const jobInput = formElementPfof.elements.job;
+
+const formElementPlace = document.forms.placeform;
 // поле ввода "названия места" в форме попап Place
-const placeInput = formElementPlace.querySelector('.popup__input_type_name');
+const placeInput = formElementPlace.elements.place;
 //поле ввода "о себе" в форме попап Place
-const linkInput = formElementPlace.querySelector('.popup__input_type_descr');
+const linkInput = formElementPlace.elements.link;
+
+
 
 const initialCards = [
   {
