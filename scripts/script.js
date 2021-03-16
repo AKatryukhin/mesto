@@ -67,8 +67,7 @@ initialCards.forEach((item) => {
   const card = new Card(item, '.photo-template');
   const cardElement = card.generateCard();
   galery.append(cardElement);
-  document.removeEventListener('keydown', closeByEscape);
-});
+  });
 
 // функция закрытия попапа клавишей Escape
 const closeByEscape = (evt) => {

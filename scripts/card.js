@@ -32,8 +32,10 @@ class Card {
       });
 
     this._element.querySelector('.photo__image').addEventListener('click', () => {
-      this._openPopupImage();
-
+      openPopupImage();
+      popupImg.src = this._link;
+      popupImg.alt = `Картинка ${this._name}`;
+      popupImgName.textContent = this._name;
       });
   }
 
@@ -45,18 +47,27 @@ class Card {
     this._element.remove();
   }
 
-  _openPopupImage () {
-    popupImage.classList.add('popup_opened');
-    popupImage.querySelector('.popup__image').src = this._link;
-    popupImage.querySelector('.popup__image').alt = `Картинка ${this._name}`;
-    popupImage.querySelector('.popup__name-image').textContent = this._name;
-    document.addEventListener('keydown', closeByEscape);
-  }
-
-}
-
-
 const popupImage = document.querySelector('.popup_type_image');
+const popupImg = popupImage.querySelector('.popup__image');
+const popupImgName = popupImage.querySelector('.popup__name-image');
+
+ // функция открытия попапа PopupImage
+ const openPopupImage = (item) => {
+  openPopup(popupImage);
+};
+
+//функция открытия попапа
+const openPopup = popupEl => {
+  popupEl.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
+};
+
+//функция закрытия попапа
+const closePopup = popupEl => {
+
+  popupEl.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
+};
 
 const closeByEscape = (evt) => {
   if(evt.key === 'Escape') {
