@@ -1,4 +1,4 @@
-import { Card } from './card.js';
+import { Card } from './Card.js';
 
 
 //попап редактирования профиля
@@ -27,12 +27,6 @@ const formElementPlace = popupPlace.querySelector('.popup__form');
 const placeInput = formElementPlace.querySelector('.popup__input_type_name');
 //поле ввода "о себе" в форме попап Place
 const linkInput = formElementPlace.querySelector('.popup__input_type_descr');
-// template-элемент photo
-const templatePhoto = document.querySelector('.photo-template').content;
-const popupImage = document.querySelector('.popup_type_image');
-const popupImg = popupImage.querySelector('.popup__image');
-const popupImgName = popupImage.querySelector('.popup__name-image');
-
 
 const initialCards = [
   {
