@@ -1,11 +1,11 @@
 class FormValidator {
-  constructor(dataForm, form) {
+  constructor(data, form) {
     this._element = form;
-    this._inputSelector = dataForm.inputSelector;
-    this._submitButtonSelector = dataForm.submitButtonSelector;
-    this._inactiveButtonClass = dataForm.inactiveButtonClass;
-    this._inputErrorClass = dataForm.inputErrorClass;
-    this._errorClass = dataForm.errorClass;
+    this._inputSelector = data.inputSelector;
+    this._submitButtonSelector = data.submitButtonSelector;
+    this._inactiveButtonClass = data.inactiveButtonClass;
+    this._inputErrorClass = data.inputErrorClass;
+    this._errorClass = data.errorClass;
 }
 
 _showInputError() {
@@ -24,33 +24,35 @@ _hideInputError() {
 
 _checkInputValidity() {
   if (!_inputElement.validity.valid) {
-    this.showInputError();
+    this._showInputError();
   } else {
-    this.hideInputError();
+    this._hideInputError();
   }
 }
 
 _setEventListeners() {
   this._inputList = Array.from(this._element.querySelectorAll(this._inputSelector));
   const _buttonElement = this._element.querySelector(this._submitButtonSelector);
- // проверяю состояние кнопки в начале
-  this.toggleButtonState();
+//  проверяю состояние кнопки в начале
+  this._toggleButtonState();
 
   this._inputList.forEach((_inputElement) => {
     _inputElement.addEventListener('input', () => {
-      this.checkInputValidity();
+      this._checkInputValidity();
 // проверяю состояние кнопки при изменении полей
-      this.toggleButtonState();
+      this._toggleButtonState();
     });
   });
 }
 
 enableValidation() {
+  this._setEventListeners();
   this._element.addEventListener('submit', (evt) => {
      evt.preventDefault();
-     this._setEventListeners();
+
 });
 }
+
 
 // проверяет наличие невалидных инпутов
 _hasInvalidInput() {
@@ -58,6 +60,7 @@ _hasInvalidInput() {
   return !_inputElement.validity.valid;
 });
 }
+
 
 // функция включения.выключения кнопок после проверки инпутов на валидность
 _toggleButtonState() {
@@ -69,19 +72,8 @@ _toggleButtonState() {
     _buttonElement.removeAttribute('disabled');
   }
 }
-
 }
 
-const dataForm = [
-  {
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save',
-    inactiveButtonClass: 'popup__save_inactive',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error_active'
-  }
-
-];
 
 
 

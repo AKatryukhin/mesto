@@ -89,11 +89,10 @@ initialCards.forEach((item) => {
   galery.append(cardElement);
   });
 
+  const editFormValidator = new FormValidator(dataForm, formElementPlace);
 
-
-const editFormValidaetor = new FormValidator(dataForm, formElementPlace);
-enableValidation(editFormValidaetor);
-
+  editFormValidator.enableValidation();
+  console.log(editFormValidator);
 
 
 
