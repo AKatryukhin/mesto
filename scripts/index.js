@@ -72,7 +72,7 @@ const initialCards = [
   }
 ];
 
-const dataForm = [
+const dataForm =
   {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save',
@@ -81,7 +81,7 @@ const dataForm = [
     errorClass: 'popup__input-error_active'
   }
 
-];
+;
 
 initialCards.forEach((item) => {
   const card = new Card(item, '.photo-template');

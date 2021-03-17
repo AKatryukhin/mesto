@@ -32,46 +32,46 @@ _checkInputValidity() {
 
 _setEventListeners() {
   this._inputList = Array.from(this._element.querySelectorAll(this._inputSelector));
-  const _buttonElement = this._element.querySelector(this._submitButtonSelector);
+  // const _buttonElement = this._element.querySelector(this._submitButtonSelector);
 //  проверяю состояние кнопки в начале
-  this._toggleButtonState();
+  // this._toggleButtonState();
 
   this._inputList.forEach((_inputElement) => {
     _inputElement.addEventListener('input', () => {
       this._checkInputValidity();
 // проверяю состояние кнопки при изменении полей
-      this._toggleButtonState();
+      // this._toggleButtonState();
     });
   });
 }
 
 enableValidation() {
-  this._setEventListeners();
+
   this._element.addEventListener('submit', (evt) => {
      evt.preventDefault();
-
+     this._setEventListeners();
 });
 }
 
 
 // проверяет наличие невалидных инпутов
-_hasInvalidInput() {
-  return this._inputList.some((_inputElement) => {
-  return !_inputElement.validity.valid;
-});
-}
+// _hasInvalidInput() {
+//   return this._inputList.some((_inputElement) => {
+//   return !_inputElement.validity.valid;
+// });
+// }
 
 
 // функция включения.выключения кнопок после проверки инпутов на валидность
-_toggleButtonState() {
-  if (_hasInvalidInput()) {
-      _buttonElement.classList.add(this._inactiveButtonClass);
-      _buttonElement.setAttribute('disabled', true);
-  } else {
-    _buttonElement.classList.remove(this._inactiveButtonClass);
-    _buttonElement.removeAttribute('disabled');
-  }
-}
+// _toggleButtonState() {
+//   if (_hasInvalidInput()) {
+//       _buttonElement.classList.add(this._inactiveButtonClass);
+//       _buttonElement.setAttribute('disabled', true);
+//   } else {
+//     _buttonElement.classList.remove(this._inactiveButtonClass);
+//     _buttonElement.removeAttribute('disabled');
+//   }
+// }
 }
 
 
