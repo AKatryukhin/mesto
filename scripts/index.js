@@ -16,18 +16,32 @@ const popupPlace = document.querySelector('.popup_type_place');
 //кнопка открытия попапа - добавления новой карточки
 const popupPlaceOpenButton = document.querySelector('.profile__add');
 
-const forms = document.forms;
-const formElementPfof = document.forms.profform;
+const formElementPfof = popupProf.querySelector('.form-prof');
 // поле ввода "имени" в форме попап Prof
-const nameInput = formElementPfof.elements.name;
+const nameInput = formElementPfof.querySelector('.popup__input_type_name');
 //поле ввода "о себе" в форме попап Prof
-const jobInput = formElementPfof.elements.job;
+const jobInput = formElementPfof.querySelector('.popup__input_type_descr');
 
-const formElementPlace = document.forms.placeform;
+const formElementPlace = popupPlace.querySelector('.form-place');
 // поле ввода "названия места" в форме попап Place
-const placeInput = formElementPlace.elements.place;
+const placeInput = formElementPlace.querySelector('.popup__input_type_name');
 //поле ввода "о себе" в форме попап Place
-const linkInput = formElementPlace.elements.link;
+const linkInput = formElementPlace.querySelector('.popup__input_type_descr');
+
+
+// const forms = document.forms;
+// const formElementPfof = document.forms.profform;
+// // поле ввода "имени" в форме попап Prof
+// const nameInput = formElementPfof.elements.name;
+// //поле ввода "о себе" в форме попап Prof
+// const jobInput = formElementPfof.elements.job;
+
+// const formElementPlace = document.forms.placeform;
+// поле ввода "названия места" в форме попап Place
+// const placeInput = formElementPlace.elements.place;
+// //поле ввода "о себе" в форме попап Place
+// const linkInput = formElementPlace.elements.link;
+
 
 
 
@@ -60,7 +74,6 @@ const initialCards = [
 
 const dataForm = [
   {
-    formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save',
     inactiveButtonClass: 'popup__save_inactive',
@@ -75,6 +88,16 @@ initialCards.forEach((item) => {
   const cardElement = card.generateCard();
   galery.append(cardElement);
   });
+
+
+
+const editFormValidaetor = new FormValidator(dataForm, formElementPlace);
+enableValidation(editFormValidaetor);
+
+
+
+
+
 
 // функция закрытия попапа клавишей Escape
 const closeByEscape = (evt) => {
@@ -113,12 +136,6 @@ popups.forEach((popup) => {
 });
 
 
-
-// forms.forEach((form) => {
-//   const validForm = new FormValidator(dataForm, form);
-//    enableValidation();
-
-// });
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
 const formSubmitHandlerPopupProf = (evt) => {
