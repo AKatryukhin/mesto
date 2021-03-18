@@ -28,7 +28,6 @@ const placeInput = formElementPlace.querySelector('.popup__input_type_name');
 //поле ввода "о себе" в форме попап Place
 const linkInput = formElementPlace.querySelector('.popup__input_type_descr');
 
-
 // const forms = document.forms;
 // const formElementPfof = document.forms.profform;
 // // поле ввода "имени" в форме попап Prof
@@ -42,78 +41,65 @@ const linkInput = formElementPlace.querySelector('.popup__input_type_descr');
 // //поле ввода "о себе" в форме попап Place
 // const linkInput = formElementPlace.elements.link;
 
-
-
-
 const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+    },
 ];
 
-const dataForm =
-  {
+const dataForm = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save',
     inactiveButtonClass: 'popup__save_inactive',
     inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error_active'
-  }
-
-;
+    errorClass: 'popup__input-error_active',
+};
 
 initialCards.forEach((item) => {
-  const card = new Card(item, '.photo-template');
-  const cardElement = card.generateCard();
-  galery.append(cardElement);
-  });
-
-
-
-
-
-
+    const card = new Card(item, '.photo-template');
+    const cardElement = card.generateCard();
+    galery.append(cardElement);
+});
 
 // функция закрытия попапа клавишей Escape
 const closeByEscape = (evt) => {
-  if(evt.key === 'Escape') {
-    const popupTypeOpened = document.querySelector('.popup_opened');
-    if(popupTypeOpened) {
-    popupTypeOpened.classList.remove('popup_opened');
+    if (evt.key === 'Escape') {
+        const popupTypeOpened = document.querySelector('.popup_opened');
+        if (popupTypeOpened) {
+            popupTypeOpened.classList.remove('popup_opened');
+        }
     }
-  }
 };
 
 //функция открытия попапа
-const openPopup = popupEl => {
+const openPopup = (popupEl) => {
     popupEl.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
 };
 
 //функция закрытия попапа
-const closePopup = popupEl => {
-
+const closePopup = (popupEl) => {
     popupEl.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEscape);
 };
@@ -126,12 +112,10 @@ popups.forEach((popup) => {
             closePopup(popup);
         }
         if (evt.target.classList.contains('popup__close')) {
-          closePopup(popup);
+            closePopup(popup);
         }
     });
 });
-
-
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
 const formSubmitHandlerPopupProf = (evt) => {
@@ -145,7 +129,7 @@ const formSubmitHandlerPopupProf = (evt) => {
 const addNewPlace = () => {
     const inputPlace = placeInput.value;
     const inputLink = linkInput.value;
-    const newPlace = new Card({name: inputPlace, link: inputLink}, '.photo-template');
+    const newPlace = new Card({ name: inputPlace, link: inputLink }, '.photo-template');
     const newcardElement = newPlace.generateCard();
     galery.prepend(newcardElement);
     placeInput.value = '';
@@ -157,23 +141,22 @@ const formSubmitHandlerPopupPlace = (evt) => {
     evt.preventDefault();
     addNewPlace();
     closePopup(popupPlace);
-  };
+};
 
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfOpenButton.addEventListener('click', () => {
-  openPopup(popupProf);
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+    openPopup(popupProf);
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
 });
 
 formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
 
-popupPlaceOpenButton.addEventListener('click', () => {
-  openPopup(popupPlace);
- });
-
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
+popupPlaceOpenButton.addEventListener('click', () => {
+    openPopup(popupPlace);
+});
 
 const placeFormValidator = new FormValidator(dataForm, formElementPlace);
 
