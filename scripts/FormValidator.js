@@ -8,49 +8,58 @@ class FormValidator {
     this._errorClass = data.errorClass;
 }
 
-_showInputError() {
-  const _errorElement = this._element.querySelector(`.${_inputElement.id}-error`);
-  _inputElement.classList.add(this._inputErrorClass);
-  _errorElement.textContent = _inputElement.validationMessage;
+
+_showInputError(inputElement) {
+  const _errorElement = this._element.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(this._inputErrorClass);
+  _errorElement.textContent = inputElement.validationMessage;
   _errorElement.classList.add(this._errorClass);
 }
 
-_hideInputError() {
-  const _errorElement = this._element.querySelector(`.${_inputElement.id}-error`);
-  _inputElement.classList.remove(this._inputErrorClass);
+_hideInputError(inputElement) {
+  const _errorElement = this._element.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(this._inputErrorClass);
   _errorElement.classList.remove(this._errorClass);
   _errorElement.textContent = '';
 }
 
-_checkInputValidity() {
-  if (!_inputElement.validity.valid) {
-    this._showInputError();
+
+_checkInputValidity(inputElement) {
+    if (!inputElement.validity.valid) {
+      this._showInputError(inputElement);
   } else {
-    this._hideInputError();
+      this._hideInputError(inputElement);
   }
 }
 
 _setEventListeners() {
   this._inputList = Array.from(this._element.querySelectorAll(this._inputSelector));
-  // const _buttonElement = this._element.querySelector(this._submitButtonSelector);
+
+  this._inputList.forEach((inputElement) => {
+     // const _buttonElement = this._element.querySelector(this._submitButtonSelector);
 //  проверяю состояние кнопки в начале
   // this._toggleButtonState();
+  inputElement.addEventListener('input', () => {
+    this._checkInputValidity(inputElement);
 
-  this._inputList.forEach((_inputElement) => {
-    _inputElement.addEventListener('input', () => {
-      this._checkInputValidity();
+
 // проверяю состояние кнопки при изменении полей
       // this._toggleButtonState();
     });
   });
 }
 
-enableValidation() {
 
-  this._element.addEventListener('submit', (evt) => {
-     evt.preventDefault();
-     this._setEventListeners();
-});
+
+
+
+
+enableValidation() {
+  this._setEventListeners();
+//   this._element.addEventListener('submit', (evt) => {
+//      evt.preventDefault();
+//      this._setEventListeners();
+// });
 }
 
 

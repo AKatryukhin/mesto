@@ -89,10 +89,7 @@ initialCards.forEach((item) => {
   galery.append(cardElement);
   });
 
-  const editFormValidator = new FormValidator(dataForm, formElementPlace);
 
-  editFormValidator.enableValidation();
-  console.log(editFormValidator);
 
 
 
@@ -178,4 +175,10 @@ popupPlaceOpenButton.addEventListener('click', () => {
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
 
+const placeFormValidator = new FormValidator(dataForm, formElementPlace);
 
+placeFormValidator.enableValidation();
+
+const profFormValidator = new FormValidator(dataForm, formElementPfof);
+
+profFormValidator.enableValidation();
