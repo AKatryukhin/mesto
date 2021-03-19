@@ -1,3 +1,4 @@
+import {openPopup, popupImage, popupImg, popupImgName} from './index.js';
 class Card {
   constructor(data, selector) {
       this._name = data.name;
@@ -47,22 +48,5 @@ class Card {
       this._element.remove();
   }
 }
-const popupImage = document.querySelector('.popup_type_image');
-const popupImg = popupImage.querySelector('.popup__image');
-const popupImgName = popupImage.querySelector('.popup__name-image');
-
-const openPopup = (popupEl) => {
-  popupEl.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-};
-
-const closeByEscape = (evt) => {
-  if (evt.key === 'Escape') {
-      const popupTypeOpened = document.querySelector('.popup_opened');
-      if (popupTypeOpened) {
-          popupTypeOpened.classList.remove('popup_opened');
-      }
-  }
-};
 
 export { Card };

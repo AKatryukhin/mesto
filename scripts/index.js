@@ -27,6 +27,10 @@ const formElementPlace = popupPlace.querySelector('.form-place');
 const placeInput = formElementPlace.querySelector('.popup__input_type_name');
 //поле ввода "о себе" в форме попап Place
 const linkInput = formElementPlace.querySelector('.popup__input_type_descr');
+const popupImage = document.querySelector('.popup_type_image');
+const popupImg = popupImage.querySelector('.popup__image');
+const popupImgName = popupImage.querySelector('.popup__name-image');
+
 
 // const forms = document.forms;
 // const formElementPfof = document.forms.profform;
@@ -97,7 +101,6 @@ const openPopup = (popupEl) => {
     popupEl.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
 };
-
 //функция закрытия попапа
 const closePopup = (popupEl) => {
     popupEl.classList.remove('popup_opened');
@@ -165,3 +168,6 @@ placeFormValidator.enableValidation();
 const profFormValidator = new FormValidator(dataForm, formElementPfof);
 
 profFormValidator.enableValidation();
+
+export {openPopup, popupImage, popupImg, popupImgName};
+
