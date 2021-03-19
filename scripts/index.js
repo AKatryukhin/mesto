@@ -80,10 +80,14 @@ const dataForm = {
     errorClass: 'popup__input-error_active',
 };
 
+// функция для создания карточки
+const createCard = (item) => {
+  const newCard = new Card(item, '.photo-template');
+  return newCard.generateCard();
+};
+
 initialCards.forEach((item) => {
-    const card = new Card(item, '.photo-template');
-    const cardElement = card.generateCard();
-    galery.append(cardElement);
+    galery.append(createCard(item));
 });
 
 // функция закрытия попапа клавишей Escape
@@ -128,21 +132,22 @@ const formSubmitHandlerPopupProf = (evt) => {
     closePopup(popupProf);
 };
 
+
+
 // функция для добавления карточки
-const addNewPlace = () => {
+const newCard = () => {
     const inputPlace = placeInput.value;
     const inputLink = linkInput.value;
-    const newPlace = new Card({ name: inputPlace, link: inputLink }, '.photo-template');
-    const newcardElement = newPlace.generateCard();
-    galery.prepend(newcardElement);
+    galery.prepend(createCard({ name: inputPlace, link: inputLink }));
     placeInput.value = '';
     linkInput.value = '';
 };
 
+
 //функция добавления новой карточки и закрытия попапа Place
 const formSubmitHandlerPopupPlace = (evt) => {
     evt.preventDefault();
-    addNewPlace();
+    newCard();
     closePopup(popupPlace);
 };
 
