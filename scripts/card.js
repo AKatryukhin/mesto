@@ -16,8 +16,9 @@ class Card {
   generateCard() {
       this._element = this._getTemplate();
       this._setEventListeners();
-      this._element.querySelector('.photo__image').src = this._link;
-      this._element.querySelector('.photo__image').alt = `Картинка ${this._name}`;
+      const imageElement = this._element.querySelector('.photo__image');
+      imageElement.src = this._link;
+      imageElement.alt = `Картинка ${this._name}`;
       this._element.querySelector('.photo__name').textContent = this._name;
 
       return this._element;
