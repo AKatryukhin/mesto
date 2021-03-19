@@ -46,29 +46,40 @@ class FormValidator {
   }
 
   // метод включения.выключения кнопок после проверки инпутов на валидность
+
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
-      this._buttonElement.setAttribute("disabled", true);
-      this._buttonElement.classList.add(this._inactiveButtonClass);
+      this.disableSubmitButton();
     } else {
-      this._buttonElement.removeAttribute("disabled");
-      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._enableSubmitButton();
     }
   }
 
-// проверяет наличие невалидных инпутов
-_hasInvalidInput () {
+  // метод отключения кнопки
+  disableSubmitButton() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
+  }
+
+  // метод включения кнопки
+  _enableSubmitButton() {
+    this._buttonElement.removeAttribute('disabled');
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+  }
+
+  // проверяет наличие невалидных инпутов
+  _hasInvalidInput () {
     return this._inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
   }
 
-enableValidation() {
+  enableValidation() {
     this._element.addEventListener('submit', (evt) => {
         evt.preventDefault();
     });
     this._setEventListeners();
+    }
   }
-}
 
 export { FormValidator };

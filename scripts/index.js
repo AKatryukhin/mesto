@@ -162,13 +162,17 @@ formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
-popupPlaceOpenButton.addEventListener('click', () => {
-    openPopup(popupPlace);
-});
+
 
 const placeFormValidator = new FormValidator(dataForm, formElementPlace);
 
 placeFormValidator.enableValidation();
+
+popupPlaceOpenButton.addEventListener('click', () => {
+
+  openPopup(popupPlace);
+  placeFormValidator.disableSubmitButton();
+});
 
 const profFormValidator = new FormValidator(dataForm, formElementPfof);
 
