@@ -35,7 +35,7 @@ class FormValidator {
   _setEventListeners() {
       this._inputList.forEach((inputElement) => {
           //  проверяю состояние кнопки вначале
-          this._toggleButtonState();
+             this._toggleButtonState();
 
           inputElement.addEventListener('input', () => {
               this._checkInputValidity(inputElement);
