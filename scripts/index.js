@@ -15,35 +15,21 @@ const galery = document.querySelector('.galery');
 const popupPlace = document.querySelector('.popup_type_place');
 //кнопка открытия попапа - добавления новой карточки
 const popupPlaceOpenButton = document.querySelector('.profile__add');
-
-const formElementPfof = popupProf.querySelector('.form-prof');
+const formElementPfof = document.forms.profform;
 // поле ввода "имени" в форме попап Prof
-const nameInput = formElementPfof.querySelector('.popup__input_type_name');
+const nameInput = formElementPfof.elements.name;
 //поле ввода "о себе" в форме попап Prof
-const jobInput = formElementPfof.querySelector('.popup__input_type_descr');
+const jobInput = formElementPfof.elements.job;
 
-const formElementPlace = popupPlace.querySelector('.form-place');
+const formElementPlace = document.forms.placeform;
 // поле ввода "названия места" в форме попап Place
-const placeInput = formElementPlace.querySelector('.popup__input_type_name');
-//поле ввода "о себе" в форме попап Place
-const linkInput = formElementPlace.querySelector('.popup__input_type_descr');
+const placeInput = formElementPlace.elements.place;
+// //поле ввода "о себе" в форме попап Place
+const linkInput = formElementPlace.elements.link;
+
 const popupImage = document.querySelector('.popup_type_image');
 const popupImg = popupImage.querySelector('.popup__image');
 const popupImgName = popupImage.querySelector('.popup__name-image');
-
-
-// const forms = document.forms;
-// const formElementPfof = document.forms.profform;
-// // поле ввода "имени" в форме попап Prof
-// const nameInput = formElementPfof.elements.name;
-// //поле ввода "о себе" в форме попап Prof
-// const jobInput = formElementPfof.elements.job;
-
-// const formElementPlace = document.forms.placeform;
-// поле ввода "названия места" в форме попап Place
-// const placeInput = formElementPlace.elements.place;
-// //поле ввода "о себе" в форме попап Place
-// const linkInput = formElementPlace.elements.link;
 
 const initialCards = [
     {
