@@ -90,6 +90,7 @@ const closeByEscape = (evt) => {
 const openPopup = (popupEl) => {
     popupEl.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
+
 };
 //функция закрытия попапа
 const closePopup = (popupEl) => {
@@ -158,6 +159,9 @@ popupPlaceOpenButton.addEventListener('click', () => {
 
   openPopup(popupPlace);
   placeFormValidator.disableSubmitButton();
+  placeFormValidator.clearValidation();
+  placeInput.value = '';
+  linkInput.value = '';
 });
 
 const profFormValidator = new FormValidator(dataForm, formElementPfof);
