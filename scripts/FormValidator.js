@@ -21,7 +21,7 @@ export default class FormValidator {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
       });
-      this.disableSubmitButton();
+      this._disableSubmitButton();
     }
 
   _hideInputError(inputElement) {
@@ -56,14 +56,14 @@ export default class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
-      this.disableSubmitButton();
+      this._disableSubmitButton();
     } else {
       this._enableSubmitButton();
     }
   }
 
   // метод отключения кнопки
-  disableSubmitButton() {
+  _disableSubmitButton() {
     this._buttonElement.classList.add(this._inactiveButtonClass);
     this._buttonElement.setAttribute('disabled', true);
   }

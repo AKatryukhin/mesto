@@ -158,7 +158,6 @@ placeFormValidator.enableValidation();
 popupPlaceOpenButton.addEventListener('click', () => {
 
   openPopup(popupPlace);
-  placeFormValidator.disableSubmitButton();
   placeFormValidator.clearValidation();
   placeInput.value = '';
   linkInput.value = '';
