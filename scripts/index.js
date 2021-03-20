@@ -1,5 +1,5 @@
 import Card from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import FormValidator from './FormValidator.js';
 
 //попап редактирования профиля
 const popupProf = document.querySelector('.popup_type_prof');
