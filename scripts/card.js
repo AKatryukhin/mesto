@@ -7,10 +7,10 @@ export default class Card {
   }
 
   _getTemplate() {
-      const _photoEl = document.querySelector(this._selector)
+      const photoElement = document.querySelector(this._selector)
       .content.querySelector('.photo').cloneNode(true);
 
-      return _photoEl;
+      return photoElement;
   }
 
   generateCard() {
