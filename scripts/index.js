@@ -67,17 +67,17 @@ const dataForm = {
 };
 
 // функция для создания карточки
-const createCard = (item) => {
+const createCard = item => {
   const newCard = new Card(item, '.photo-template');
   return newCard.generateCard();
 };
 
-initialCards.forEach((item) => {
+initialCards.forEach(item => {
     galery.append(createCard(item));
 });
 
 // функция закрытия попапа клавишей Escape
-const closeByEscape = (evt) => {
+const closeByEscape = evt => {
     if (evt.key === 'Escape') {
         const popupTypeOpened = document.querySelector('.popup_opened');
         if (popupTypeOpened) {
@@ -87,20 +87,20 @@ const closeByEscape = (evt) => {
 };
 
 //функция открытия попапа
-const openPopup = (popupEl) => {
+const openPopup = popupEl => {
     popupEl.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
 
 };
 //функция закрытия попапа
-const closePopup = (popupEl) => {
+const closePopup = popupEl => {
     popupEl.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEscape);
 };
 
 const popups = document.querySelectorAll('.popup');
 
-popups.forEach((popup) => {
+popups.forEach(popup => {
     popup.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('popup_opened')) {
             closePopup(popup);
@@ -112,7 +112,7 @@ popups.forEach((popup) => {
 });
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
-const formSubmitHandlerPopupProf = (evt) => {
+const formSubmitHandlerPopupProf = evt => {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
@@ -132,7 +132,7 @@ const newCard = () => {
 
 
 //функция добавления новой карточки и закрытия попапа Place
-const formSubmitHandlerPopupPlace = (evt) => {
+const formSubmitHandlerPopupPlace = evt => {
     evt.preventDefault();
     newCard();
     closePopup(popupPlace);

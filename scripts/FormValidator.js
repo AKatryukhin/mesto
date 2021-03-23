@@ -18,7 +18,7 @@ export default class FormValidator {
   }
 
   clearValidation() {
-    this._inputList.forEach((inputElement) => {
+    this._inputList.forEach(inputElement => {
       this._hideInputError(inputElement);
       });
       this._disableSubmitButton();
@@ -40,7 +40,7 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-      this._inputList.forEach((inputElement) => {
+      this._inputList.forEach(inputElement => {
           //  проверяю состояние кнопки вначале
              this._toggleButtonState();
 
@@ -76,7 +76,7 @@ export default class FormValidator {
 
   // проверяет наличие невалидных инпутов
   _hasInvalidInput () {
-    return this._inputList.some((inputElement) => {
+    return this._inputList.some(inputElement => {
     return !inputElement.validity.valid;
   });
   }
