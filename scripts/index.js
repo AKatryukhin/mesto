@@ -159,8 +159,7 @@ popupPlaceOpenButton.addEventListener('click', () => {
 
   openPopup(popupPlace);
   placeFormValidator.clearValidation();
-  placeInput.value = '';
-  linkInput.value = '';
+  formElementPlace.reset();
 });
 
 const profFormValidator = new FormValidator(dataForm, formElementPfof);
