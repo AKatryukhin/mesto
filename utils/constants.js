@@ -1,5 +1,5 @@
 //попап редактирования профиля
-export const popupProf = document.querySelector('.popup_type_prof');
+export const popupProf = '.popup_type_prof';
 //кнопка открытия попапа - редактирования профиля
 export const popupProfOpenButton = document.querySelector('.profile__edit');
 // поле для отображения имени в профиле
@@ -11,7 +11,7 @@ export const galery = document.querySelector('.galery');
 
 export const cardListSelector = '.galery';
 //попап добавления новой карточки
-export const popupPlace = document.querySelector('.popup_type_place');
+export const popupPlace = '.popup_type_place';
 //кнопка открытия попапа - добавления новой карточки
 export const popupPlaceOpenButton = document.querySelector('.profile__add');
 export const formElementPfof = document.forms.profform;

@@ -1,5 +1,6 @@
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
 import FormValidator from '../components/FormValidator.js';
 import {
   initialCards,
@@ -26,6 +27,8 @@ import {
   inputLink,
   handleItems
  } from '../utils/constants.js';
+ console.log(popupProf,
+  popupPlace)
 
 
 // функция для создания карточки
@@ -37,6 +40,7 @@ import {
 // initialCards.forEach(item => {
 //     galery.append(createCard(item));
 // });
+
 
 const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
   const card = new Card(item, '.photo-template');
@@ -66,44 +70,44 @@ getDefaultCard.renderItems();
 
 
 // функция закрытия попапа клавишей Escape
-const closeByEscape = evt => {
-    if (evt.key === 'Escape') {
-        const popupTypeOpened = document.querySelector('.popup_opened');
-        if (popupTypeOpened) {
-            popupTypeOpened.classList.remove('popup_opened');
-        }
-    }
-};
+// const closeByEscape = evt => {
+//     if (evt.key === 'Escape') {
+//         const popupTypeOpened = document.querySelector('.popup_opened');
+//         if (popupTypeOpened) {
+//             popupTypeOpened.classList.remove('popup_opened');
+//         }
+//     }
+// };
 
-//функция открытия попапа
-const openPopup = popupEl => {
-    popupEl.classList.add('popup_opened');
-    document.addEventListener('keydown', closeByEscape);
+// //функция открытия попапа
+// const openPopup = popupEl => {
+//     popupEl.classList.add('popup_opened');
+//     document.addEventListener('keydown', closeByEscape);
 
-};
-//функция закрытия попапа
-const closePopup = popupEl => {
-    popupEl.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closeByEscape);
-};
+// };
+// //функция закрытия попапа
+// const closePopup = popupEl => {
+//     popupEl.classList.remove('popup_opened');
+//     document.removeEventListener('keydown', closeByEscape);
+// };
 
-popups.forEach(popup => {
-    popup.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup);
-        }
-        if (evt.target.classList.contains('popup__close')) {
-            closePopup(popup);
-        }
-    });
-});
+// popups.forEach(popup => {
+//     popup.addEventListener('click', (evt) => {
+//         if (evt.target.classList.contains('popup_opened')) {
+//             closePopup(popup);
+//         }
+//         if (evt.target.classList.contains('popup__close')) {
+//             closePopup(popup);
+//         }
+//     });
+// });
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
 const formSubmitHandlerPopupProf = evt => {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closePopup(popupProf);
+    close(popupProf);
 };
 
 // функция для добавления карточки
@@ -121,19 +125,15 @@ const newCard = () => {
 const formSubmitHandlerPopupPlace = evt => {
     evt.preventDefault();
     getNewCard.renderItems();
-    closePopup(popupPlace);
+    close(popupPlace);
 };
 
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfOpenButton.addEventListener('click', () => {
-    openPopup(popupProf);
+    open(popupProf);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 });
-
-
-
-
 
 
 formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
@@ -148,7 +148,7 @@ placeFormValidator.enableValidation();
 
 popupPlaceOpenButton.addEventListener('click', () => {
 
-  openPopup(popupPlace);
+  open(popupPlace);
   placeFormValidator.clearValidation();
   formElementPlace.reset();
 });
@@ -157,5 +157,5 @@ const profFormValidator = new FormValidator(dataForm, formElementPfof);
 
 profFormValidator.enableValidation();
 
-export {openPopup, popupImage, popupImg, popupImgName};
+export {popupImage, popupImg, popupImgName};
 

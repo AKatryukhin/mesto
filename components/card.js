@@ -1,4 +1,5 @@
-import {openPopup, popupImage, popupImg, popupImgName} from '../pages/index.js';
+import {popupImg, popupImgName} from '../pages/index.js';
+import Popup from '../components/Popup.js';
 export default class Card {
   constructor(data, selector) {
       this._name = data.name;
@@ -34,7 +35,7 @@ export default class Card {
       });
 
       this._element.querySelector('.photo__image').addEventListener('click', () => {
-          openPopup(popupImage);
+          open(popupImage);
           popupImg.src = this._link;
           popupImg.alt = `Картинка ${this._name}`;
           popupImgName.textContent = this._name;
