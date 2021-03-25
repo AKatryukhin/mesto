@@ -46,9 +46,16 @@ const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
 
 getDefaultCard.renderItems();
 
+// const getNewCard = new Section({ items: { inputPlace, inputLink}, renderer: (item) => {
+//   const inputPlace = placeInput.value;
+//   const inputLink = linkInput.value;
+//   const card = new Card(item, '.photo-template');
+//   const cardElement = card.generateCard();
+//   getNewCard.addNewItem(cardElement);
+//   placeInput.value = '';
+//   linkInput.value = '';
 
-
-
+// } },  cardListSelector);
 
 
 // const getDefaultCard = new Section({ data: items, renderer: (item) => {
@@ -108,16 +115,7 @@ const newCard = () => {
     linkInput.value = '';
 };
 
-const getNewCard = new Section({ items: { inputPlace, inputLink}, renderer: (item) => {
-  const inputPlace = placeInput.value;
-  const inputLink = linkInput.value;
-  const card = new Card(item, '.photo-template');
-  const cardElement = card.generateCard();
-  getNewCard.addNewItem(cardElement);
-  // placeInput.value = '';
-  // linkInput.value = '';
 
-} },  cardListSelector);
 
 //функция добавления новой карточки и закрытия попапа Place
 const formSubmitHandlerPopupPlace = evt => {
