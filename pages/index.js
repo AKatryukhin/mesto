@@ -21,7 +21,11 @@ import {
   popupImage,
   popupImg,
   popupImgName,
-  cardListSelector } from '../utils/constants.js';
+  cardListSelector,
+  inputPlace,
+  inputLink,
+  handleItems
+ } from '../utils/constants.js';
 
 
 // функция для создания карточки
@@ -41,6 +45,7 @@ const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
 } }, cardListSelector);
 
 getDefaultCard.renderItems();
+
 
 
 
@@ -94,23 +99,6 @@ const formSubmitHandlerPopupProf = evt => {
     closePopup(popupProf);
 };
 
-
-// const getNewCard = new Section({ data: items, renderer: () => {
-//     const card = new Card(item, '.photo-template');
-//     const cardElement = card.generateCard();
-//     getNewCard.addItem(cardElement);
-// } },  cardListSelector);
-
-// const formSubmitHandlerPopupPlace = evt => {
-//   evt.preventDefault();
-//   getNewCard.renderItems();
-//   closePopup(popupPlace);
-// };
-
-// formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
-
-
-
 // функция для добавления карточки
 const newCard = () => {
     const inputPlace = placeInput.value;
@@ -120,11 +108,21 @@ const newCard = () => {
     linkInput.value = '';
 };
 
+const getNewCard = new Section({ items: { inputPlace, inputLink}, renderer: (item) => {
+  const inputPlace = placeInput.value;
+  const inputLink = linkInput.value;
+  const card = new Card(item, '.photo-template');
+  const cardElement = card.generateCard();
+  getNewCard.addNewItem(cardElement);
+  // placeInput.value = '';
+  // linkInput.value = '';
+
+} },  cardListSelector);
 
 //функция добавления новой карточки и закрытия попапа Place
 const formSubmitHandlerPopupPlace = evt => {
     evt.preventDefault();
-    newCard();
+    getNewCard.renderItems();
     closePopup(popupPlace);
 };
 
@@ -134,6 +132,11 @@ popupProfOpenButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 });
+
+
+
+
+
 
 formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
 

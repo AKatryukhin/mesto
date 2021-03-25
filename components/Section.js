@@ -1,3 +1,5 @@
+import { handleItems, inputPlace,
+  inputLink,} from '../utils/constants.js';
 export default class Section {
   constructor({ items, renderer }, containerSelector) {
     this._initialArray = items;
@@ -15,5 +17,9 @@ renderItems() {
 
 addItem(element) {
   this._container.append(element);
+}
+
+addNewItem(element) {
+  this._container.prepend(element);
 }
 }

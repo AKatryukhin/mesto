@@ -8,6 +8,7 @@ export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__job');
 // секция galery
 export const galery = document.querySelector('.galery');
+
 export const cardListSelector = '.galery';
 //попап добавления новой карточки
 export const popupPlace = document.querySelector('.popup_type_place');
@@ -25,10 +26,15 @@ export const placeInput = formElementPlace.elements.place;
 // //поле ввода "о себе" в форме попап Place
 export const linkInput = formElementPlace.elements.link;
 export const popups = document.querySelectorAll('.popup');
-
+export const inputPlace = placeInput.value;
+export const inputLink = linkInput.value;
 export const popupImage = document.querySelector('.popup_type_image');
 export const popupImg = popupImage.querySelector('.popup__image');
 export const popupImgName = popupImage.querySelector('.popup__name-image');
+
+export const handleItems = {
+  name: inputPlace,
+  link: inputLink };
 
 export const initialCards = [
     {
