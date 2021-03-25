@@ -1,4 +1,5 @@
 import Card from '../components/Card.js';
+import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import {
   initialCards,
@@ -19,18 +20,38 @@ import {
   popupPlace,
   popupImage,
   popupImg,
-  popupImgName } from '../utils/constants.js';
+  popupImgName,
+  cardListSelector } from '../utils/constants.js';
 
 
 // функция для создания карточки
-const createCard = item => {
-  const newCard = new Card(item, '.photo-template');
-  return newCard.generateCard();
-};
+// const createCard = item => {
+//   const newCard = new Card(item, '.photo-template');
+//   return newCard.generateCard();
+// };
 
-initialCards.forEach(item => {
-    galery.append(createCard(item));
-});
+// initialCards.forEach(item => {
+//     galery.append(createCard(item));
+// });
+
+const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
+  const card = new Card(item, '.photo-template');
+  const cardElement = card.generateCard();
+  getDefaultCard.addItem(cardElement);
+} }, cardListSelector);
+
+getDefaultCard.renderItems();
+
+
+
+
+
+// const getDefaultCard = new Section({ data: items, renderer: (item) => {
+//   const card = new Card(item, '.photo-template');
+//   const cardElement = card.generateCard();
+//   getDefaultCard.addItem(cardElement);
+// } },  cardListSelector);
+
 
 // функция закрытия попапа клавишей Escape
 const closeByEscape = evt => {
@@ -72,6 +93,21 @@ const formSubmitHandlerPopupProf = evt => {
     profileJob.textContent = jobInput.value;
     closePopup(popupProf);
 };
+
+
+// const getNewCard = new Section({ data: items, renderer: () => {
+//     const card = new Card(item, '.photo-template');
+//     const cardElement = card.generateCard();
+//     getNewCard.addItem(cardElement);
+// } },  cardListSelector);
+
+// const formSubmitHandlerPopupPlace = evt => {
+//   evt.preventDefault();
+//   getNewCard.renderItems();
+//   closePopup(popupPlace);
+// };
+
+// formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
 
 

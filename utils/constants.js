@@ -8,6 +8,7 @@ export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__job');
 // секция galery
 export const galery = document.querySelector('.galery');
+export const cardListSelector = '.galery';
 //попап добавления новой карточки
 export const popupPlace = document.querySelector('.popup_type_place');
 //кнопка открытия попапа - добавления новой карточки
