@@ -27,8 +27,7 @@ import {
   inputLink,
   handleItems
  } from '../utils/constants.js';
- console.log(popupProf,
-  popupPlace)
+
 
 
 // функция для создания карточки
@@ -102,6 +101,17 @@ getDefaultCard.renderItems();
 //     });
 // });
 
+
+const popupProfOpen = new Popup('.popup_type_prof');
+
+//слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
+popupProfOpenButton.addEventListener('click', () => {
+  popupProfOpen.open();
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+});
+
+
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
 const formSubmitHandlerPopupProf = evt => {
     evt.preventDefault();
@@ -110,14 +120,14 @@ const formSubmitHandlerPopupProf = evt => {
     close(popupProf);
 };
 
-// функция для добавления карточки
-const newCard = () => {
-    const inputPlace = placeInput.value;
-    const inputLink = linkInput.value;
-    galery.prepend(createCard({ name: inputPlace, link: inputLink }));
-    placeInput.value = '';
-    linkInput.value = '';
-};
+// // функция для добавления карточки
+// const newCard = () => {
+//     const inputPlace = placeInput.value;
+//     const inputLink = linkInput.value;
+//     galery.prepend(createCard({ name: inputPlace, link: inputLink }));
+//     placeInput.value = '';
+//     linkInput.value = '';
+// };
 
 
 
@@ -128,12 +138,7 @@ const formSubmitHandlerPopupPlace = evt => {
     close(popupPlace);
 };
 
-//слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
-popupProfOpenButton.addEventListener('click', () => {
-    open(popupProf);
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-});
+
 
 
 formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
