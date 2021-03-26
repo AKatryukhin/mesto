@@ -107,6 +107,11 @@ const popupProfOpen = new Popup('.popup_type_prof');
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfOpenButton.addEventListener('click', () => {
   popupProfOpen.open();
+  document.addEventListener('keydown', evt => {
+    if (evt.key === 'Escape') {
+      popupProfOpen._handleEscClose();
+    }
+  });
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
