@@ -23,6 +23,8 @@ import {
   popupImg,
   popupImgName,
   cardListSelector,
+  popupProfSelector,
+  popupImageSelector,
   inputPlace,
   inputLink,
   handleItems
@@ -80,7 +82,7 @@ const formSubmitHandlerPopupProf = evt => {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    close(popupProf);
+    close(pProf);
 };
 
 // // функция для добавления карточки

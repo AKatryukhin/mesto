@@ -1,5 +1,6 @@
 //попап редактирования профиля
-export const popupProf = '.popup_type_prof';
+export const popupProf = document.querySelector('.popup_type_prof');
+export const popupProfSelector = '.popup_type_prof';
 //кнопка открытия попапа - редактирования профиля
 export const popupProfOpenButton = document.querySelector('.profile__edit');
 // поле для отображения имени в профиле
@@ -29,6 +30,7 @@ export const popups = document.querySelectorAll('.popup');
 export const inputPlace = placeInput.value;
 export const inputLink = linkInput.value;
 export const popupImage = document.querySelector('.popup_type_image');
+export const popupImageSelector = '.popup_type_image';
 export const popupImg = popupImage.querySelector('.popup__image');
 export const popupImgName = popupImage.querySelector('.popup__name-image');
 

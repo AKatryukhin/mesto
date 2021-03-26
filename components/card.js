@@ -14,6 +14,17 @@ export default class Card {
       return photoElement;
   }
 
+  // handleCardClick() {
+  //   popupImage.src = this._image;
+  //   popupElement.classList.add('popup_is-opened');
+  // }
+
+  // _handleClosePopup() {
+  //   popupImage.src = '';
+  //   popupElement.classList.remove('popup_is-opened');
+  // }
+
+
   generateCard() {
       this._element = this._getTemplate();
       this._setEventListeners();
