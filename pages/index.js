@@ -29,18 +29,6 @@ import {
  } from '../utils/constants.js';
 
 
-
-// функция для создания карточки
-// const createCard = item => {
-//   const newCard = new Card(item, '.photo-template');
-//   return newCard.generateCard();
-// };
-
-// initialCards.forEach(item => {
-//     galery.append(createCard(item));
-// });
-
-
 const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
   const card = new Card(item, '.photo-template');
   const cardElement = card.generateCard();
@@ -68,28 +56,6 @@ getDefaultCard.renderItems();
 // } },  cardListSelector);
 
 
-// функция закрытия попапа клавишей Escape
-// const closeByEscape = evt => {
-//     if (evt.key === 'Escape') {
-//         const popupTypeOpened = document.querySelector('.popup_opened');
-//         if (popupTypeOpened) {
-//             popupTypeOpened.classList.remove('popup_opened');
-//         }
-//     }
-// };
-
-// //функция открытия попапа
-// const openPopup = popupEl => {
-//     popupEl.classList.add('popup_opened');
-//     document.addEventListener('keydown', closeByEscape);
-
-// };
-// //функция закрытия попапа
-// const closePopup = popupEl => {
-//     popupEl.classList.remove('popup_opened');
-//     document.removeEventListener('keydown', closeByEscape);
-// };
-
 // popups.forEach(popup => {
 //     popup.addEventListener('click', (evt) => {
 //         if (evt.target.classList.contains('popup_opened')) {
@@ -107,15 +73,17 @@ const popupProfOpen = new Popup('.popup_type_prof');
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfOpenButton.addEventListener('click', () => {
   popupProfOpen.open();
-  document.addEventListener('keydown', evt => {
-    if (evt.key === 'Escape') {
-      popupProfOpen._handleEscClose();
-    }
-  });
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
 
+const popupPlaceOpen = new Popup('.popup_type_place');
+
+popupPlaceOpenButton.addEventListener('click', () => {
+  popupPlaceOpen.open();
+  placeFormValidator.clearValidation();
+  formElementPlace.reset();
+});
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
 const formSubmitHandlerPopupProf = evt => {
@@ -144,8 +112,6 @@ const formSubmitHandlerPopupPlace = evt => {
 };
 
 
-
-
 formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
@@ -156,12 +122,7 @@ const placeFormValidator = new FormValidator(dataForm, formElementPlace);
 
 placeFormValidator.enableValidation();
 
-popupPlaceOpenButton.addEventListener('click', () => {
 
-  open(popupPlace);
-  placeFormValidator.clearValidation();
-  formElementPlace.reset();
-});
 
 const profFormValidator = new FormValidator(dataForm, formElementPfof);
 
