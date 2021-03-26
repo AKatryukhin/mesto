@@ -55,19 +55,6 @@ getDefaultCard.renderItems();
 //   getDefaultCard.addItem(cardElement);
 // } },  cardListSelector);
 
-
-// popups.forEach(popup => {
-//     popup.addEventListener('click', (evt) => {
-//         if (evt.target.classList.contains('popup_opened')) {
-//             closePopup(popup);
-//         }
-//         if (evt.target.classList.contains('popup__close')) {
-//             closePopup(popup);
-//         }
-//     });
-// });
-
-
 const popupProfOpen = new Popup('.popup_type_prof');
 
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
@@ -80,6 +67,7 @@ popupProfOpenButton.addEventListener('click', () => {
 
 const popupPlaceOpen = new Popup('.popup_type_place');
 
+//слушатель с функцией открытия попапа -Place
 popupPlaceOpenButton.addEventListener('click', () => {
   popupPlaceOpen.open();
   popupPlaceOpen.setEventListeners();
