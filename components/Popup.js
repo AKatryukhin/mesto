@@ -24,7 +24,7 @@ _handleEscClose() {
 }
 
 setEventListeners() {
-  this.popup.addEventListener('click', evt => {
+  this.popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
       this.close();
     }

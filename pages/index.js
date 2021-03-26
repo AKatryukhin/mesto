@@ -73,6 +73,7 @@ const popupProfOpen = new Popup('.popup_type_prof');
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfOpenButton.addEventListener('click', () => {
   popupProfOpen.open();
+  popupProfOpen.setEventListeners();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
@@ -81,6 +82,7 @@ const popupPlaceOpen = new Popup('.popup_type_place');
 
 popupPlaceOpenButton.addEventListener('click', () => {
   popupPlaceOpen.open();
+  popupPlaceOpen.setEventListeners();
   placeFormValidator.clearValidation();
   formElementPlace.reset();
 });
