@@ -2,6 +2,9 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
 import FormValidator from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithImage.js';
+
 import {
   initialCards,
   dataForm,
@@ -60,9 +63,25 @@ getDefaultCard.renderItems();
 const popupProfOpen = new Popup('.popup_type_prof');
 
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
+// popupProfOpenButton.addEventListener('click', () => {
+//   popupProfOpen.open();
+//   popupProfOpen.setEventListeners();
+//   nameInput.value = profileName.textContent;
+//   jobInput.value = profileJob.textContent;
+// });
+
+const openPopupProf = new PopupWithForm({
+  popupSelector: '.popup_type_prof',
+    handleFormSubmit: (formData) => {
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
+  }
+});
+
+
 popupProfOpenButton.addEventListener('click', () => {
-  popupProfOpen.open();
-  popupProfOpen.setEventListeners();
+  openPopupProf.open();
+  openPopupProf.setEventListeners();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
@@ -78,12 +97,13 @@ popupPlaceOpenButton.addEventListener('click', () => {
 });
 
 //функця для занесения введенных в поля ввода формы данных для отображения в профиле
-const formSubmitHandlerPopupProf = evt => {
-    evt.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
-    close(pProf);
-};
+// const formSubmitHandlerPopupProf = evt => {
+//     evt.preventDefault();
+//     profileName.textContent = nameInput.value;
+//     profileJob.textContent = jobInput.value;
+//     close(pProf);
+// };
+
 
 // // функция для добавления карточки
 // const newCard = () => {
@@ -94,7 +114,11 @@ const formSubmitHandlerPopupProf = evt => {
 //     linkInput.value = '';
 // };
 
+const openPopupWithImage = new PopupWithImage('.popup_type_image');
 
+const handleCardClick = () => {
+
+};
 
 //функция добавления новой карточки и закрытия попапа Place
 const formSubmitHandlerPopupPlace = evt => {
@@ -104,7 +128,7 @@ const formSubmitHandlerPopupPlace = evt => {
 };
 
 
-formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
+// formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
 
 formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
