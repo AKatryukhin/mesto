@@ -85,10 +85,25 @@ popupProfOpenButton.addEventListener('click', () => {
   jobInput.value = profileJob.textContent;
 });
 
+// const getNewCard = new Section({ items: { name: inputPlace, link: inputLink }, renderer: (item) => {
+//   const card = new Card(item, '.photo-template');
+//   const cardElement = card.generateCard();
+//   getNewCard.addNewItem(cardElement);
+// } }, cardListSelector);
+
+// getNewCard.renderItems();
+// { name: inputPlace, link: inputLink }
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: (formData) => {
+    const getNewCard = new Section({ items: { name: placeInput.value, link: linkInput.value },
+      renderer: (item) => {
+       const card = new Card(item, '.photo-template');
+      const cardElement = card.generateCard();
+      getNewCard.addItem(cardElement);
+    } }, cardListSelector);
 
+    getNewCard.renderItems();
   }
 }
 );
@@ -134,16 +149,16 @@ popupPlaceOpenButton.addEventListener('click', () => {
 // };
 
 //функция добавления новой карточки и закрытия попапа Place
-const formSubmitHandlerPopupPlace = evt => {
-    evt.preventDefault();
-    getNewCard.renderItems();
-    close(popupPlace);
-};
+// const formSubmitHandlerPopupPlace = evt => {
+//     evt.preventDefault();
+//     getNewCard.renderItems();
+//     close(popupPlace);
+// };
 
 
 // formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
 
-formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
+// formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
 
 
 
