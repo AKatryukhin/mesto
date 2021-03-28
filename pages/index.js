@@ -2,8 +2,8 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
 import FormValidator from '../components/FormValidator.js';
-import PopupWithImage from '../components/PopupWithImage.js';
-import PopupWithForm from '../components/PopupWithImage.js';
+// import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
 
 import {
   initialCards,
@@ -60,8 +60,6 @@ getDefaultCard.renderItems();
 //   getDefaultCard.addItem(cardElement);
 // } },  cardListSelector);
 
-const popupProfOpen = new Popup('.popup_type_prof');
-
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 // popupProfOpenButton.addEventListener('click', () => {
 //   popupProfOpen.open();
@@ -71,12 +69,13 @@ const popupProfOpen = new Popup('.popup_type_prof');
 // });
 
 const openPopupProf = new PopupWithForm({
-  popupSelector: '.popup_type_prof',
+    popupSelector: '.popup_type_prof',
     handleFormSubmit: (formData) => {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
+    }
   }
-});
+);
 
 
 popupProfOpenButton.addEventListener('click', () => {
@@ -86,12 +85,18 @@ popupProfOpenButton.addEventListener('click', () => {
   jobInput.value = profileJob.textContent;
 });
 
-const popupPlaceOpen = new Popup('.popup_type_place');
+const openPpopupPlace = new PopupWithForm({
+  popupSelector: '.popup_type_place',
+  handleFormSubmit: (formData) => {
+
+  }
+}
+);
 
 //слушатель с функцией открытия попапа -Place
 popupPlaceOpenButton.addEventListener('click', () => {
-  popupPlaceOpen.open();
-  popupPlaceOpen.setEventListeners();
+  openPpopupPlace.open();
+  openPpopupPlace.setEventListeners();
   placeFormValidator.clearValidation();
   formElementPlace.reset();
 });
@@ -114,11 +119,19 @@ popupPlaceOpenButton.addEventListener('click', () => {
 //     linkInput.value = '';
 // };
 
-const openPopupWithImage = new PopupWithImage('.popup_type_image');
+// const openPopupWithImage = new PopupWithImage(
+// { popupSelector: '.popup_type_image',
+//   handleFormSubmit: (formData) => {
+//     // this.popup.querySelector('.popup__image').src = this._link;
+//     // this.popup.querySelector('.popup__image').alt = `Картинка ${this._name}`;
+//     // this.popup.querySelector('.photo__name').textContent = this._name;
 
-const handleCardClick = () => {
+//   }
+// });
 
-};
+// const handleCardClick = () => {
+
+// };
 
 //функция добавления новой карточки и закрытия попапа Place
 const formSubmitHandlerPopupPlace = evt => {
