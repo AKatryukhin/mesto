@@ -2,8 +2,8 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
 import FormValidator from '../components/FormValidator.js';
-// import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 import {
   initialCards,
@@ -33,7 +33,7 @@ import {
   handleItems
  } from '../utils/constants.js';
 
-
+//функция создания новой секции перебором initialCards, созданием карточек для каждого элемента и вставкой в галерею
 const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
   const card = new Card(item, '.photo-template');
   const cardElement = card.generateCard();
@@ -42,9 +42,9 @@ const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
 
 getDefaultCard.renderItems();
 
-//функция открытия попапа - редактирования профиля и присваиваниязначений из инпутов
+//функция открытия попапа - редактирования профиля и присваивания полям значений из инпутов
 const openPopupProf = new PopupWithForm({
-    popupSelector: '.popup_type_prof',
+    popupSelector:'.popup_type_prof',
     handleFormSubmit: (formData) => {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
@@ -60,15 +60,7 @@ popupProfOpenButton.addEventListener('click', () => {
   jobInput.value = profileJob.textContent;
 });
 
-// const getNewCard = new Section({ items: { name: inputPlace, link: inputLink }, renderer: (item) => {
-//   const card = new Card(item, '.photo-template');
-//   const cardElement = card.generateCard();
-//   getNewCard.addNewItem(cardElement);
-// } }, cardListSelector);
-
-// getNewCard.renderItems();
-// { name: inputPlace, link: inputLink }
-
+//функция открытия попапа - добавления новой карточки используя formData из _getInputValues()
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: (formData) => {
@@ -79,23 +71,6 @@ const openPpopupPlace = new PopupWithForm({
 }
 );
 
-
-
-// const openPpopupPlace = new PopupWithForm({
-//   popupSelector: '.popup_type_place',
-//   handleFormSubmit: (formData) => {
-//     const getNewCard = new Section({ items: { name: placeInput.value, link: linkInput.value },
-//       renderer: (item) => {
-//        const card = new Card(item, '.photo-template');
-//       const cardElement = card.generateCard();
-//       getNewCard.addItem(cardElement);
-//     } }, cardListSelector);
-
-//     getNewCard.renderItems();
-//   }
-// }
-// );
-
 //слушатель с функцией открытия попапа -Place
 popupPlaceOpenButton.addEventListener('click', () => {
   openPpopupPlace.open();
@@ -104,57 +79,14 @@ popupPlaceOpenButton.addEventListener('click', () => {
   formElementPlace.reset();
 });
 
-//функця для занесения введенных в поля ввода формы данных для отображения в профиле
-// const formSubmitHandlerPopupProf = evt => {
-//     evt.preventDefault();
-//     profileName.textContent = nameInput.value;
-//     profileJob.textContent = jobInput.value;
-//     close(pProf);
-// };
-
-
-// // функция для добавления карточки
-// const newCard = () => {
-//     const inputPlace = placeInput.value;
-//     const inputLink = linkInput.value;
-//     galery.prepend(createCard({ name: inputPlace, link: inputLink }));
-//     placeInput.value = '';
-//     linkInput.value = '';
-// };
-
-// const openPopupWithImage = new PopupWithImage(
-// { popupSelector: '.popup_type_image',
-//   handleFormSubmit: (formData) => {
-//     // this.popup.querySelector('.popup__image').src = this._link;
-//     // this.popup.querySelector('.popup__image').alt = `Картинка ${this._name}`;
-//     // this.popup.querySelector('.photo__name').textContent = this._name;
-
-//   }
-// });
-
-// const handleCardClick = () => {
-
-// };
-
-//функция добавления новой карточки и закрытия попапа Place
-// const formSubmitHandlerPopupPlace = evt => {
-//     evt.preventDefault();
-//     getNewCard.renderItems();
-//     close(popupPlace);
-// };
-
-
-// formElementPfof.addEventListener('submit', formSubmitHandlerPopupProf);
-
-// formElementPlace.addEventListener('submit', formSubmitHandlerPopupPlace);
-
-
+export const handleCardClick = (name, link) => {
+  const openPpopupImage = new PopupWithImage('.popup_type_image');
+  openPpopupImage.open(name, link);
+};
 
 const placeFormValidator = new FormValidator(dataForm, formElementPlace);
 
 placeFormValidator.enableValidation();
-
-
 
 const profFormValidator = new FormValidator(dataForm, formElementPfof);
 

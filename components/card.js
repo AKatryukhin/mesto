@@ -1,12 +1,11 @@
-import {popupImage, popupImg, popupImgName} from '../pages/index.js';
+import {popupImage, popupImg, popupImgName, handleCardClick} from '../pages/index.js';
 import Popup from './Popup.js';
-
-
 export default class Card {
-  constructor(data, selector) {
+  constructor(data, selector, handleCardClick) {
       this._name = data.name;
       this._link = data.link;
       this._selector = selector;
+      this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -15,17 +14,6 @@ export default class Card {
 
       return photoElement;
   }
-
-  // handleCardClick() {
-  //   popupImage.src = this._image;
-  //   popupElement.classList.add('popup_is-opened');
-  // }
-
-  // _handleClosePopup() {
-  //   popupImage.src = '';
-  //   popupElement.classList.remove('popup_is-opened');
-  // }
-
 
   generateCard() {
       this._element = this._getTemplate();
@@ -48,10 +36,8 @@ export default class Card {
       });
 
       this._element.querySelector('.photo__image').addEventListener('click', () => {
-          open(popupImage);
-          popupImg.src = this._link;
-          popupImg.alt = `Картинка ${this._name}`;
-          popupImgName.textContent = this._name;
+         handleCardClick(this._name, this._link);
+
       });
   }
 
