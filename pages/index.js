@@ -1,9 +1,9 @@
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
-import Popup from '../components/Popup.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
 
 import {
   initialCards,
@@ -42,6 +42,7 @@ const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
 
 getDefaultCard.renderItems();
 
+
 //функция открытия попапа - редактирования профиля и присваивания полям значений из инпутов
 const openPopupProf = new PopupWithForm({
     popupSelector:'.popup_type_prof',
@@ -52,13 +53,27 @@ const openPopupProf = new PopupWithForm({
   }
 );
 
+const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
+
+
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfOpenButton.addEventListener('click', () => {
   openPopupProf.open();
   openPopupProf.setEventListeners();
+  // const dataUser = profUserInfo.getUserInfo();
+  // console.log(dataUser);
+  // nameInput.value = dataUser.name;
+  // jobInput.value = dataUser.profession;
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
+
+// popupProfOpenButton.addEventListener('click', () => {
+//   openPopupProf.open();
+//   openPopupProf.setEventListeners();
+//   nameInput.value = profileName.textContent;
+//   jobInput.value = profileJob.textContent;
+// });
 
 //функция открытия попапа - добавления новой карточки используя formData из _getInputValues()
 const openPpopupPlace = new PopupWithForm({
