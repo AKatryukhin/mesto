@@ -42,32 +42,7 @@ const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
 
 getDefaultCard.renderItems();
 
-// const getNewCard = new Section({ items: { inputPlace, inputLink}, renderer: (item) => {
-//   const inputPlace = placeInput.value;
-//   const inputLink = linkInput.value;
-//   const card = new Card(item, '.photo-template');
-//   const cardElement = card.generateCard();
-//   getNewCard.addNewItem(cardElement);
-//   placeInput.value = '';
-//   linkInput.value = '';
-
-// } },  cardListSelector);
-
-
-// const getDefaultCard = new Section({ data: items, renderer: (item) => {
-//   const card = new Card(item, '.photo-template');
-//   const cardElement = card.generateCard();
-//   getDefaultCard.addItem(cardElement);
-// } },  cardListSelector);
-
-//слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
-// popupProfOpenButton.addEventListener('click', () => {
-//   popupProfOpen.open();
-//   popupProfOpen.setEventListeners();
-//   nameInput.value = profileName.textContent;
-//   jobInput.value = profileJob.textContent;
-// });
-
+//функция открытия попапа - редактирования профиля и присваиваниязначений из инпутов
 const openPopupProf = new PopupWithForm({
     popupSelector: '.popup_type_prof',
     handleFormSubmit: (formData) => {
@@ -77,7 +52,7 @@ const openPopupProf = new PopupWithForm({
   }
 );
 
-
+//слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfOpenButton.addEventListener('click', () => {
   openPopupProf.open();
   openPopupProf.setEventListeners();
@@ -93,20 +68,33 @@ popupProfOpenButton.addEventListener('click', () => {
 
 // getNewCard.renderItems();
 // { name: inputPlace, link: inputLink }
+
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: (formData) => {
-    const getNewCard = new Section({ items: { name: placeInput.value, link: linkInput.value },
-      renderer: (item) => {
-       const card = new Card(item, '.photo-template');
-      const cardElement = card.generateCard();
-      getNewCard.addItem(cardElement);
-    } }, cardListSelector);
-
-    getNewCard.renderItems();
+    const card = new Card({name: placeInput.value, link: linkInput.value }, '.photo-template');
+    const cardElement = card.generateCard();
+    getDefaultCard.addNewItem(cardElement);
   }
 }
 );
+
+
+
+// const openPpopupPlace = new PopupWithForm({
+//   popupSelector: '.popup_type_place',
+//   handleFormSubmit: (formData) => {
+//     const getNewCard = new Section({ items: { name: placeInput.value, link: linkInput.value },
+//       renderer: (item) => {
+//        const card = new Card(item, '.photo-template');
+//       const cardElement = card.generateCard();
+//       getNewCard.addItem(cardElement);
+//     } }, cardListSelector);
+
+//     getNewCard.renderItems();
+//   }
+// }
+// );
 
 //слушатель с функцией открытия попапа -Place
 popupPlaceOpenButton.addEventListener('click', () => {

@@ -1,5 +1,5 @@
 import {popupImage, popupImg, popupImgName} from '../pages/index.js';
-import Popup from '../components/Popup.js';
+import Popup from './Popup.js';
 
 
 export default class Card {
