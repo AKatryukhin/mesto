@@ -1,5 +1,4 @@
-import {popupImage, popupImg, popupImgName, handleCardClick} from '../pages/index.js';
-import Popup from './Popup.js';
+import {handleCardClick} from '../pages/index.js';
 export default class Card {
   constructor(data, selector, handleCardClick) {
       this._name = data.name;

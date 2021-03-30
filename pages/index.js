@@ -8,29 +8,13 @@ import UserInfo from '../components/UserInfo.js';
 import {
   initialCards,
   dataForm,
-  galery,
   nameInput,
   jobInput,
-  popups,
-  profileName,
-  profileJob,
-  placeInput,
-  linkInput,
   formElementPfof,
   formElementPlace,
   popupPlaceOpenButton,
   popupProfOpenButton,
-  popupProf,
-  popupPlace,
-  popupImage,
-  popupImg,
-  popupImgName,
   cardListSelector,
-  popupProfSelector,
-  popupImageSelector,
-  inputPlace,
-  inputLink,
-  handleItems
  } from '../utils/constants.js';
 
 //функция создания новой секции перебором initialCards, созданием карточек для каждого элемента и вставкой в галерею
@@ -67,15 +51,14 @@ popupProfOpenButton.addEventListener('click', () => {
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: (formData) => {
-    const getDataUser = profUserInfo.getUserInfo();
-    const card = new Card({name: formData.name, link: formData.link }, '.photo-template');
+    const card = new Card({name: formData.place, link: formData.link }, '.photo-template');
     const cardElement = card.generateCard();
     getDefaultCard.addNewItem(cardElement);
   }
 }
 );
 
-//слушатель с функцией открытия попапа -Place
+//слушатель с функцией открытия попапа добавления карточки
 popupPlaceOpenButton.addEventListener('click', () => {
   openPpopupPlace.open();
   openPpopupPlace.setEventListeners();
@@ -97,5 +80,4 @@ const profFormValidator = new FormValidator(dataForm, formElementPfof);
 
 profFormValidator.enableValidation();
 
-export {popupImage, popupImg, popupImgName};
 
