@@ -19,7 +19,8 @@ close() {
 _handleEscClose() {
   const popupTypeOpened = document.querySelector('.popup_opened');
     if (popupTypeOpened) {
-        popupTypeOpened.classList.remove('popup_opened');
+        this.close();
+
     }
 }
 
