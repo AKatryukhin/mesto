@@ -42,30 +42,27 @@ const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
 
 getDefaultCard.renderItems();
 
+const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
 
 //функция открытия попапа - редактирования профиля и присваивания полям значений из инпутов
 const openPopupProf = new PopupWithForm({
     popupSelector:'.popup_type_prof',
     handleFormSubmit: (formData) => {
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
+
+     profUserInfo.setUserInfo({ name: formData.name, job: formData.job });
     }
   }
 );
-
-const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
-
 
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
 popupProfOpenButton.addEventListener('click', () => {
   openPopupProf.open();
   openPopupProf.setEventListeners();
-  // const dataUser = profUserInfo.getUserInfo();
-  // console.log(dataUser);
-  // nameInput.value = dataUser.name;
-  // jobInput.value = dataUser.profession;
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+  const getdDataUser = profUserInfo.getUserInfo();
+  nameInput.value = getdDataUser.name;
+  jobInput.value = getdDataUser.profession;
+  // nameInput.value = profileName.textContent;
+  // jobInput.value = profileJob.textContent;
 });
 
 // popupProfOpenButton.addEventListener('click', () => {
@@ -79,6 +76,7 @@ popupProfOpenButton.addEventListener('click', () => {
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: (formData) => {
+    // console.log(formData);
     const card = new Card({name: placeInput.value, link: linkInput.value }, '.photo-template');
     const cardElement = card.generateCard();
     getDefaultCard.addNewItem(cardElement);
