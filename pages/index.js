@@ -44,7 +44,7 @@ getDefaultCard.renderItems();
 
 const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
 
-//функция открытия попапа - редактирования профиля и присваивания полям значений из инпутов
+//функция открытия попапа - редактирования профиля и присваивания полям значений из полученных инпутов
 const openPopupProf = new PopupWithForm({
     popupSelector:'.popup_type_prof',
     handleFormSubmit: (formData) => {
@@ -54,30 +54,21 @@ const openPopupProf = new PopupWithForm({
   }
 );
 
-//слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений  из профайла
+//слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений из профайла
 popupProfOpenButton.addEventListener('click', () => {
   openPopupProf.open();
   openPopupProf.setEventListeners();
-  const getdDataUser = profUserInfo.getUserInfo();
-  nameInput.value = getdDataUser.name;
-  jobInput.value = getdDataUser.profession;
-  // nameInput.value = profileName.textContent;
-  // jobInput.value = profileJob.textContent;
+  const getDataUser = profUserInfo.getUserInfo();
+  nameInput.value = getDataUser.name;
+  jobInput.value = getDataUser.profession;
 });
-
-// popupProfOpenButton.addEventListener('click', () => {
-//   openPopupProf.open();
-//   openPopupProf.setEventListeners();
-//   nameInput.value = profileName.textContent;
-//   jobInput.value = profileJob.textContent;
-// });
 
 //функция открытия попапа - добавления новой карточки используя formData из _getInputValues()
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: (formData) => {
-    // console.log(formData);
-    const card = new Card({name: placeInput.value, link: linkInput.value }, '.photo-template');
+    const getDataUser = profUserInfo.getUserInfo();
+    const card = new Card({name: formData.name, link: formData.link }, '.photo-template');
     const cardElement = card.generateCard();
     getDefaultCard.addNewItem(cardElement);
   }
