@@ -32,16 +32,16 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
 const openPopupProf = new PopupWithForm({
     popupSelector:'.popup_type_prof',
     handleFormSubmit: (formData) => {
-
-     profUserInfo.setUserInfo({ name: formData.name, job: formData.job });
+      // console.log(formData);
+      profUserInfo.setUserInfo({ name: formData.name, job: formData.job });
     }
   }
 );
+openPopupProf.setEventListeners();
 
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений из профайла
 popupProfOpenButton.addEventListener('click', () => {
   openPopupProf.open();
-  openPopupProf.setEventListeners();
   const getDataUser = profUserInfo.getUserInfo();
   nameInput.value = getDataUser.name;
   jobInput.value = getDataUser.profession;
@@ -57,11 +57,11 @@ const openPpopupPlace = new PopupWithForm({
   }
 }
 );
+openPpopupPlace.setEventListeners();
 
 //слушатель с функцией открытия попапа добавления карточки
 popupPlaceOpenButton.addEventListener('click', () => {
   openPpopupPlace.open();
-  openPpopupPlace.setEventListeners();
   placeFormValidator.clearValidation();
   formElementPlace.reset();
 });
