@@ -66,6 +66,7 @@ popupPlaceOpenButton.addEventListener('click', () => {
   formElementPlace.reset();
 });
 
+// функция открытия попапа с картинкой при клике
 export const handleCardClick = (name, link) => {
   const openPpopupImage = new PopupWithImage('.popup_type_image');
   openPpopupImage.open(name, link);
