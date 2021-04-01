@@ -32,9 +32,9 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
 //функция открытия попапа - редактирования профиля и присваивания полям значений из полученных инпутов
 const openPopupProf = new PopupWithForm({
     popupSelector:'.popup_type_prof',
-    handleFormSubmit: (formData) => {
+    handleFormSubmit: ({ name, job }) => {
       // console.log(formData);
-      profUserInfo.setUserInfo({ name: formData.name, job: formData.job });
+      profUserInfo.setUserInfo({ name, job });
     }
   }
 );
@@ -51,8 +51,8 @@ popupProfOpenButton.addEventListener('click', () => {
 //функция открытия попапа - добавления новой карточки используя formData из _getInputValues()
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
-  handleFormSubmit: (formData) => {
-    const card = new Card({name: formData.place, link: formData.link }, '.photo-template');
+  handleFormSubmit: ({ name, link }) => {
+    const card = new Card({ name, link }, '.photo-template');
     const cardElement = card.generateCard();
     getDefaultCard.addNewItem(cardElement);
   }
