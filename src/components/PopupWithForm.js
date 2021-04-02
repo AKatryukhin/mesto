@@ -12,7 +12,7 @@ setEventListeners() {
   this._form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     this._handleFormSubmit(this._getInputValues());
-    super.close();
+    this.close();
 
     });
 }
@@ -25,4 +25,10 @@ _getInputValues() {
   });
   return this._formValues;
 }
+
+close() {
+  super.close();
+  this._form.reset();
+}
+
 }

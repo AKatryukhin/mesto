@@ -1,5 +1,5 @@
 import './index.css';
-import Card from '../components/Card.js';
+import Card from '../components/Сard.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -18,14 +18,21 @@ import {
   cardListSelector,
  } from '../utils/constants.js';
 
-//функция создания новой секции перебором initialCards, созданием карточек для каждого элемента и вставкой в галерею
-const getDefaultCard = new Section({ items: initialCards, renderer: (item) => {
-  const card = new Card(item, '.photo-template');
+ //функция создания новой карточки
+ const createCard = (item, selector) => {
+  const card = new Card(item, selector);
   const cardElement = card.generateCard();
-  getDefaultCard.addItem(cardElement);
+  return cardElement;
+};
+
+
+//функция создания новой секции перебором initialCards, созданием карточек для каждого элемента и вставкой в галерею
+const defaultCardList = new Section({ items: initialCards, renderer: (item) => {
+  const defaultCard = createCard(item, '.photo-template');
+  defaultCardList.addItem(defaultCard);
 } }, cardListSelector);
 
-getDefaultCard.renderItems();
+defaultCardList.renderItems();
 
 const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
 
@@ -52,9 +59,8 @@ popupProfOpenButton.addEventListener('click', () => {
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: ({ name, link }) => {
-    const card = new Card({ name, link }, '.photo-template');
-    const cardElement = card.generateCard();
-    getDefaultCard.addNewItem(cardElement);
+    const newCard = createCard( { name, link }, '.photo-template');
+    defaultCardList.addNewItem(newCard);
   }
 }
 );
@@ -64,7 +70,6 @@ openPpopupPlace.setEventListeners();
 popupPlaceOpenButton.addEventListener('click', () => {
   openPpopupPlace.open();
   placeFormValidator.clearValidation();
-  formElementPlace.reset();
 });
 
 // функция открытия попапа с картинкой при клике
