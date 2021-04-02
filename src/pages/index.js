@@ -40,7 +40,6 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
 const openPopupProf = new PopupWithForm({
     popupSelector:'.popup_type_prof',
     handleFormSubmit: ({ name, job }) => {
-      // console.log(formData);
       profUserInfo.setUserInfo({ name, job });
     }
   }
