@@ -19,16 +19,21 @@ import {
  } from '../utils/constants.js';
 
  //функция создания новой карточки
- const createCard = (item, selector) => {
-  const card = new Card(item, selector);
+ const createCard = ({ name, link }, selector, handleCardClick) => {
+  const card = new Card({ name, link }, selector, handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 };
 
+const openPpopupImage = new PopupWithImage('.popup_type_image');
 
 //функция создания новой секции перебором initialCards, созданием карточек для каждого элемента и вставкой в галерею
 const defaultCardList = new Section({ items: initialCards, renderer: (item) => {
-  const defaultCard = createCard(item, '.photo-template');
+  const defaultCard = createCard(item, '.photo-template',
+    (name, link) => {
+      openPpopupImage.open(name, link);
+      openPpopupImage.setEventListeners();
+  });
   defaultCardList.addItem(defaultCard);
 } }, cardListSelector);
 
@@ -58,8 +63,12 @@ popupProfOpenButton.addEventListener('click', () => {
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: ({ name, link }) => {
-    const newCard = createCard( { name, link }, '.photo-template');
-    defaultCardList.addItemPrepend(newCard);
+    const newCard = createCard({ name, link },'.photo-template',
+    (name, link) => {
+      openPpopupImage.open(name, link);
+      openPpopupImage.setEventListeners();
+  });
+  defaultCardList.addItemPrepend(newCard);
   }
 }
 );
@@ -70,14 +79,6 @@ popupPlaceOpenButton.addEventListener('click', () => {
   openPpopupPlace.open();
   placeFormValidator.clearValidation();
 });
-
-
-const openPpopupImage = new PopupWithImage('.popup_type_image');
-// функция открытия попапа с картинкой при клике
-export const handleCardClick = (name, link) => {
-  openPpopupImage.open(name, link);
-  openPpopupImage.setEventListeners();
-};
 
 const placeFormValidator = new FormValidator(dataForm, formElementPlace);
 

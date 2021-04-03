@@ -1,4 +1,3 @@
-import {handleCardClick} from '../pages/index.js';
 export default class Card {
   constructor({ name, link }, selector, handleCardClick) {
       this._name = name;
@@ -35,7 +34,7 @@ export default class Card {
       });
 
       this._element.querySelector('.photo__image').addEventListener('click', () => {
-         handleCardClick(this._name, this._link);
+        this._handleCardClick(this._name, this._link);
 
       });
   }
