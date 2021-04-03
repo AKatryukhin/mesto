@@ -18,22 +18,22 @@ import {
   cardListSelector,
  } from '../utils/constants.js';
 
+ const openPpopupImage = new PopupWithImage('.popup_type_image');
+
  //функция создания новой карточки
- const createCard = ({ name, link }, selector, handleCardClick) => {
+ const createCard = ({ name, link }, selector,
+  handleCardClick = (name, link) => {
+  openPpopupImage.open(name, link);
+  openPpopupImage.setEventListeners();
+}) => {
   const card = new Card({ name, link }, selector, handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 };
 
-const openPpopupImage = new PopupWithImage('.popup_type_image');
-
 //функция создания новой секции перебором initialCards, созданием карточек для каждого элемента и вставкой в галерею
 const defaultCardList = new Section({ items: initialCards, renderer: (item) => {
-  const defaultCard = createCard(item, '.photo-template',
-    (name, link) => {
-      openPpopupImage.open(name, link);
-      openPpopupImage.setEventListeners();
-  });
+  const defaultCard = createCard(item, '.photo-template');
   defaultCardList.addItem(defaultCard);
 } }, cardListSelector);
 
@@ -63,11 +63,7 @@ popupProfOpenButton.addEventListener('click', () => {
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: ({ name, link }) => {
-    const newCard = createCard({ name, link },'.photo-template',
-    (name, link) => {
-      openPpopupImage.open(name, link);
-      openPpopupImage.setEventListeners();
-  });
+    const newCard = createCard({ name, link },'.photo-template');
   defaultCardList.addItemPrepend(newCard);
   }
 }
