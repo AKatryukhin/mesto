@@ -71,9 +71,10 @@ popupPlaceOpenButton.addEventListener('click', () => {
   placeFormValidator.clearValidation();
 });
 
+
+const openPpopupImage = new PopupWithImage('.popup_type_image');
 // функция открытия попапа с картинкой при клике
 export const handleCardClick = (name, link) => {
-  const openPpopupImage = new PopupWithImage('.popup_type_image');
   openPpopupImage.open(name, link);
   openPpopupImage.setEventListeners();
 };
