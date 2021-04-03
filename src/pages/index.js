@@ -59,7 +59,7 @@ const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: ({ name, link }) => {
     const newCard = createCard( { name, link }, '.photo-template');
-    defaultCardList.addNewItem(newCard);
+    defaultCardList.addItemPrepend(newCard);
   }
 }
 );

@@ -17,7 +17,7 @@ addItem(element) {
   this._container.append(element);
 }
 
-addNewItem(element) {
+addItemPrepend(element) {
   this._container.prepend(element);
 }
 }
