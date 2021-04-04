@@ -44,7 +44,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
+      favicon: './src/images/baikal.ico'
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
