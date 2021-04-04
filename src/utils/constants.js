@@ -13,7 +13,7 @@ export const jobInput = formElementPfof.elements.job;
 // форма попапа добавления карточки
 export const formElementPlace = document.forms.placeform;
 
-export const keyCode = 'Escape';
+export const escapeKey = 'Escape';
 
 export const initialCards = [
     {

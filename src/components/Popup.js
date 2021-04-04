@@ -1,22 +1,23 @@
-import { keyCode } from '../utils/constants.js';
+import { escapeKey } from '../utils/constants.js';
 
 export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
+    this._handleClose = this._handleEscClose.bind(this);
  }
 
  open() {
   this._popup.classList.add('popup_opened');
-  document.addEventListener('keydown', this._handleEscClose.bind(this));
+  document.addEventListener('keydown', this._handleClose);
 }
 
 close() {
   this._popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', this._handleEscClose.bind(this));
+  document.removeEventListener('keydown', this._handleClose);
 }
 
 _handleEscClose(evt) {
-  if (evt.key === keyCode) {
+  if (evt.key === escapeKey) {
     if(this._popup.classList.contains('popup_opened')) {
       this.close();
   }
