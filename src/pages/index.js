@@ -1,4 +1,5 @@
-import Card from '../components/Card.js';
+import './index.css';
+import Card from '../components/Сard.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -15,11 +16,7 @@ import {
   popupPlaceOpenButton,
   popupProfOpenButton,
   cardListSelector,
-  profileName,
-  profileAbout,
-  profileAvatar
  } from '../utils/constants.js';
-
 
  const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-22',
@@ -27,12 +24,12 @@ import {
  });
 
  api.getProfileInfo()
-    .then((res) => {
-      profileName.textContent = res.name;
-      profileAbout.textContent = res.about;
-      profileAvatar.src = res.avatar;
+  .then((res) => {
+    profileName.textContent = res.name;
+    profileAbout.textContent = res.about;
+    profileAvatar.src = res.avatar;
  })
-.catch((err) => {
+  .catch((err) => {
     console.log(err);
   });
 
@@ -63,7 +60,7 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
 //функция открытия попапа - редактирования профиля и присваивания полям значений из полученных инпутов
 const openPopupProf = new PopupWithForm({
     popupSelector:'.popup_type_prof',
-    handleFormSubmit: ({ name, job } ) => {
+    handleFormSubmit: ({ name, job }) => {
       profUserInfo.setUserInfo({ name, job });
     }
   }
@@ -93,7 +90,6 @@ openPpopupPlace.setEventListeners();
 popupPlaceOpenButton.addEventListener('click', () => {
   openPpopupPlace.open();
   placeFormValidator.clearValidation();
-
 });
 
 const placeFormValidator = new FormValidator(dataForm, formElementPlace);
