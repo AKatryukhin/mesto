@@ -16,6 +16,9 @@ import {
   popupPlaceOpenButton,
   popupProfOpenButton,
   cardListSelector,
+  profileName,
+  profileAbout,
+  profileAvatar
  } from '../utils/constants.js';
 
  const api = new Api({
