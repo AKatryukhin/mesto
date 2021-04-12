@@ -16,7 +16,29 @@ import {
   popupPlaceOpenButton,
   popupProfOpenButton,
   cardListSelector,
+  profileName,
+  profileAbout,
+  profileAvatar
  } from '../utils/constants.js';
+
+ const api = new Api({
+  address: 'https://mesto.nomoreparties.co/v1/cohort-22',
+  token: '239868fa-70b9-49a6-a5c6-22cb2b6196e6'
+ });
+
+ api.getProfileInfo()
+    .then((res) => {
+      profileName.textContent = res.name;
+      profileAbout.textContent = res.about;
+      profileAvatar.src = res.avatar;
+ })
+.catch((err) => {
+    console.log(err);
+  });
+
+
+
+
 
  const openPpopupImage = new PopupWithImage('.popup_type_image');
 
