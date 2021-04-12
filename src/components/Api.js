@@ -42,6 +42,24 @@ editProfile(data) {
       ? res.json()
       : Promise.reject(`Ошибка ${res.status}`));
 }
+
+addCard(data) {
+  return fetch(`${this._address}/cards`, {
+      method: 'POST',
+      headers: {
+          authorization: this._token,
+          'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
+      })
+  })
+      .then(response => response.ok
+          ? response.json()
+          : Promise.reject(`Ошибка ${response.status}`))
 }
+}
+
 
 

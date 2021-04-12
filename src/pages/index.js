@@ -48,12 +48,13 @@ const createCard = ({ name, link }, selector,
   return cardElement;
 };
 
+const defaultCardList = new Section({ renderer: (item) => {
+  const defaultCard = createCard(item, '.photo-template');
+  defaultCardList.addItem(defaultCard);
+} }, cardListSelector);
+
 api.getInitialCards()
   .then (res => {
-  const defaultCardList = new Section({ renderer: (item) => {
-    const defaultCard = createCard(item, '.photo-template');
-    defaultCardList.addItem(defaultCard);
-  } }, cardListSelector);
   defaultCardList.renderItems(res);
 })
   .catch(err => console.log(err));
@@ -85,11 +86,15 @@ popupProfOpenButton.addEventListener('click', () => {
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: ({ name, link }) => {
-    const newCard = createCard({ name, link },'.photo-template');
-  defaultCardList.addItemPrepend(newCard);
-  }
-}
-);
+    api.addCard({ name, link })
+      .then (({ name, link }) => {
+        const newCard = createCard({ name, link },'.photo-template');
+        defaultCardList.addItemPrepend(newCard);
+      })
+      .catch(err => console.log(err));
+      }
+  });
+
 openPpopupPlace.setEventListeners();
 
 //слушатель с функцией открытия попапа добавления карточки
