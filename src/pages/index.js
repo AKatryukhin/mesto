@@ -59,11 +59,14 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
 
 //функция открытия попапа - редактирования профиля и присваивания полям значений из полученных инпутов
 const openPopupProf = new PopupWithForm({
-    popupSelector:'.popup_type_prof',
-    handleFormSubmit: ({ name, job }) => {
-      profUserInfo.setUserInfo({ name, job });
-    }
-  }
+  popupSelector:'.popup_type_prof',
+  handleFormSubmit: ({ name, job }) => {
+    profUserInfo.setUserInfo({ name, job });
+    api.editProfile({ name, job })
+      .then (res => { name, job })
+      .catch(err => console.log(err));
+      }
+}
 );
 openPopupProf.setEventListeners();
 

@@ -25,6 +25,23 @@ export default class Api {
     ? response.json()
     : Promise.reject(`Ошибка ${response.status}`));
 }
+
+editProfile(data) {
+  return fetch(`${this._address}/users/me`, {
+  method: 'PATCH',
+  headers: {
+    authorization: this._token,
+    'Content-type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: data.name,
+    about: data.job
+  })
+})
+    .then(res => res.ok
+      ? res.json()
+      : Promise.reject(`Ошибка ${res.status}`));
+}
 }
 
 
