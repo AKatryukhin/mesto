@@ -4,6 +4,17 @@ export default class Api {
       this._token = token;
   }
 
+  getProfileInfo() {
+    return fetch(`${this._address}/users/me`, {
+      headers: {
+          authorization: this._token,
+          'Content-type': 'application/json'
+      }
+  }).then(response => response.ok
+    ? response.json()
+    : Promise.reject(`Ошибка ${response.status}`));
+  }
+
 
   getInitialCards() {
     return fetch(`${this._address}/cards`, {
@@ -14,16 +25,6 @@ export default class Api {
     ? response.json()
     : Promise.reject(`Ошибка ${response.status}`));
 }
+}
 
 
-getProfileInfo() {
-  return fetch(`${this._address}/users/me`, {
-    headers: {
-        authorization: this._token,
-        'Content-type': 'application/json'
-    }
-}).then(response => response.ok
-  ? response.json()
-  : Promise.reject(`Ошибка ${response.status}`));
-}
-}

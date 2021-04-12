@@ -1,5 +1,4 @@
-import './index.css';
-import Card from '../components/Сard.js';
+import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -8,7 +7,6 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
 import {
-  initialCards,
   dataForm,
   nameInput,
   jobInput,
@@ -21,6 +19,7 @@ import {
   profileAbout,
   profileAvatar
  } from '../utils/constants.js';
+
 
  const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-22',
@@ -37,14 +36,9 @@ import {
     console.log(err);
   });
 
-
-
-
-
  const openPpopupImage = new PopupWithImage('.popup_type_image');
-
  //функция создания новой карточки
- const createCard = ({ name, link }, selector,
+const createCard = ({ name, link }, selector,
   handleCardClick = (name, link) => {
   openPpopupImage.open(name, link);
   openPpopupImage.setEventListeners();
@@ -54,20 +48,22 @@ import {
   return cardElement;
 };
 
-//функция создания новой секции перебором initialCards, созданием карточек для каждого элемента и вставкой в галерею
-const defaultCardList = new Section({ items: initialCards, renderer: (item) => {
-  const defaultCard = createCard(item, '.photo-template');
-  defaultCardList.addItem(defaultCard);
-} }, cardListSelector);
-
-defaultCardList.renderItems();
+api.getInitialCards()
+  .then (res => {
+  const defaultCardList = new Section({ renderer: (item) => {
+    const defaultCard = createCard(item, '.photo-template');
+    defaultCardList.addItem(defaultCard);
+  } }, cardListSelector);
+  defaultCardList.renderItems(res);
+})
+  .catch(err => console.log(err));
 
 const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
 
 //функция открытия попапа - редактирования профиля и присваивания полям значений из полученных инпутов
 const openPopupProf = new PopupWithForm({
     popupSelector:'.popup_type_prof',
-    handleFormSubmit: ({ name, job }) => {
+    handleFormSubmit: ({ name, job } ) => {
       profUserInfo.setUserInfo({ name, job });
     }
   }
@@ -97,6 +93,7 @@ openPpopupPlace.setEventListeners();
 popupPlaceOpenButton.addEventListener('click', () => {
   openPpopupPlace.open();
   placeFormValidator.clearValidation();
+
 });
 
 const placeFormValidator = new FormValidator(dataForm, formElementPlace);
