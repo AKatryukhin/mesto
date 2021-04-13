@@ -1,9 +1,10 @@
 export default class Card {
-  constructor({ name, link, likes }, selector, handleCardClick) {
+  constructor({ name, link, likes }, selector, handleCardClick, handleDelClick) {
       this._name = name;
       this._link = link;
       this._selector = selector;
       this._handleCardClick = handleCardClick;
+      this.handleDelClick = handleDelClick;
       this.like = likes.length;
   }
 
@@ -35,7 +36,7 @@ export default class Card {
       });
 
       this._element.querySelector('.photo__trash').addEventListener('click', () => {
-          this._handleDel();
+        this.handleDelClick();
       });
 
       this._element.querySelector('.photo__image').addEventListener('click', () => {

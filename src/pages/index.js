@@ -4,6 +4,7 @@ import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import Popup from '../components/Popup.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
@@ -37,13 +38,17 @@ import {
   });
 
  const openPpopupImage = new PopupWithImage('.popup_type_image');
+ const openPpopupConfirm = new Popup('.popup_type_confirm');
  //функция создания новой карточки
 const createCard = ({ name, link, likes }, selector,
   handleCardClick = (name, link) => {
   openPpopupImage.open(name, link);
   openPpopupImage.setEventListeners();
+}, handleDelClick = () => {
+  openPpopupConfirm.open();
+  openPpopupConfirm.setEventListeners();
 }) => {
-  const card = new Card({ name, link, likes }, selector, handleCardClick);
+  const card = new Card({ name, link, likes }, selector, handleCardClick, handleDelClick);
   const cardElement = card.generateCard();
   return cardElement;
 };
