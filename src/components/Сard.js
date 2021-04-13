@@ -21,8 +21,12 @@ export default class Card {
       imageElement.src = this._link;
       imageElement.alt = `Картинка ${this._name}`;
       this._element.querySelector('.photo__name').textContent = this._name;
-      this._element.querySelector('.photo__like-total').textContent = this.like;
+      this.checkLikes();
       return this._element;
+  }
+
+  checkLikes() {
+    this._element.querySelector('.photo__like-total').textContent = this.like;
   }
 
   _setEventListeners() {
