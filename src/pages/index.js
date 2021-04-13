@@ -38,12 +38,12 @@ import {
 
  const openPpopupImage = new PopupWithImage('.popup_type_image');
  //функция создания новой карточки
-const createCard = ({ name, link }, selector,
+const createCard = ({ name, link, likes }, selector,
   handleCardClick = (name, link) => {
   openPpopupImage.open(name, link);
   openPpopupImage.setEventListeners();
 }) => {
-  const card = new Card({ name, link }, selector, handleCardClick);
+  const card = new Card({ name, link, likes }, selector, handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 };

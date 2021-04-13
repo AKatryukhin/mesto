@@ -1,9 +1,10 @@
 export default class Card {
-  constructor({ name, link }, selector, handleCardClick) {
+  constructor({ name, link, likes }, selector, handleCardClick) {
       this._name = name;
       this._link = link;
       this._selector = selector;
       this._handleCardClick = handleCardClick;
+      this.like = likes.length;
   }
 
   _getTemplate() {
@@ -20,7 +21,7 @@ export default class Card {
       imageElement.src = this._link;
       imageElement.alt = `Картинка ${this._name}`;
       this._element.querySelector('.photo__name').textContent = this._name;
-
+      this._element.querySelector('.photo__like-total').textContent = this.like;
       return this._element;
   }
 
