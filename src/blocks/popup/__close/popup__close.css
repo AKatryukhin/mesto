@@ -6,7 +6,7 @@
   background-size: 100%;
   border: none;
   align-self: flex-end;
-  transform: translate(76px, -40px) rotate(-45deg);
+  transform: translate(70px, -35px) rotate(-45deg);
 }
 
 .popup__close:hover {
