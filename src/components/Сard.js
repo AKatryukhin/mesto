@@ -1,11 +1,14 @@
+
 export default class Card {
-  constructor({ name, link, likes }, selector, handleCardClick, handleDelClick) {
+  constructor({ name, link, likes, owner},currentUserId, selector, handleCardClick, handleDelCard) {
       this._name = name;
       this._link = link;
       this._selector = selector;
       this._handleCardClick = handleCardClick;
-      this.handleDelClick = handleDelClick;
+      this.handleDelCard = handleDelCard;
       this.like = likes.length;
+      this.currentUserId = currentUserId;
+      this.userId = owner._id;
   }
 
   _getTemplate() {
@@ -23,8 +26,16 @@ export default class Card {
       imageElement.alt = `Картинка ${this._name}`;
       this._element.querySelector('.photo__name').textContent = this._name;
       this.checkLikes();
+      this.handleDelCardVisible();
       return this._element;
   }
+
+  handleDelCardVisible() {
+    if(this.userId === this.currentUserId) {
+    this._element.querySelector('.photo__trash').classList.add('photo__trash_type_visible');
+    }
+  }
+
 
   checkLikes() {
     this._element.querySelector('.photo__like-total').textContent = this.like;
@@ -36,13 +47,13 @@ export default class Card {
       });
 
       this._element.querySelector('.photo__trash').addEventListener('click', () => {
-        this.handleDelClick();
+        this.handleDelCard();
       });
 
       this._element.querySelector('.photo__image').addEventListener('click', () => {
         this._handleCardClick(this._name, this._link);
-
       });
+
   }
 
   _handleLike() {
@@ -53,4 +64,5 @@ export default class Card {
       this._element.remove();
   }
 }
+
 

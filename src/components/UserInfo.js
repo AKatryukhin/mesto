@@ -12,8 +12,8 @@ getUserInfo() {
   };
 }
 
-setUserInfo({ name, job }) {
+setUserInfo({ name, about }) {
   this._name.textContent = name;
-  this._profession.textContent = job;
+  this._profession.textContent = about;
 }
 }

@@ -12,12 +12,6 @@ export const nameInput = formElementPfof.elements.name;
 export const jobInput = formElementPfof.elements.job;
 // форма попапа добавления карточки
 export const formElementPlace = document.forms.placeform;
-// поле отображения имени в профиле
-export const profileName = document.querySelector('.profile__name');
-// поле отображения about в профиле
-export const profileAbout = document.querySelector('.profile__job');
-// img Аватара профиля
-export const profileAvatar = document.querySelector('.profile__image');
 
 export const escapeKey = 'Escape';
 

@@ -3,8 +3,8 @@ import Card from '../components/Сard.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import PopupWithImage from '../components/PopupWithImage.js';
 import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
@@ -17,38 +17,41 @@ import {
   popupPlaceOpenButton,
   popupProfOpenButton,
   cardListSelector,
-  profileName,
-  profileAbout,
-  profileAvatar
  } from '../utils/constants.js';
+
+
+const openPpopupImage = new PopupWithImage('.popup_type_image');
+const openPpopupConfirm = new Popup('.popup_type_confirm');
+const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
 
  const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-22',
   token: '239868fa-70b9-49a6-a5c6-22cb2b6196e6'
  });
 
- api.getProfileInfo()
-  .then((res) => {
-    profileName.textContent = res.name;
-    profileAbout.textContent = res.about;
-    profileAvatar.src = res.avatar;
- })
+ let userId;
+ let myProfileId;
+
+  Promise.all([api.getInitialCards(), api.getProfileInfo()])
+  .then(([ cardsArray, userData ]) => {
+  myProfileId = userData._id;
+  profUserInfo.setUserInfo(userData);
+  defaultCardList.renderItems(cardsArray);
+  })
   .catch((err) => {
     console.log(err);
   });
 
- const openPpopupImage = new PopupWithImage('.popup_type_image');
- const openPpopupConfirm = new Popup('.popup_type_confirm');
  //функция создания новой карточки
-const createCard = ({ name, link, likes }, selector,
+ const createCard = ({ name, link, likes, owner }, selector,
   handleCardClick = (name, link) => {
   openPpopupImage.open(name, link);
   openPpopupImage.setEventListeners();
-}, handleDelClick = () => {
+}, handleDelCard = () => {
   openPpopupConfirm.open();
   openPpopupConfirm.setEventListeners();
 }) => {
-  const card = new Card({ name, link, likes }, selector, handleCardClick, handleDelClick);
+  const card = new Card({ name, link, likes, owner }, myProfileId, selector, handleCardClick, handleDelCard);
   const cardElement = card.generateCard();
   return cardElement;
 };
@@ -58,24 +61,21 @@ const defaultCardList = new Section({ renderer: (item) => {
   defaultCardList.addItem(defaultCard);
 } }, cardListSelector);
 
-api.getInitialCards()
-  .then (res => {
-  defaultCardList.renderItems(res);
-})
-  .catch(err => console.log(err));
 
-const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
+
+
+
 
 //функция открытия попапа - редактирования профиля и присваивания полям значений из полученных инпутов
 const openPopupProf = new PopupWithForm({
-  popupSelector:'.popup_type_prof',
-  handleFormSubmit: ({ name, job }) => {
-    profUserInfo.setUserInfo({ name, job });
-    api.editProfile({ name, job })
-      .then (res => { name, job })
-      .catch(err => console.log(err));
-      }
-}
+    popupSelector:'.popup_type_prof',
+    handleFormSubmit: ({ name, job }) => {
+      profUserInfo.setUserInfo({ name, job });
+      api.editProfile({ name, job })
+        .then (res => { name, job })
+        .catch(err => console.log(err));
+        }
+  }
 );
 openPopupProf.setEventListeners();
 
@@ -90,10 +90,10 @@ popupProfOpenButton.addEventListener('click', () => {
 //функция открытия попапа - добавления новой карточки используя formData из _getInputValues()
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
-  handleFormSubmit: ({ name, link }) => {
-    api.addCard({ name, link })
-      .then (({ name, link }) => {
-        const newCard = createCard({ name, link },'.photo-template');
+  handleFormSubmit: (data) => {
+    api.addCard(data)
+      .then ((data) => {
+        const newCard = createCard(data, '.photo-template');
         defaultCardList.addItemPrepend(newCard);
       })
       .catch(err => console.log(err));
@@ -106,6 +106,7 @@ openPpopupPlace.setEventListeners();
 popupPlaceOpenButton.addEventListener('click', () => {
   openPpopupPlace.open();
   placeFormValidator.clearValidation();
+
 });
 
 const placeFormValidator = new FormValidator(dataForm, formElementPlace);
