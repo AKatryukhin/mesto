@@ -3,7 +3,7 @@ import Card from '../components/Сard.js';
 import Section from '../components/Section.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import Popup from '../components/Popup.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
@@ -21,7 +21,7 @@ import {
 
 
 const openPpopupImage = new PopupWithImage('.popup_type_image');
-const openPpopupConfirm = new Popup('.popup_type_confirm');
+const openPpopupConfirm = new PopupWithConfirm('.popup_type_confirm');
 const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
 
  const api = new Api({
@@ -29,7 +29,6 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
   token: '239868fa-70b9-49a6-a5c6-22cb2b6196e6'
  });
 
- let userId;
  let myProfileId;
 
   Promise.all([api.getInitialCards(), api.getProfileInfo()])
@@ -44,26 +43,27 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
 
  //функция создания новой карточки
  const createCard = ({ name, link, likes, owner }, selector,
-  handleCardClick = (name, link) => {
-  openPpopupImage.open(name, link);
-  openPpopupImage.setEventListeners();
-}, handleDelCard = () => {
-  openPpopupConfirm.open();
-  openPpopupConfirm.setEventListeners();
-}) => {
-  const card = new Card({ name, link, likes, owner }, myProfileId, selector, handleCardClick, handleDelCard);
-  const cardElement = card.generateCard();
-  return cardElement;
+ handleCardClick = (name, link) => {
+    openPpopupImage.open(name, link);
+    openPpopupImage.setEventListeners();
+    }, handleDelCard = (id) => {
+      openPpopupConfirm.open();
+      openPpopupConfirm.setEventListeners();
+      openPpopupConfirm.setSubmitAction(() => {
+        api.removeCard(id)
+          .then(() => card.handleDel())
+          .catch(err => console.log('Ошибка при удалении'));
+      });
+     }) => {
+  const card = new Card({ name, link, likes, owner }, myProfileId, selector, handleCardClick, handleDelCard)
+    return card.generateCard()
 };
+
 
 const defaultCardList = new Section({ renderer: (item) => {
   const defaultCard = createCard(item, '.photo-template');
   defaultCardList.addItem(defaultCard);
 } }, cardListSelector);
-
-
-
-
 
 
 //функция открытия попапа - редактирования профиля и присваивания полям значений из полученных инпутов

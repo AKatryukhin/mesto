@@ -60,9 +60,14 @@ export default class Card {
       this._element.querySelector('.photo__like').classList.toggle('photo__like_type_active');
   }
 
-  _handleDel() {
+  handleDel() {
       this._element.remove();
   }
+
+  getId() {
+    return this._id;
+}
+
 }
 
 
