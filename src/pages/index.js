@@ -41,23 +41,28 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
     console.log(err);
   });
 
- //функция создания новой карточки
- const createCard = ({ name, link, likes, owner }, selector,
- handleCardClick = (name, link) => {
-    openPpopupImage.open(name, link);
-    openPpopupImage.setEventListeners();
-    }, handleDelCard = (id) => {
-      openPpopupConfirm.open();
-      openPpopupConfirm.setEventListeners();
-      openPpopupConfirm.setSubmitAction(() => {
-        api.removeCard(id)
-          .then(() => card.handleDel())
-          .catch(err => console.log('Ошибка при удалении'));
-      });
-     }) => {
-  const card = new Card({ name, link, likes, owner }, myProfileId, selector, handleCardClick, handleDelCard)
-    return card.generateCard()
-};
+//функция создания новой карточки
+const createCard = ({ name, link, likes, owner, _id }, selector,
+  handleCardClick = (name, link) => {
+     openPpopupImage.open(name, link);
+     openPpopupImage.setEventListeners();
+     }, handleDelCard = (card) => {
+       openPpopupConfirm.open();
+       openPpopupConfirm.setEventListeners();
+       openPpopupConfirm.setSubmitAction(() => {
+         api.removeCard(card.getId())
+           .then(() => card.handleDel())
+           .catch(err => console.log('Ошибка при удалении'));
+       });
+      }) => {
+       const card = new Card({ name, link, likes, owner, _id },
+         myProfileId,
+         selector,
+         handleCardClick,
+         handleDelCard);
+         return card.generateCard();
+
+ };
 
 
 const defaultCardList = new Section({ renderer: (item) => {
