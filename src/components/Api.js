@@ -46,6 +46,23 @@ editProfile(data) {
       : Promise.reject(`Ошибка ${res.status}`));
 }
 
+editAvatar(link) {
+  return fetch(`${this._address}/users/me/avatar`, {
+  method: 'PATCH',
+  headers: {
+    authorization: this._token,
+    'Content-type': 'application/json'
+
+  },
+  body: JSON.stringify ({
+    avatar: link
+  })
+})
+    .then(res => res.ok
+      ? res.json()
+      : Promise.reject(`Ошибка ${res.status}`));
+}
+
 
   addCard(data) {
       return fetch(`${this._address}/cards`, {

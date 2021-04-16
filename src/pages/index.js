@@ -5,6 +5,7 @@ import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithAvatar from '../components/PopupWithAvatar.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
@@ -17,12 +18,35 @@ import {
   popupPlaceOpenButton,
   popupProfOpenButton,
   cardListSelector,
+  popupAvatarOpenButton,
+  formElementAvatar,
+  avatarImage,
+  profName,
+  profAbout
  } from '../utils/constants.js';
 
 
 const openPpopupImage = new PopupWithImage('.popup_type_image');
 const openPpopupConfirm = new PopupWithConfirm('.popup_type_confirm');
 const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
+const userAvatarInfo = new UserInfo({ linkSelector: '.popup__input-avatar'});
+const openUserAvatar = new PopupWithAvatar('.popup_type_avatar');
+
+popupAvatarOpenButton.addEventListener('click', () => {
+  openUserAvatar.open();
+  avatarFormValidator.clearValidation();
+  openUserAvatar.setEventListeners();
+  openUserAvatar.setSubmitAction(() => {
+    const linkAvatar = userAvatarInfo.getUserAvatar();
+    api.editAvatar(linkAvatar)
+      .then (res => {
+        avatarImage.src = res.avatar;
+      }
+        )
+      .catch(err => console.log(err));
+      });
+
+});
 
  const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-22',
@@ -34,6 +58,7 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
   Promise.all([api.getInitialCards(), api.getProfileInfo()])
   .then(([ cardsArray, userData ]) => {
   myProfileId = userData._id;
+  avatarImage.src = userData.avatar;
   profUserInfo.setUserInfo(userData);
   defaultCardList.renderItems(cardsArray);
   })
@@ -43,43 +68,42 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
 
  //функция создания новой карточки
  const createCard = ({ name, link, likes, owner, _id }, selector,
-  handleCardClick = (name, link) => {
-     openPpopupImage.open(name, link);
-     openPpopupImage.setEventListeners();
-     }, handleDelCard = (card) => {
-       openPpopupConfirm.open();
-       openPpopupConfirm.setEventListeners();
-       openPpopupConfirm.setSubmitAction(() => {
-         api.removeCard(card.getId())
-           .then(() => card.handleDel())
-           .catch(err => console.log('Ошибка при удалении'));
-       });
-      },
-      handleSetLike = (card) => {
-    api.addLike(card.getId())
-         .then((res) => {
-           card.handleLike(res);
-         })
-         .catch(err => console.log('Ошибка добавления лайка'));
-      },
-      handleRemoveLike = (card) => {
-       api.removeLike(card.getId())
-       .then((res) => {
-         card.handleLike(res);
-       })
-       .catch(err => console.log('Ошибка снятия лайка'));
-      }
-      ) => {
-       const card = new Card({ name, link, likes, owner, _id },
-         myProfileId,
-         selector,
-         handleCardClick,
-         handleDelCard, handleSetLike, handleRemoveLike);
+ handleCardClick = (name, link) => {
+    openPpopupImage.open(name, link);
+    openPpopupImage.setEventListeners();
+    }, handleDelCard = (card) => {
+      openPpopupConfirm.open();
+      openPpopupConfirm.setEventListeners();
+      openPpopupConfirm.setSubmitAction(() => {
+        api.removeCard(card.getId())
+          .then(() => card.handleDel())
+          .catch(err => console.log('Ошибка при удалении'));
+      });
+     },
+     handleSetLike = (card) => {
+   api.addLike(card.getId())
+        .then((res) => {
+          card.handleLike(res);
+        })
+        .catch(err => console.log('Ошибка добавления лайка'));
+     },
+     handleRemoveLike = (card) => {
+      api.removeLike(card.getId())
+      .then((res) => {
+        card.handleLike(res);
+      })
+      .catch(err => console.log('Ошибка снятия лайка'));
+     }
+     ) => {
+      const card = new Card({ name, link, likes, owner, _id },
+        myProfileId,
+        selector,
+        handleCardClick,
+        handleDelCard, handleSetLike, handleRemoveLike);
 
-         return card.generateCard();
+        return card.generateCard();
 
- };
-
+};
 
 const defaultCardList = new Section({ renderer: (item) => {
   const defaultCard = createCard(item, '.photo-template');
@@ -93,7 +117,10 @@ const openPopupProf = new PopupWithForm({
     handleFormSubmit: ({ name, job }) => {
       profUserInfo.setUserInfo({ name, job });
       api.editProfile({ name, job })
-        .then (res => { name, job })
+        .then (res => {
+          profName.textContent = name;
+          profAbout.textContent = job;
+        })
         .catch(err => console.log(err));
         }
   }
@@ -138,4 +165,7 @@ const profFormValidator = new FormValidator(dataForm, formElementPfof);
 
 profFormValidator.enableValidation();
 
+const avatarFormValidator = new FormValidator(dataForm, formElementAvatar);
+
+avatarFormValidator.enableValidation();
 
