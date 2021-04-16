@@ -84,7 +84,7 @@ export default class Card {
   }
 
   findMyLike() {
-    return Boolean(this._likes.find(like => like._id === this._myId)) ;
+    return this._likes.some(like => like._id === this._myId) ;
   }
 
   checkLikes() {

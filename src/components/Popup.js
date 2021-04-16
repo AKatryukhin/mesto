@@ -1,12 +1,12 @@
 import { escapeKey } from '../utils/constants.js';
-
 export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
     this._handleClose = this._handleEscClose.bind(this);
+    this._save = this._popup.querySelector('.popup__save');
  }
 
- open() {
+open() {
   this._popup.classList.add('popup_opened');
   document.addEventListener('keydown', this._handleClose);
 }
@@ -34,6 +34,17 @@ setEventListeners() {
     }
   });
 }
+
+renderLoading(isLoading) {
+  if(isLoading) {
+    this._save.textContent = 'Сохранение...';
+  }
+    else {
+      this._save.textContent = 'Сохранить';
+    }
+}
+
+
 
 }
 

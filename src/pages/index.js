@@ -38,6 +38,7 @@ popupAvatarOpenButton.addEventListener('click', () => {
   openUserAvatar.setEventListeners();
   openUserAvatar.setSubmitAction(() => {
     const linkAvatar = userAvatarInfo.getUserAvatar();
+    openUserAvatar.renderLoading(true);
     api.editAvatar(linkAvatar)
       .then (res => {
         avatarImage.src = res.avatar;
@@ -45,8 +46,12 @@ popupAvatarOpenButton.addEventListener('click', () => {
         )
       .catch(err => console.log(err));
       });
-
+      openUserAvatar.renderLoading(false);
 });
+
+
+
+
 
  const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-22',
@@ -115,16 +120,22 @@ const defaultCardList = new Section({ renderer: (item) => {
 const openPopupProf = new PopupWithForm({
     popupSelector:'.popup_type_prof',
     handleFormSubmit: ({ name, job }) => {
+      openPopupProf.renderLoading(true);
       profUserInfo.setUserInfo({ name, job });
+
       api.editProfile({ name, job })
         .then (res => {
           profName.textContent = name;
           profAbout.textContent = job;
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => {
+          openPopupProf.renderLoading(false);
+        });
         }
-  }
-);
+      });
+
+
 openPopupProf.setEventListeners();
 
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений из профайла
@@ -139,12 +150,16 @@ popupProfOpenButton.addEventListener('click', () => {
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: (data) => {
+    // openPpopupPlace.renderLoading(true);
     api.addCard(data)
       .then ((data) => {
         const newCard = createCard(data, '.photo-template');
         defaultCardList.addItemPrepend(newCard);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
+      // .finally(() => {
+      //   openPpopupPlace.renderLoading(false);
+      // });
       }
   });
 
@@ -168,4 +183,5 @@ profFormValidator.enableValidation();
 const avatarFormValidator = new FormValidator(dataForm, formElementAvatar);
 
 avatarFormValidator.enableValidation();
+
 
