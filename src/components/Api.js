@@ -61,7 +61,7 @@ editProfile(data) {
       })
           .then(res => res.ok
               ? res.json()
-              : Promise.reject(`Ошибка ${res.status}`))
+              : Promise.reject(`Ошибка ${res.status}`));
   }
 
 
@@ -74,9 +74,31 @@ editProfile(data) {
       })
           .then(res => res.ok
               ? Promise.resolve('success')
-              : Promise.reject(`Ошибка ${res.status}`))
+              : Promise.reject(`Ошибка ${res.status}`));
   }
 
+  addLike(id) {
+    return fetch(`${this._address}/cards/likes/${id}`, {
+        method: 'PUT',
+        headers: {
+            authorization: this._token,
+        }
+    })
+        .then(res => res.ok
+            ? res.json()
+            : Promise.reject(`Ошибка ${res.status}`));
+}
 
+removeLike(id) {
+  return fetch(`${this._address}/cards/likes/${id}`, {
+      method: 'DELETE',
+      headers: {
+          authorization: this._token,
+      }
+  })
+      .then(res => res.ok
+          ? res.json()
+          : Promise.reject(`Ошибка ${res.status}`));
+}
 }
 

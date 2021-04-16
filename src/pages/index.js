@@ -41,8 +41,8 @@ const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSe
     console.log(err);
   });
 
-//функция создания новой карточки
-const createCard = ({ name, link, likes, owner, _id }, selector,
+ //функция создания новой карточки
+ const createCard = ({ name, link, likes, owner, _id }, selector,
   handleCardClick = (name, link) => {
      openPpopupImage.open(name, link);
      openPpopupImage.setEventListeners();
@@ -54,12 +54,28 @@ const createCard = ({ name, link, likes, owner, _id }, selector,
            .then(() => card.handleDel())
            .catch(err => console.log('Ошибка при удалении'));
        });
-      }) => {
+      },
+      handleSetLike = (card) => {
+    api.addLike(card.getId())
+         .then((res) => {
+           card.handleLike(res);
+         })
+         .catch(err => console.log('Ошибка добавления лайка'));
+      },
+      handleRemoveLike = (card) => {
+       api.removeLike(card.getId())
+       .then((res) => {
+         card.handleLike(res);
+       })
+       .catch(err => console.log('Ошибка снятия лайка'));
+      }
+      ) => {
        const card = new Card({ name, link, likes, owner, _id },
          myProfileId,
          selector,
          handleCardClick,
-         handleDelCard);
+         handleDelCard, handleSetLike, handleRemoveLike);
+
          return card.generateCard();
 
  };
