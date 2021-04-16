@@ -7,12 +7,10 @@
         <meta name="description" content="интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки" />
         <meta name="keywords" content="Место, интерактив, фото, лайки, Домбай, Эльбрус, Карачаевск" />
         <meta name="author" content="Александр Катрюхин" />
-        <link rel="shortcut icon" href="./src/images/baikal.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="./src/images/baikal.ico" type="image/x-icon" />
     </head>
     <body class="page">
-        <header class="header page__header">
-            <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип Место" /> -->
-        </header>
+        <header class="header page__header"><img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип Место" /> --></header>
         <main class="content container">
             <section class="profile content__profile container">
                 <div class="profile__avatar">
@@ -38,11 +36,11 @@
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="popup__form form-prof" name="profform" novalidate>
                     <fieldset class="popup__fild">
-                        <input type="text" class="popup__input popup__input_type_name" id="name-input" name="name" value="" required minlength="2" maxlength="40"/>
+                        <input type="text" class="popup__input popup__input_type_name" id="name-input" name="name" value="" required minlength="2" maxlength="40" />
                         <span class="popup__input-error name-input-error"></span>
-                        <input type="text" class="popup__input popup__input_type_descr" id="job-input" name="job" value="" required minlength="2" maxlength="200"/>
+                        <input type="text" class="popup__input popup__input_type_descr" id="job-input" name="job" value="" required minlength="2" maxlength="200" />
                         <span class="popup__input-error job-input-error"></span>
-                      </fieldset>
+                    </fieldset>
                     <button class="popup__save" type="submit" aria-label="Кнопка Сохранить">Сохранить</button>
                 </form>
             </div>
@@ -53,37 +51,37 @@
                 <h2 class="popup__title">Новое место</h2>
                 <form class="popup__form form-place" name="placeform" novalidate>
                     <fieldset class="popup__fild">
-                        <input type="text" class="popup__input popup__input_type_name" id="place-input" name="name" value="" placeholder="Название" required minlength="2" maxlength="30"/>
+                        <input type="text" class="popup__input popup__input_type_name" id="place-input" name="name" value="" placeholder="Название" required minlength="2" maxlength="30" />
                         <span class="popup__input-error place-input-error"></span>
-                        <input type="url" class="popup__input popup__input_type_descr" id="link-input" name="link" value="" placeholder="Ссылка на картинку" required/>
+                        <input type="url" class="popup__input popup__input_type_descr" id="link-input" name="link" value="" placeholder="Ссылка на картинку" required />
                         <span class="popup__input-error link-input-error"></span>
-                      </fieldset>
+                    </fieldset>
                     <button class="popup__save" type="submit" aria-label="Кнопка Создать">Создать</button>
                 </form>
             </div>
         </section>
         <section class="popup popup_type_avatar">
-          <div class="popup__container">
-              <button type="button" class="popup__close" aria-label="Кнопка для закрытия окна редактирования"></button>
-              <h2 class="popup__title">Обновить аватар</h2>
-              <form class="popup__form form-avatar" name="avatarform" novalidate>
-                  <fieldset class="popup__fild">
-                      <input type="url" class="popup__input popup__input_type_descr popup__input-avatar" id="link-input" name="link" value="" placeholder="Ссылка на аватар" required/>
-                      <span class="popup__input-error link-input-error"></span>
+            <div class="popup__container">
+                <button type="button" class="popup__close" aria-label="Кнопка для закрытия окна редактирования"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form class="popup__form form-avatar" name="avatarform" novalidate>
+                    <fieldset class="popup__fild">
+                        <input type="url" class="popup__input popup__input_type_descr popup__input-avatar" id="link-inputAvatar" name="link" value="" placeholder="Ссылка на аватар" required />
+                        <span class="popup__input-error link-input-error"></span>
                     </fieldset>
                     <button class="popup__save" type="submit" aria-label="Кнопка Сохранить">Сохранить</button>
-              </form>
-          </div>
-      </section>
+                </form>
+            </div>
+        </section>
         <section class="popup popup_type_confirm">
-          <div class="popup__container popup__container_type_confirm">
-            <button type="button" class="popup__close" aria-label="Кнопка для закрытия окна редактирования"></button>
-            <h2 class="popup__title popup__title_type_confirm">Вы уверены?</h2>
-            <form class="popup__form form-confirm">
-            <button class="popup__save" type="submit" aria-label="Кнопка Да">Да</button>
-            </form>
-        </div>
-      </section>
+            <div class="popup__container popup__container_type_confirm">
+                <button type="button" class="popup__close" aria-label="Кнопка для закрытия окна редактирования"></button>
+                <h2 class="popup__title popup__title_type_confirm">Вы уверены?</h2>
+                <form class="popup__form form-confirm">
+                    <button class="popup__save" type="submit" aria-label="Кнопка Да">Да</button>
+                </form>
+            </div>
+        </section>
         <section class="popup popup_type_image">
             <div class="popup__container-image">
                 <button type="button" class="popup__close popup__close_type_image" aria-label="Кнопка для закрытия окна"></button>
@@ -103,8 +101,9 @@
                     <figcaption class="photo__title">
                         <h2 class="photo__name"></h2>
                         <div class="photo__like-container">
-                          <button class="photo__like" type="button" aria-label="Кнопка для Лайков"></button>
-                          <p class="photo__like-total">0</p>
+                            <button class="photo__like" type="button" aria-label="Кнопка для Лайков"></button>
+                            <p class="photo__like-total">0</p>
+                        </div>
                     </figcaption>
                 </figure>
             </article>
