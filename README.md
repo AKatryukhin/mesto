@@ -1,4 +1,4 @@
-# Проектная работа 4,5,6,7,8: Место
+# Проектная работа 4,5,6,7,8,9: Место
 
 ### Описание
 Страница создана по макету в Figma, адаптивна для desctop и mobile.
@@ -34,6 +34,9 @@
 Section, Popup, PopupWithImage, PopupWithForm, UserInfo.
 
 Настроена сборка Webpack.
+
+В 9 проектной работе произведено подключение проекта Mesto к серверу при помощи запросов: GET, POST, PUT, PATCH, DELETE.
+
 
 Ссылка на проект gh-pages: https://akatryukhin.github.io/mesto/
 
