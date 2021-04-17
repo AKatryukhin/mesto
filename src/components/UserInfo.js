@@ -5,22 +5,19 @@ export default class UserInfo {
     this._link = document.querySelector(linkSelector);
   }
 
+  getUserInfo() {
+    return {
+      name: this._name.textContent,
+      profession: this._profession.textContent,
+    };
+  }
 
-getUserInfo() {
-  return {
-    name: this._name.textContent,
-    profession: this._profession.textContent,
-  };
+  setUserInfo({ name, about }) {
+    this._name.textContent = name;
+    this._profession.textContent = about;
+  }
+
+  getUserAvatar() {
+    return this._link.value;
+  }
 }
-
-setUserInfo({ name, about }) {
-  this._name.textContent = name;
-  this._profession.textContent = about;
-}
-
-getUserAvatar() {
-  return  this._link.value;
-}
-
-}
-
