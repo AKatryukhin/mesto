@@ -25,7 +25,7 @@ export default class Card {
   _getTemplate() {
     const photoElement = document
       .querySelector(this._selector)
-      .content.querySelector(".photo")
+      .content.querySelector('.photo')
       .cloneNode(true);
 
     return photoElement;
@@ -34,16 +34,16 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
-    this._like = this._element.querySelector(".photo__like");
+    this._like = this._element.querySelector('.photo__like');
     if (this.findMyLike()) {
-      this._like.classList.add("photo__like_type_active");
+      this._like.classList.add('photo__like_type_active');
     } else {
-      this._like.classList.remove("photo__like_type_active");
+      this._like.classList.remove('photo__like_type_active');
     }
-    const imageElement = this._element.querySelector(".photo__image");
+    const imageElement = this._element.querySelector('.photo__image');
     imageElement.src = this._link;
     imageElement.alt = `Картинка ${this._name}`;
-    this._element.querySelector(".photo__name").textContent = this._name;
+    this._element.querySelector('.photo__name').textContent = this._name;
     this.checkLikes();
     this.handleDelCardVisible();
     return this._element;
@@ -52,27 +52,27 @@ export default class Card {
   handleDelCardVisible() {
     if (this.userId === this.currentUserId) {
       this._element
-        .querySelector(".photo__trash")
-        .classList.add("photo__trash_type_visible");
+        .querySelector('.photo__trash')
+        .classList.add('photo__trash_type_visible');
     }
   }
 
   _setEventListeners() {
     this._element
-      .querySelector(".photo__trash")
-      .addEventListener("click", () => {
+      .querySelector('.photo__trash')
+      .addEventListener('click', () => {
         this._handleDelCard(this);
       });
 
     this._element
-      .querySelector(".photo__image")
-      .addEventListener("click", () => {
+      .querySelector('.photo__image')
+      .addEventListener('click', () => {
         this._handleCardClick(this._name, this._link);
       });
 
     this._element
-      .querySelector(".photo__like")
-      .addEventListener("click", () => {
+      .querySelector('.photo__like')
+      .addEventListener('click', () => {
         if (this.findMyLike()) {
           this._handleRemoveLike(this);
         } else {
@@ -89,10 +89,10 @@ export default class Card {
   updateLikesView(data) {
     if (!this.findMyLike()) {
       this.checkLikes();
-      this._like.classList.remove("photo__like_type_active");
+      this._like.classList.remove('photo__like_type_active');
     } else {
       this.checkLikes();
-      this._like.classList.add("photo__like_type_active");
+      this._like.classList.add('photo__like_type_active');
     }
   }
 
@@ -102,7 +102,7 @@ export default class Card {
 
   checkLikes() {
     this._element.querySelector(
-      ".photo__like-total"
+      '.photo__like-total'
     ).textContent = this._likes.length;
   }
 

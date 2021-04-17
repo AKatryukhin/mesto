@@ -1,13 +1,13 @@
-import "./index.css";
-import Card from "../components/Сard.js";
-import Section from "../components/Section.js";
-import FormValidator from "../components/FormValidator.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithConfirm from "../components/PopupWithConfirm.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithAvatar from "../components/PopupWithAvatar.js";
-import UserInfo from "../components/UserInfo.js";
-import Api from "../components/Api.js";
+import './index.css';
+import Card from '../components/Сard.js';
+import Section from '../components/Section.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithAvatar from '../components/PopupWithAvatar.js';
+import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 import {
   dataForm,
@@ -21,20 +21,20 @@ import {
   popupAvatarOpenButton,
   formElementAvatar,
   avatarImage,
-} from "../utils/constants.js";
+} from '../utils/constants.js';
 
-const openPpopupImage = new PopupWithImage(".popup_type_image");
-const openPpopupConfirm = new PopupWithConfirm(".popup_type_confirm");
+const openPpopupImage = new PopupWithImage('.popup_type_image');
+const openPpopupConfirm = new PopupWithConfirm('.popup_type_confirm');
 const profUserInfo = new UserInfo({
-  nameSelector: ".profile__name",
-  professionSelector: ".profile__job",
+  nameSelector: '.profile__name',
+  professionSelector: '.profile__job',
 });
-const userAvatarInfo = new UserInfo({ linkSelector: ".popup__input-avatar" });
-const openUserAvatar = new PopupWithAvatar(".popup_type_avatar");
+const userAvatarInfo = new UserInfo({ linkSelector: '.popup__input-avatar' });
+const openUserAvatar = new PopupWithAvatar('.popup_type_avatar');
 
 const api = new Api({
-  address: "https://mesto.nomoreparties.co/v1/cohort-22",
-  token: "239868fa-70b9-49a6-a5c6-22cb2b6196e6",
+  address: 'https://mesto.nomoreparties.co/v1/cohort-22',
+  token: '239868fa-70b9-49a6-a5c6-22cb2b6196e6',
 });
 
 let myProfileId;
@@ -66,7 +66,7 @@ const createCard = (
           card.handleDel();
           openPpopupConfirm.close();
         })
-        .catch((err) => console.log("Ошибка при удалении"));
+        .catch((err) => console.log('Ошибка при удалении'));
     });
   },
   handleSetLike = (card) => {
@@ -75,7 +75,7 @@ const createCard = (
       .then((res) => {
         card.handleLike(res);
       })
-      .catch((err) => console.log("Ошибка добавления лайка"));
+      .catch((err) => console.log('Ошибка добавления лайка'));
   },
   handleRemoveLike = (card) => {
     api
@@ -83,7 +83,7 @@ const createCard = (
       .then((res) => {
         card.handleLike(res);
       })
-      .catch((err) => console.log("Ошибка снятия лайка"));
+      .catch((err) => console.log('Ошибка снятия лайка'));
   }
 ) => {
   const card = new Card(
@@ -101,7 +101,7 @@ const createCard = (
 const defaultCardList = new Section(
   {
     renderer: (item) => {
-      const defaultCard = createCard(item, ".photo-template");
+      const defaultCard = createCard(item, '.photo-template');
       defaultCardList.addItem(defaultCard);
     },
   },
@@ -109,7 +109,7 @@ const defaultCardList = new Section(
 );
 
 //функция открытия попапа - редактирования аватара
-popupAvatarOpenButton.addEventListener("click", () => {
+popupAvatarOpenButton.addEventListener('click', () => {
   openUserAvatar.open();
   avatarFormValidator.clearValidation();
   openUserAvatar.setSubmitAction(() => {
@@ -130,7 +130,7 @@ popupAvatarOpenButton.addEventListener("click", () => {
 
 //функция открытия попапа - редактирования профиля и присваивания полям значений из полученных инпутов
 const openPopupProf = new PopupWithForm({
-  popupSelector: ".popup_type_prof",
+  popupSelector: '.popup_type_prof',
   handleFormSubmit: ({ name, about }) => {
     openPopupProf.renderLoading(true);
     api
@@ -147,7 +147,7 @@ const openPopupProf = new PopupWithForm({
 });
 
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений из профайла
-popupProfOpenButton.addEventListener("click", () => {
+popupProfOpenButton.addEventListener('click', () => {
   openPopupProf.open();
   const getDataUser = profUserInfo.getUserInfo();
   nameInput.value = getDataUser.name;
@@ -156,13 +156,13 @@ popupProfOpenButton.addEventListener("click", () => {
 
 //функция открытия попапа - добавления новой карточки используя formData из _getInputValues()
 const openPpopupPlace = new PopupWithForm({
-  popupSelector: ".popup_type_place",
+  popupSelector: '.popup_type_place',
   handleFormSubmit: (data) => {
     openPpopupPlace.renderLoading(true);
     api
       .addCard(data)
       .then((data) => {
-        const newCard = createCard(data, ".photo-template");
+        const newCard = createCard(data, '.photo-template');
         defaultCardList.addItemPrepend(newCard);
         openPpopupPlace.close();
       })
@@ -174,7 +174,7 @@ const openPpopupPlace = new PopupWithForm({
 });
 
 //слушатель с функцией открытия попапа добавления карточки
-popupPlaceOpenButton.addEventListener("click", () => {
+popupPlaceOpenButton.addEventListener('click', () => {
   openPpopupPlace.open();
   placeFormValidator.clearValidation();
 });

@@ -44,7 +44,7 @@ export default class FormValidator {
     );
     inputElement.classList.remove(this._inputErrorClass);
     _errorElement.classList.remove(this._errorClass);
-    _errorElement.textContent = "";
+    _errorElement.textContent = '';
   }
 
   _checkInputValidity(inputElement) {
@@ -60,7 +60,7 @@ export default class FormValidator {
       //  проверяю состояние кнопки вначале
       this._toggleButtonState();
 
-      inputElement.addEventListener("input", () => {
+      inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
         // проверяю состояние кнопки при изменении полей
         this._toggleButtonState();
@@ -81,12 +81,12 @@ export default class FormValidator {
   // метод отключения кнопки
   _disableSubmitButton() {
     this._buttonElement.classList.add(this._inactiveButtonClass);
-    this._buttonElement.setAttribute("disabled", true);
+    this._buttonElement.setAttribute('disabled', true);
   }
 
   // метод включения кнопки
   _enableSubmitButton() {
-    this._buttonElement.removeAttribute("disabled");
+    this._buttonElement.removeAttribute('disabled');
     this._buttonElement.classList.remove(this._inactiveButtonClass);
   }
 
@@ -98,7 +98,7 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    this._element.addEventListener("submit", (evt) => {
+    this._element.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
     this._setEventListeners();

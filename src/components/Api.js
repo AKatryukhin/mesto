@@ -1,4 +1,4 @@
-import { handleResponse } from "../utils/utils.js";
+import { handleResponse } from '../utils/utils.js';
 export default class Api {
   constructor({ address, token }) {
     this._address = address;
@@ -9,7 +9,7 @@ export default class Api {
     return fetch(`${this._address}/users/me`, {
       headers: {
         authorization: this._token,
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
     }).then(handleResponse);
   }
@@ -24,10 +24,10 @@ export default class Api {
 
   editProfile(data) {
     return fetch(`${this._address}/users/me`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
         authorization: this._token,
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         name: data.name,
@@ -38,10 +38,10 @@ export default class Api {
 
   editAvatar(link) {
     return fetch(`${this._address}/users/me/avatar`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
         authorization: this._token,
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         avatar: link,
@@ -51,10 +51,10 @@ export default class Api {
 
   addCard(data) {
     return fetch(`${this._address}/cards`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         authorization: this._token,
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         name: data.name,
@@ -65,7 +65,7 @@ export default class Api {
 
   removeCard(id) {
     return fetch(`${this._address}/cards/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         authorization: this._token,
       },
@@ -74,7 +74,7 @@ export default class Api {
 
   addLike(id) {
     return fetch(`${this._address}/cards/likes/${id}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
         authorization: this._token,
       },
@@ -83,7 +83,7 @@ export default class Api {
 
   removeLike(id) {
     return fetch(`${this._address}/cards/likes/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         authorization: this._token,
       },
