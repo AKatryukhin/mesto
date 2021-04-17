@@ -16,9 +16,6 @@ export const formElementPlace = document.forms.placeform;
 export const formElementAvatar = document.forms.avatarform;
 // image аватара
 export const avatarImage = document.querySelector('.profile__image');
-export const profName = document.querySelector('.profile__name');
-export const profAbout = document.querySelector('.profile__job');
-
 
 export const popupAvatarOpenButton = document.querySelector('.profile__avatar');
 

@@ -21,8 +21,6 @@ import {
   popupAvatarOpenButton,
   formElementAvatar,
   avatarImage,
-  profName,
-  profAbout
  } from '../utils/constants.js';
 
 const openPpopupImage = new PopupWithImage('.popup_type_image');
