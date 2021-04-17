@@ -19,8 +19,6 @@ export const avatarImage = document.querySelector('.profile__image');
 
 export const popupAvatarOpenButton = document.querySelector('.profile__avatar');
 
-export const galery = document.querySelector('.galery');
-
 export const escapeKey = 'Escape';
 
 export const dataForm = {
