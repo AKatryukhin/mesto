@@ -11,8 +11,6 @@ export default class PopupWithAvatar extends Popup {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._handleSubmitCallback();
-      super.close();
-
       });
   }
 

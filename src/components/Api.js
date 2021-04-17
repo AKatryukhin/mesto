@@ -1,9 +1,9 @@
+import { handleResponse } from '../utils/utils.js';
 export default class Api {
   constructor({address, token}) {
       this._address = address;
       this._token = token;
   }
-
 
   getProfileInfo() {
     return fetch(`${this._address}/users/me`, {
@@ -11,9 +11,7 @@ export default class Api {
           authorization: this._token,
           'Content-type': 'application/json'
       }
-  }).then(res => res.ok
-    ? res.json()
-    : Promise.reject(`Ошибка ${res.status}`));
+  }).then(handleResponse);
   }
 
 
@@ -23,9 +21,7 @@ export default class Api {
           authorization: this._token,
 
       }
-  }).then(res => res.ok
-    ? res.json()
-    : Promise.reject(`Ошибка ${res.status}`));
+  }).then(handleResponse);
 }
 
 
@@ -38,13 +34,11 @@ editProfile(data) {
   },
   body: JSON.stringify({
     name: data.name,
-    about: data.job
+    about: data.about
   })
 })
-    .then(res => res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка ${res.status}`));
-}
+  .then(handleResponse);
+  }
 
 editAvatar(link) {
   return fetch(`${this._address}/users/me/avatar`, {
@@ -58,10 +52,8 @@ editAvatar(link) {
     avatar: link
   })
 })
-    .then(res => res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка ${res.status}`));
-}
+  .then(handleResponse);
+  }
 
 
   addCard(data) {
@@ -76,11 +68,8 @@ editAvatar(link) {
             link: data.link
           })
       })
-          .then(res => res.ok
-              ? res.json()
-              : Promise.reject(`Ошибка ${res.status}`));
-  }
-
+      .then(handleResponse);
+    }
 
   removeCard(id) {
       return fetch(`${this._address}/cards/${id}`, {
@@ -89,10 +78,8 @@ editAvatar(link) {
               authorization: this._token
           }
       })
-          .then(res => res.ok
-              ? Promise.resolve('success')
-              : Promise.reject(`Ошибка ${res.status}`));
-  }
+      .then(handleResponse);
+    }
 
   addLike(id) {
     return fetch(`${this._address}/cards/likes/${id}`, {
@@ -101,10 +88,8 @@ editAvatar(link) {
             authorization: this._token,
         }
     })
-        .then(res => res.ok
-            ? res.json()
-            : Promise.reject(`Ошибка ${res.status}`));
-}
+    .then(handleResponse);
+  }
 
 removeLike(id) {
   return fetch(`${this._address}/cards/likes/${id}`, {
@@ -113,9 +98,7 @@ removeLike(id) {
           authorization: this._token,
       }
   })
-      .then(res => res.ok
-          ? res.json()
-          : Promise.reject(`Ошибка ${res.status}`));
+  .then(handleResponse);
 }
 }
 

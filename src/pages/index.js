@@ -25,33 +25,11 @@ import {
   profAbout
  } from '../utils/constants.js';
 
-
 const openPpopupImage = new PopupWithImage('.popup_type_image');
 const openPpopupConfirm = new PopupWithConfirm('.popup_type_confirm');
 const profUserInfo = new UserInfo({ nameSelector: '.profile__name', professionSelector: '.profile__job' });
 const userAvatarInfo = new UserInfo({ linkSelector: '.popup__input-avatar'});
 const openUserAvatar = new PopupWithAvatar('.popup_type_avatar');
-
-popupAvatarOpenButton.addEventListener('click', () => {
-  openUserAvatar.open();
-  avatarFormValidator.clearValidation();
-  openUserAvatar.setEventListeners();
-  openUserAvatar.setSubmitAction(() => {
-    const linkAvatar = userAvatarInfo.getUserAvatar();
-    openUserAvatar.renderLoading(true);
-    api.editAvatar(linkAvatar)
-      .then (res => {
-        avatarImage.src = res.avatar;
-      }
-        )
-      .catch(err => console.log(err));
-      });
-      openUserAvatar.renderLoading(false);
-});
-
-
-
-
 
  const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-22',
@@ -75,14 +53,15 @@ popupAvatarOpenButton.addEventListener('click', () => {
  const createCard = ({ name, link, likes, owner, _id }, selector,
  handleCardClick = (name, link) => {
     openPpopupImage.open(name, link);
-    openPpopupImage.setEventListeners();
     }, handleDelCard = (card) => {
       openPpopupConfirm.open();
-      openPpopupConfirm.setEventListeners();
       openPpopupConfirm.setSubmitAction(() => {
         api.removeCard(card.getId())
-          .then(() => card.handleDel())
-          .catch(err => console.log('Ошибка при удалении'));
+        .then(() => {
+          card.handleDel();
+          openPpopupConfirm.close();
+        })
+        .catch(err => console.log('Ошибка при удалении'));
       });
      },
      handleSetLike = (card) => {
@@ -105,9 +84,7 @@ popupAvatarOpenButton.addEventListener('click', () => {
         selector,
         handleCardClick,
         handleDelCard, handleSetLike, handleRemoveLike);
-
         return card.generateCard();
-
 };
 
 const defaultCardList = new Section({ renderer: (item) => {
@@ -115,28 +92,43 @@ const defaultCardList = new Section({ renderer: (item) => {
   defaultCardList.addItem(defaultCard);
 } }, cardListSelector);
 
+//функция открытия попапа - редактирования аватара
+popupAvatarOpenButton.addEventListener('click', () => {
+  openUserAvatar.open();
+  avatarFormValidator.clearValidation();
+  openUserAvatar.setSubmitAction(() => {
+    const linkAvatar = userAvatarInfo.getUserAvatar();
+    openUserAvatar.renderLoading(true);
+    api.editAvatar(linkAvatar)
+      .then (res => {
+        avatarImage.src = res.avatar;
+        openUserAvatar.close();
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        openUserAvatar.renderLoading(false);
+      });
+});
+});
+
 
 //функция открытия попапа - редактирования профиля и присваивания полям значений из полученных инпутов
 const openPopupProf = new PopupWithForm({
-    popupSelector:'.popup_type_prof',
-    handleFormSubmit: ({ name, job }) => {
-      openPopupProf.renderLoading(true);
-      profUserInfo.setUserInfo({ name, job });
-
-      api.editProfile({ name, job })
-        .then (res => {
-          profName.textContent = name;
-          profAbout.textContent = job;
-        })
-        .catch(err => console.log(err))
-        .finally(() => {
-          openPopupProf.renderLoading(false);
-        });
-        }
+  popupSelector:'.popup_type_prof',
+  handleFormSubmit: ({ name, about }) => {
+    openPopupProf.renderLoading(true);
+    api.editProfile({ name, about })
+      .then (res => {
+        profUserInfo.setUserInfo({ name, about });
+        openPopupProf.close();
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        openPopupProf.renderLoading(false);
       });
+      }
+    });
 
-
-openPopupProf.setEventListeners();
 
 //слушатель с функцией открытия попапа - редактирования профиля и присваивания инпутам значений из профайла
 popupProfOpenButton.addEventListener('click', () => {
@@ -150,20 +142,19 @@ popupProfOpenButton.addEventListener('click', () => {
 const openPpopupPlace = new PopupWithForm({
   popupSelector: '.popup_type_place',
   handleFormSubmit: (data) => {
-    // openPpopupPlace.renderLoading(true);
+    openPpopupPlace.renderLoading(true);
     api.addCard(data)
       .then ((data) => {
         const newCard = createCard(data, '.photo-template');
         defaultCardList.addItemPrepend(newCard);
+        openPpopupPlace.close();
       })
       .catch(err => console.log(err))
-      // .finally(() => {
-      //   openPpopupPlace.renderLoading(false);
-      // });
+      .finally(() => {
+        openPpopupPlace.renderLoading(false);
+      });
       }
   });
-
-openPpopupPlace.setEventListeners();
 
 //слушатель с функцией открытия попапа добавления карточки
 popupPlaceOpenButton.addEventListener('click', () => {
@@ -171,6 +162,12 @@ popupPlaceOpenButton.addEventListener('click', () => {
   placeFormValidator.clearValidation();
 
 });
+
+openPopupProf.setEventListeners();
+openPpopupPlace.setEventListeners();
+openPpopupImage.setEventListeners();
+openPpopupConfirm.setEventListeners();
+openUserAvatar.setEventListeners();
 
 const placeFormValidator = new FormValidator(dataForm, formElementPlace);
 

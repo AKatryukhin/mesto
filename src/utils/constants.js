@@ -9,7 +9,7 @@ export const formElementPfof = document.forms.profform;
 // поле ввода "имени" в форме попап Prof
 export const nameInput = formElementPfof.elements.name;
 //поле ввода "о себе" в форме попап Prof
-export const jobInput = formElementPfof.elements.job;
+export const jobInput = formElementPfof.elements.about;
 // форма попапа добавления карточки
 export const formElementPlace = document.forms.placeform;
 // форма попапа добавления аватара
