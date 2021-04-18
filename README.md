@@ -35,9 +35,9 @@ Section, Popup, PopupWithImage, PopupWithForm, UserInfo.
 
 Настроена сборка Webpack.
 
-В 9 проектной работе произведено подключение проекта Mesto к серверу при помощи запросов: GET, POST, PUT, PATCH, DELETE.
+В 9 проектной работе произведено подключение проекта Mesto к серверу при помощи запросов: GET, POST, PUT, PATCH, DELETE. Произведен рефакторинг кода во всех классах, а также созданы новые классы, необходимые в проекте.
 
 
-Ссылка на проект gh-pages: https://akatryukhin.github.io/mesto/
+Ссылка на проект gh-pages: https://akatryukhin.github.io/mesto
 
 
