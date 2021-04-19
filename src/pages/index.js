@@ -28,8 +28,11 @@ const openPpopupConfirm = new PopupWithConfirm('.popup_type_confirm');
 const profUserInfo = new UserInfo({
   nameSelector: '.profile__name',
   professionSelector: '.profile__job',
+  avatarSelector: '.profile__image'
 });
-const userAvatarInfo = new UserInfo({ linkSelector: '.popup__input-avatar' });
+const userAvatarInfo = new UserInfo({
+  linkSelector: '.popup__input-avatar',
+  avatarSelector: '.profile__image' });
 const openUserAvatar = new PopupWithAvatar('.popup_type_avatar');
 
 const api = new Api({
@@ -118,7 +121,7 @@ popupAvatarOpenButton.addEventListener('click', () => {
     api
       .editAvatar(linkAvatar)
       .then((res) => {
-        avatarImage.src = res.avatar;
+        userAvatarInfo.setUserInfo({ avatar: res.avatar });
         openUserAvatar.close();
       })
       .catch((err) => console.log(err))
