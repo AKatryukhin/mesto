@@ -45,7 +45,6 @@ let myProfileId;
 Promise.all([api.getInitialCards(), api.getProfileInfo()])
   .then(([cardsArray, userData]) => {
     myProfileId = userData._id;
-    avatarImage.src = userData.avatar;
     profUserInfo.setUserInfo(userData);
     defaultCardList.renderItems(cardsArray);
   })
