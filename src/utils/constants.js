@@ -14,12 +14,10 @@ export const jobInput = formElementPfof.elements.about;
 export const formElementPlace = document.forms.placeform;
 // форма попапа добавления аватара
 export const formElementAvatar = document.forms.avatarform;
-// image аватара
-export const avatarImage = document.querySelector('.profile__image');
 
 export const popupAvatarOpenButton = document.querySelector('.profile__avatar');
 
-export const escapeKey = 'Escape';
+export const ESC_KEYCODE = 'Escape';
 
 export const dataForm = {
   inputSelector: '.popup__input',

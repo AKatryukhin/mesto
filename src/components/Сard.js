@@ -44,7 +44,7 @@ export default class Card {
     imageElement.src = this._link;
     imageElement.alt = `Картинка ${this._name}`;
     this._element.querySelector('.photo__name').textContent = this._name;
-    this.checkLikes();
+    this.setLikes();
     this.handleDelCardVisible();
     return this._element;
   }
@@ -88,10 +88,10 @@ export default class Card {
 
   updateLikesView(data) {
     if (!this.findMyLike()) {
-      this.checkLikes();
+      this.setLikes();
       this._like.classList.remove('photo__like_type_active');
     } else {
-      this.checkLikes();
+      this.setLikes();
       this._like.classList.add('photo__like_type_active');
     }
   }
@@ -100,7 +100,7 @@ export default class Card {
     return this._likes.some((like) => like._id === this._myId);
   }
 
-  checkLikes() {
+  setLikes() {
     this._element.querySelector(
       '.photo__like-total'
     ).textContent = this._likes.length;

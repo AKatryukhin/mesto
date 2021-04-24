@@ -1,4 +1,4 @@
-import { escapeKey } from '../utils/constants.js';
+import { ESC_KEYCODE } from '../utils/constants.js';
 export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
@@ -17,7 +17,7 @@ export default class Popup {
   }
 
   _handleEscClose(evt) {
-    if (evt.key === escapeKey) {
+    if (evt.key === ESC_KEYCODE) {
       if (this._popup.classList.contains('popup_opened')) {
         this.close();
       }

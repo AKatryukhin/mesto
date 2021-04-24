@@ -20,7 +20,6 @@ import {
   cardListSelector,
   popupAvatarOpenButton,
   formElementAvatar,
-  avatarImage,
 } from '../utils/constants.js';
 
 const openPpopupImage = new PopupWithImage('.popup_type_image');
