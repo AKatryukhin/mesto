@@ -74,7 +74,7 @@ const createCard = (
     api
       .addLike(card.getId())
       .then((res) => {
-        card.handleLike(res);
+        card.setLikesInfo(res);
       })
       .catch((err) => console.log('Ошибка добавления лайка'));
   },
@@ -82,7 +82,7 @@ const createCard = (
     api
       .removeLike(card.getId())
       .then((res) => {
-        card.handleLike(res);
+        card.setLikesInfo(res);
       })
       .catch((err) => console.log('Ошибка снятия лайка'));
   }

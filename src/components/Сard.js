@@ -81,7 +81,7 @@ export default class Card {
       });
   }
 
-  handleLike(data) {
+  setLikesInfo(data) {
     this._likes = data.likes;
     this.updateLikesView();
   }
