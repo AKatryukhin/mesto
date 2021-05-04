@@ -5,15 +5,15 @@ export const popupPlaceOpenButton = document.querySelector('.profile__add');
 // селектор секции вставки/отображения карточек
 export const cardListSelector = '.galery';
 // форма попапа редактирования профиля
-export const formElementPfof = document.forms.profform;
+export const formElementPfof = document.forms.prof-form;
 // поле ввода "имени" в форме попап Prof
 export const nameInput = formElementPfof.elements.name;
 //поле ввода "о себе" в форме попап Prof
 export const jobInput = formElementPfof.elements.about;
 // форма попапа добавления карточки
-export const formElementPlace = document.forms.placeform;
+export const formElementPlace = document.forms.place-form;
 // форма попапа добавления аватара
-export const formElementAvatar = document.forms.avatarform;
+export const formElementAvatar = document.forms.avatar-form;
 
 export const popupAvatarOpenButton = document.querySelector('.profile__avatar');
 
